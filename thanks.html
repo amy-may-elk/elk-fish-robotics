@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="EFR_LOGO.svg" />
+<title>Thanks — Elk Fish Robotics</title>
+<meta name="description" content="Your callback request has come through to our Fremantle team. We'll be in touch." />
+<meta name="robots" content="noindex,follow" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+
+<style>
+/* Brand variables — kept in sync with index.html */
+:root {
+  --paper:        #D8E0DA;
+  --paper-soft:   #E5EAE6;
+  --paper-deep:   #C2CDC4;
+  --ink:          #1B1F1C;
+  --ink-soft:     #4E5751;
+  --ink-faint:    #7A847D;
+  --green-deep:   #4F6B58;
+  --green:        #5F7C67;
+  --green-light:  #A7C48A;
+  --accent:       #3A8FB7;
+  --accent-line:  #4a7c74;
+  --font-display: 'Fraunces', serif;
+  --font-body:    'Inter', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+  --container:    1320px;
+  --gutter:       clamp(20px, 3.5vw, 56px);
+  --ease:         cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-ease:  cubic-bezier(0.22, 0.61, 0.36, 1);
+  --topbar-h:     100px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--paper-soft);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a { color: var(--green-deep); }
+a:hover { color: var(--green); }
+
+/* Topbar — matches homepage */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 200;
+  height: var(--topbar-h);
+  background: var(--ink);
+  border-bottom: 1px solid rgba(244,236,216,0.08);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+}
+.topbar-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+.topbar-logo { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.topbar-logo img { height: 84px; width: auto; }
+.topbar-nav {
+  display: flex; gap: 28px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.topbar-nav a {
+  color: var(--paper-soft);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.topbar-nav a:hover { color: var(--green-light); }
+.topbar-actions { display: flex; gap: 16px; align-items: center; }
+.phone-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--paper-soft); text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: color 0.2s ease;
+}
+.phone-cta:hover { color: var(--green-light); }
+.phone-cta svg { width: 14px; height: 14px; }
+.quote-cta {
+  background: var(--green-deep);
+  color: var(--paper);
+  padding: 12px 18px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: background 0.2s ease, transform 200ms var(--motion-ease);
+}
+.quote-cta:hover { background: var(--green); transform: translateY(-2px); }
+@media (max-width: 760px) {
+  .topbar-nav { display: none; }
+  .phone-cta .phone-label { display: none; }
+}
+
+/* Main thanks-page content */
+.thanks-main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: calc(var(--topbar-h) + 80px) var(--gutter) 96px;
+}
+.thanks-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green-deep);
+  margin-bottom: 24px;
+}
+.thanks-main h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-bottom: 32px;
+}
+.thanks-main h1 em {
+  font-style: italic;
+  color: var(--green-deep);
+}
+.thanks-main p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin-bottom: 18px;
+}
+.thanks-main p strong { color: var(--ink); }
+.thanks-main p a { color: var(--green-deep); text-decoration: underline; text-underline-offset: 3px; }
+.thanks-main p a:hover { color: var(--green); }
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 24px;
+  padding: 14px 22px;
+  background: var(--green-deep);
+  color: var(--paper);
+  text-decoration: none;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: background 0.2s ease, transform 200ms var(--motion-ease);
+}
+.back-link:hover { background: var(--green); transform: translateY(-2px); color: var(--paper); }
+.back-link .arrow { transition: transform 200ms var(--motion-ease); display: inline-block; }
+.back-link:hover .arrow { transform: translateX(4px); }
+
+/* Footer — matches homepage */
+footer {
+  background: var(--ink);
+  color: var(--paper-soft);
+  padding: 56px var(--gutter) 32px;
+}
+.footer-inner { max-width: var(--container); margin: 0 auto; }
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(244,236,216,0.08);
+}
+.footer-brand img { height: 56px; width: auto; margin-bottom: 18px; }
+.footer-brand p { font-size: 14px; line-height: 1.6; color: var(--paper); opacity: 0.7; max-width: 320px; }
+.footer-col h4 {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green-light);
+  margin-bottom: 16px;
+}
+.footer-col ul { list-style: none; }
+.footer-col li {
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 8px;
+  color: var(--paper);
+  opacity: 0.7;
+}
+.footer-col li a {
+  color: var(--paper);
+  text-decoration: none;
+  opacity: 1;
+  transition: color 0.2s ease;
+}
+.footer-col li a:hover { color: var(--green-light); }
+.footer-abn {
+  border-top: 1px solid rgba(244,236,216,0.06);
+  padding-top: 16px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  opacity: 0.6;
+  margin-top: 24px;
+}
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--paper);
+  opacity: 0.6;
+}
+@media (max-width: 880px) {
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+}
+@media (max-width: 560px) {
+  .footer-top { grid-template-columns: 1fr; }
+}
+
+/* Reduced-motion baseline */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- TOPBAR (mirrors homepage, with absolute links back to homepage anchors) -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="/" class="topbar-logo" aria-label="Elk Fish Robotics home">
+      <img src="EFR_LOGO.svg" alt="Elk Fish Robotics" />
+    </a>
+    <nav class="topbar-nav" aria-label="Primary">
+      <a href="/#products">Drones</a>
+      <a href="/#roi">ROI</a>
+      <a href="/#service">Service</a>
+      <a href="/#why">Why Us</a>
+      <a href="/#faq">FAQ</a>
+    </nav>
+    <div class="topbar-actions">
+      <a href="tel:+61861107423" class="phone-cta" aria-label="Call Elk Fish Robotics">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span class="phone-label">(08) 6110 7423</span>
+      </a>
+      <a href="/#enquire" class="quote-cta">Schedule a callback</a>
+    </div>
+  </div>
+</header>
+
+<!-- THANKS CONTENT -->
+<main class="thanks-main">
+  <div class="thanks-eyebrow">Callback request received</div>
+  <h1>Thanks. <em>We'll be in touch.</em></h1>
+  <p>Your callback request has come through to our team in Fremantle.</p>
+  <p>We'll ring you back at the time you've nominated. If we can't reach you we'll try once more, no follow-up barrage.</p>
+  <p>If you'd rather not wait, you can ring us directly on <a href="tel:+61861107423"><strong>(08) 6110 7423</strong></a> during business hours (Mon to Fri, 8.00am to 5.00pm AWST).</p>
+  <a href="/" class="back-link">Back to the homepage <span class="arrow">→</span></a>
+</main>
+
+<!-- FOOTER (mirrors homepage with absolute links) -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="EFR_LOGO.svg" alt="Elk Fish Robotics" />
+        <p>WA drone engineers and the state's authorised DJI Agras dealer. Sold, set up and serviced from our Fremantle workshop.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Drones</h4>
+        <ul>
+          <li><a href="/#products">DJI Agras T100</a></li>
+          <li><a href="/#products">DJI Agras T25 P</a></li>
+          <li><a href="/#roi">ROI calculator</a></li>
+          <li><a href="/#enquire">Schedule a callback</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Service</h4>
+        <ul>
+          <li><a href="/#service">Repairs &amp; service</a></li>
+          <li><a href="/#included">What's included</a></li>
+          <li>On-day setup, demo &amp; walkthrough</li>
+          <li>Finance options</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><strong><a href="tel:+61861107423">(08) 6110 7423</a></strong></li>
+          <li><a href="mailto:agras@elkfishrobotics.com.au">agras@elkfishrobotics.com.au</a></li>
+          <li>1/72 Marine Terrace<br />Fremantle, WA 6160</li>
+          <li>Mon to Fri · 8.00am to 5.00pm AWST</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-abn">
+      <!-- TODO: add ABN once confirmed -->
+      <span>ABN [FLAG FOR FRANK: add ABN]</span>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Elk Fish Robotics Pty Ltd</span>
+      <span>Built in Fremantle · Serving WA broadacre, vineyards and horticulture</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -2265,11 +2265,15 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
         <div class="hero-form-eyebrow">Schedule a callback</div>
         <h2 class="hero-form-title">Schedule a callback <em>that suits you.</em></h2>
         <p class="hero-form-sub">Three fields. Tell us when. We call you back, no follow-up barrage.</p>
-        <form class="hero-form-fields" id="heroQuickForm" onsubmit="event.preventDefault(); alert('Demo only. Wire to GoHighLevel before launch.');">
+        <form class="hero-form-fields" id="heroQuickForm" name="callback-quick" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
+          <input type="hidden" name="form-name" value="callback-quick" />
+          <p hidden>
+            <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+          </p>
           <input type="hidden" name="source" value="elkfish.com.au : hero callback request" />
           <input type="text" name="name" required placeholder="Your name" />
           <input type="tel" name="phone" required placeholder="Best phone number" />
-          <select name="drone" required>
+          <select name="drone-interest" required>
             <option selected>Not sure, help me decide</option>
             <option>DJI Agras T100 (broadacre)</option>
             <option>DJI Agras T25 P (smaller blocks &amp; vineyards)</option>
@@ -2916,7 +2920,11 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
       <div class="enquire-right reveal">
         <div class="form-card">
           <!-- Production: wire form action to GoHighLevel endpoint -->
-          <form class="form" id="enquireForm" onsubmit="event.preventDefault(); alert('Demo only. Wire form action to GoHighLevel endpoint before launch.');">
+          <form class="form" id="enquireForm" name="callback-full" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
+            <input type="hidden" name="form-name" value="callback-full" />
+            <p hidden>
+              <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+            </p>
             <input type="hidden" name="source" value="elkfish.com.au : bottom form" />
             <input type="hidden" name="product_interest" id="productInterest" value="" />
             <div class="field">
@@ -2929,7 +2937,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
             </div>
             <div class="field full">
               <label>When's a good time?<span class="opt">(optional)</span></label>
-              <input type="text" name="callback_time" placeholder="e.g. Tomorrow morning, or after 4pm Friday" />
+              <input type="text" name="best-time" placeholder="e.g. Tomorrow morning, or after 4pm Friday" />
             </div>
             <div class="form-actions">
               <button type="submit" class="btn-submit">Schedule my callback <span class="arrow">→</span></button>
