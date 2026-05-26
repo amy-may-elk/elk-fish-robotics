@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="icon" type="image/svg+xml" href="EFR_LOGO.svg" />
 <title>DJI Agras Spray Drones WA | T100 &amp; T25 P | Elk Fish Robotics Fremantle</title>
-<meta name="description" content="Western Australia's authorised DJI Agras dealer. T100 and T25 P spray drones, CASA-certified operators, in-house service and repairs. Based in Fremantle. Schedule a callback." />
+<meta name="description" content="Western Australia's authorised DJI Agras dealer. T100 and T25 P spray drones, CASA-certified operators, service and repairs. Based in Fremantle. Schedule a callback." />
 <meta name="keywords" content="DJI Agras WA, DJI Agras Perth, spray drones WA, agricultural drones WA, drone spraying Western Australia, DJI dealer Perth, DJI Agras T100 Australia, broadacre spray drone, vineyard spray drone, CASA Part 137 WA" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="DJI Agras Spray Drones WA | Elk Fish Robotics Fremantle" />
-<meta property="og:description" content="WA's DJI Agras dealer. T100 and T25 P spray drones sold, serviced and supported from Fremantle. In-house repairs and on-day handover." />
+<meta property="og:description" content="WA's DJI Agras dealer. T100 and T25 P spray drones sold, serviced and supported from Fremantle. Service and on-day handover." />
 <meta property="og:image" content="hero-poster.jpg" />
 <meta property="og:locale" content="en_AU" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1493,9 +1493,9 @@ footer {
    These specific moments override to green or lime instead. */
 
 /* Primary CTAs: deep eucalyptus, not cyan */
-.btn-primary { background: var(--green-deep); color: var(--paper); }
+.btn-primary { background: var(--green-deep); color: #fff; }
 .btn-primary:hover { background: var(--green); }
-.quote-cta { background: var(--green-deep); color: var(--paper); }
+.quote-cta { background: var(--green-deep); color: #fff; }
 .quote-cta:hover { background: var(--green); }
 .btn-submit:hover { background: var(--green-deep); }
 
@@ -1746,6 +1746,31 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
 }
 .engineers-copy p + p { margin-top: 16px; }
 .engineers-cta { margin-top: 24px; }
+
+/* Founder blockquote — between #engineers and #audience */
+#founder-note {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: clamp(48px, 6vw, 80px) var(--gutter);
+  border-left: 3px solid var(--accent-line);
+  font-family: var(--font-display);
+  font-size: clamp(19px, 2.2vw, 26px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--ink);
+}
+#founder-note cite {
+  display: block;
+  margin-top: 20px;
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
 
 /* Card CTA row inside problem-card (Who This Is For section) */
 .card-cta-row {
@@ -2424,7 +2449,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
       <div class="engineers-text-col">
         <div class="engineers-copy reveal">
           <p>Elk Fish is the authorised DJI Agras dealer for Western Australia. We don't make the Agras. DJI does. The Agras platform is widely adopted across agriculture for its reliability and operational capability. What we add is engineering.</p>
-          <p>Every Agras goes through our workshop before it leaves. We set it up, show you how it works on the day, and stay on the phone through your first season. Repairs happen at the same bench, handled by engineers. Not subcontractors, not third-party repair shops.</p>
+          <p>Every Agras goes through our workshop before it leaves. We set it up, show you how it works on the day, and stay on the phone through your first season. Repairs happen at the same bench, handled by engineers.</p>
           <p>Buying through us keeps the margin in WA. Local jobs, local workshop, local engineers. That is what your purchase supports.</p>
         </div>
         <div class="engineers-cta reveal">
@@ -2437,6 +2462,12 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
     </div>
   </div>
 </section>
+
+<!-- FOUNDER QUOTE -->
+<blockquote id="founder-note">
+  <p>Don't bring your own skis to the mountain. If they break, the shop's right there. It's the same with a drone. You can buy one online — but the shop won't be right there when you need it.</p>
+  <cite>Francis King, Managing Director, Elk Fish Robotics</cite>
+</blockquote>
 
 <!-- WHO THIS IS FOR -->
 <section class="section" id="audience">
@@ -2711,13 +2742,6 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
       <div class="service-item reveal">
         <div class="num-big">01</div>
         <div class="copy">
-          <h3>In-house, not outsourced.</h3>
-          <p>Every diagnosis, every repair, every handover handled by our team. Not shipped off to a third party.</p>
-        </div>
-      </div>
-      <div class="service-item reveal">
-        <div class="num-big">02</div>
-        <div class="copy">
           <h3>Diagnosed before quoted.</h3>
           <p>Faults identified and explained before any work or cost is committed. No surprise invoices, no scope creep.</p>
         </div>
@@ -2783,7 +2807,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
       <div class="why-card reveal">
         <div class="num">02 / LOCAL</div>
         <h3>Local team, local workshop.</h3>
-        <p>Repairs handled in-house by engineers we employ ourselves. The same people who set up your drone answer the phone when you ring.</p>
+        <p>Repairs handled by engineers we employ directly. The same people who set up your drone answer the phone when you ring.</p>
       </div>
       <div class="why-card reveal">
         <div class="num">03 / HANDOVER</div>
@@ -2808,7 +2832,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
         <div class="eyebrow">About</div>
         <h2>We're engineers, <em>based in Fremantle.</em></h2>
         <p>Elk Fish Robotics is a Western Australian engineering company. We're the authorised DJI Agras dealer for the state. DJI builds the Agras, and we handle everything else: sales, setup, on-day handover, service and repairs, from our Fremantle workshop.</p>
-        <p>Every drone leaves our workshop set up and tested. Every repair is handled by engineers, not subcontractors. Every operator we deliver to gets walked through their first flights on the day.</p>
+        <p>Every drone leaves our workshop set up and tested. Every repair is handled by engineers. Every operator we deliver to gets walked through their first flights on the day.</p>
         <p>We employ locally. We engineer locally. The Agras you buy here helps keep all of that going.</p>
         <div class="about-contact">
           <p><strong>Workshop:</strong> 1/72 Marine Terrace, Fremantle WA 6160</p>
@@ -2867,7 +2891,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
           <span><span class="qnum">7.6</span>What's the warranty and what does it cover?</span>
           <svg class="faq-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 7h10M7 2v10"/></svg>
         </button>
-        <div class="faq-a"><div class="faq-a-inner">12 months from DJI as standard on the drone and electronics. We handle warranty work in-house at our Fremantle shop. Extended cover available on request.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">12 months from DJI as standard on the drone and electronics. We handle warranty claims at our Fremantle workshop. Extended cover available on request.</div></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" aria-expanded="false">
@@ -2921,7 +2945,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
             <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
             <div class="text">
               <div class="label">Open</div>
-              <div class="val">Mon to Fri 8.00am to 5.00pm AWST</div>
+              <div class="val">Mon to Fri 8.00am to 5.00pm AWST<br />Pop in anytime — Marine Terrace, Fremantle. No appointment needed.</div>
             </div>
           </div>
         </div>
