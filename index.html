@@ -1607,6 +1607,50 @@ footer {
 /* Roi inline CTA and SMS option borders: lime, the encouragement colour */
 .roi-inline-cta { border-left-color: var(--green-light); }
 .sms-option { border-left-color: var(--green-light); }
+
+/* Hero sound toggle: pill-shaped glass button, bottom-left of the hero. */
+.hero-sound-toggle {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: rgba(20,17,13,0.55);
+  color: var(--paper-soft);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.hero-sound-toggle:hover,
+.hero-sound-toggle:focus-visible {
+  background: rgba(20,17,13,0.75);
+  border-color: var(--green-light);
+  color: var(--green-light);
+  outline: none;
+}
+.hero-sound-toggle svg { width: 16px; height: 16px; }
+.hero-sound-toggle .icon-unmuted { display: none; }
+.hero-sound-toggle[aria-pressed="true"] .icon-muted { display: none; }
+.hero-sound-toggle[aria-pressed="true"] .icon-unmuted { display: inline-block; }
+.hero-sound-toggle[aria-pressed="true"] {
+  background: rgba(167,196,138,0.18);
+  border-color: var(--green-light);
+  color: var(--green-light);
+}
+@media (max-width: 640px) {
+  .hero-sound-toggle { bottom: 16px; left: 16px; padding: 8px 12px; font-size: 12px; }
+  .hero-sound-toggle .hero-sound-label { display: none; }
+}
 </style>
 </head>
 <body>
@@ -1643,6 +1687,12 @@ footer {
     <source src="Agras_t100_hero_video_1.mp4" type="video/mp4" />
   </video>
   <div class="hero-overlay"></div>
+
+  <button type="button" class="hero-sound-toggle" id="heroSoundToggle" aria-label="Unmute hero video" aria-pressed="false">
+    <svg class="icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+    <svg class="icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+    <span class="hero-sound-label">Sound</span>
+  </button>
 
   <div class="hero-content">
     <div class="hero-left">
@@ -1710,10 +1760,6 @@ footer {
     <div class="trust-item">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       <span><strong>In-House</strong> Repairs &amp; Training</span>
-    </div>
-    <div class="trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/></svg>
-      <span><strong>ABN</strong> [PLACEHOLDER]</span>
     </div>
   </div>
 </div>
@@ -2293,7 +2339,7 @@ footer {
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Elk Fish Robotics Pty Ltd · ABN [PLACEHOLDER]</span>
+      <span>© 2026 Elk Fish Robotics Pty Ltd</span>
       <span>Built in Fremantle · Serving WA broadacre, vineyards and horticulture</span>
     </div>
   </div>
@@ -2418,6 +2464,25 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
   });
 });
+
+/* Hero video sound toggle.
+   Video stays muted by default so autoplay works in every browser; user can
+   opt in to audio via the pill button bottom-left of the hero. */
+(function initHeroSoundToggle() {
+  const btn = document.getElementById('heroSoundToggle');
+  const vid = document.querySelector('.hero-video');
+  if (!btn || !vid) return;
+  btn.addEventListener('click', () => {
+    vid.muted = !vid.muted;
+    if (!vid.muted) {
+      vid.volume = 1;
+      vid.play().catch(() => {});
+    }
+    const on = !vid.muted;
+    btn.setAttribute('aria-pressed', String(on));
+    btn.setAttribute('aria-label', on ? 'Mute hero video' : 'Unmute hero video');
+  });
+})();
 </script>
 
 </body>
