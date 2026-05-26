@@ -4,8 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="icon" type="image/svg+xml" href="EFR_LOGO.svg" />
-<title>Thanks — Elk Fish Robotics</title>
-<meta name="description" content="Your callback request has come through to our Fremantle team. We'll be in touch." />
+<title>Privacy Policy — Elk Fish Robotics</title>
+<meta name="description" content="How Elk Fish Robotics collects, uses and protects your personal information. Plain English, no jargon." />
 <meta name="robots" content="noindex,follow" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -50,7 +50,7 @@ html, body {
 a { color: var(--green-deep); }
 a:hover { color: var(--green); }
 
-/* Topbar — matches homepage */
+/* Topbar */
 .topbar {
   position: fixed; top: 0; left: 0; right: 0;
   z-index: 200;
@@ -97,7 +97,7 @@ a:hover { color: var(--green); }
 .phone-cta svg { width: 14px; height: 14px; }
 .quote-cta {
   background: var(--green-deep);
-  color: var(--paper);
+  color: #fff;
   padding: 12px 18px;
   border-radius: 4px;
   text-decoration: none;
@@ -108,71 +108,99 @@ a:hover { color: var(--green); }
   text-transform: uppercase;
   transition: background 0.2s ease, transform 200ms var(--motion-ease);
 }
-.quote-cta:hover { background: var(--green); transform: translateY(-2px); }
+.quote-cta:hover { background: var(--green); color: #fff; transform: translateY(-2px); }
 @media (max-width: 760px) {
   .topbar-nav { display: none; }
   .phone-cta .phone-label { display: none; }
 }
 
-/* Main thanks-page content */
-.thanks-main {
+/* Page content */
+.privacy-main {
   max-width: 720px;
   margin: 0 auto;
-  padding: calc(var(--topbar-h) + 80px) var(--gutter) 96px;
+  padding: calc(var(--topbar-h) + 72px) var(--gutter) 96px;
 }
-.thanks-eyebrow {
+
+.privacy-eyebrow {
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--green-deep);
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
-.thanks-main h1 {
+
+.privacy-main h1 {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(36px, 5vw, 56px);
+  font-size: clamp(36px, 5vw, 52px);
   line-height: 1.1;
   letter-spacing: -0.01em;
-  margin-bottom: 32px;
+  margin-bottom: 8px;
 }
-.thanks-main h1 em {
-  font-style: italic;
-  color: var(--green-deep);
-}
-.thanks-main p {
-  font-size: 17px;
-  line-height: 1.7;
-  color: var(--ink-soft);
-  margin-bottom: 18px;
-}
-.thanks-main p strong { color: var(--ink); }
-.thanks-main p a { color: var(--green-deep); text-decoration: underline; text-underline-offset: 3px; }
-.thanks-main p a:hover { color: var(--green); }
 
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 24px;
-  padding: 14px 22px;
-  background: var(--green-deep);
-  color: var(--paper);
-  text-decoration: none;
-  border-radius: 4px;
+.privacy-date {
   font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
   text-transform: uppercase;
-  transition: background 0.2s ease, transform 200ms var(--motion-ease);
+  margin-bottom: 48px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(27,31,28,0.12);
 }
-.back-link:hover { background: var(--green); transform: translateY(-2px); color: var(--paper); }
-.back-link .arrow { transition: transform 200ms var(--motion-ease); display: inline-block; }
-.back-link:hover .arrow { transform: translateX(4px); }
 
-/* Footer — matches homepage */
+.privacy-main h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(20px, 2.5vw, 26px);
+  line-height: 1.25;
+  margin-top: 48px;
+  margin-bottom: 14px;
+  color: var(--ink);
+}
+
+.privacy-main p {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--ink-soft);
+  margin-bottom: 16px;
+}
+
+.privacy-main p strong { color: var(--ink); }
+
+.privacy-main p a {
+  color: var(--green-deep);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.privacy-main p a:hover { color: var(--green); }
+
+.privacy-main ul {
+  margin: 0 0 16px 0;
+  padding-left: 20px;
+}
+.privacy-main ul li {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+
+.privacy-contact-box {
+  margin-top: 48px;
+  padding: 28px 32px;
+  background: var(--paper-deep);
+  border-left: 3px solid var(--green-deep);
+  border-radius: 4px;
+}
+.privacy-contact-box p {
+  margin-bottom: 8px;
+}
+.privacy-contact-box p:last-child { margin-bottom: 0; }
+
+/* Footer */
 footer {
   background: var(--ink);
   color: var(--paper-soft);
@@ -227,19 +255,19 @@ footer {
   align-items: center;
   flex-wrap: wrap;
   gap: 12px;
-  padding-top: 24px;
+  margin-top: 32px;
   font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  color: var(--paper);
-  opacity: 0.6;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: rgba(244,236,216,0.4);
+  text-transform: uppercase;
 }
 .footer-bottom a {
-  color: var(--paper);
+  color: rgba(244,236,216,0.4);
   text-decoration: none;
   transition: color 0.2s ease;
 }
-.footer-bottom a:hover { color: var(--green-light); }
+.footer-bottom a:hover { color: rgba(244,236,216,0.75); }
 @media (max-width: 880px) {
   .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
   .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
@@ -248,7 +276,6 @@ footer {
   .footer-top { grid-template-columns: 1fr; }
 }
 
-/* Reduced-motion baseline */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -260,7 +287,6 @@ footer {
 
 <body>
 
-<!-- TOPBAR (mirrors homepage, with absolute links back to homepage anchors) -->
 <header class="topbar">
   <div class="topbar-inner">
     <a href="/" class="topbar-logo" aria-label="Elk Fish Robotics home">
@@ -268,7 +294,6 @@ footer {
     </a>
     <nav class="topbar-nav" aria-label="Primary">
       <a href="/#products">Drones</a>
-      <a href="/#roi">ROI</a>
       <a href="/#service">Service</a>
       <a href="/#why">Why Us</a>
       <a href="/#faq">FAQ</a>
@@ -283,17 +308,75 @@ footer {
   </div>
 </header>
 
-<!-- THANKS CONTENT -->
-<main class="thanks-main">
-  <div class="thanks-eyebrow">Callback request received</div>
-  <h1>Thanks. <em>We'll be in touch.</em></h1>
-  <p>Your callback request has been sent to our Fremantle team.</p>
-  <p>We'll ring you at the time you've nominated. If we can't reach you we'll try once more.</p>
-  <p>If you'd prefer not to wait, you can call us directly on <a href="tel:+61861107423"><strong>(08) 6110 7423</strong></a> during business hours (Mon to Fri, 8.00am to 5.00pm AWST).</p>
-  <a href="/" class="back-link">Back to the homepage <span class="arrow">→</span></a>
+<main class="privacy-main">
+
+  <div class="privacy-eyebrow">Legal</div>
+  <h1>Privacy Policy</h1>
+  <p class="privacy-date">Last updated: May 2026</p>
+
+  <p>This privacy policy explains how Elk Fish Robotics Pty Ltd collects, uses and looks after your personal information when you visit our website or contact us about our products and services. We have written it in plain English because we think that is what a privacy policy should be.</p>
+
+  <h2>Who we are</h2>
+  <p>Elk Fish Robotics Pty Ltd is a Western Australian business based in Fremantle. We are the authorised DJI Agras dealer for Western Australia, selling and servicing agricultural spray drones for broadacre farmers, vineyard and orchard operators, and spray contractors across WA.</p>
+  <p>When this policy refers to "we", "us" or "our", it means Elk Fish Robotics Pty Ltd.</p>
+
+  <h2>What information we collect</h2>
+  <p>We only collect information you give us directly. When you fill out an enquiry form on this website, you may provide:</p>
+  <ul>
+    <li>Your name</li>
+    <li>Your phone number</li>
+    <li>Your email address</li>
+    <li>Your business or farm name</li>
+    <li>Your location or region</li>
+    <li>Details about your operation or enquiry</li>
+  </ul>
+  <p>We do not collect sensitive information such as financial details, identification documents or health information.</p>
+  <p>We also collect basic analytics data about how visitors use our website — things like which pages are viewed and how visitors find us. This data is aggregated and does not identify you personally.</p>
+
+  <h2>How we collect it</h2>
+  <p>Enquiry forms on this website are processed through <strong>Netlify Forms</strong>, a service provided by Netlify Inc. Form submissions are stored securely and forwarded to our team.</p>
+  <p>Website analytics are handled through <strong>Google Analytics 4</strong> and <strong>Google Tag Manager</strong>. We also use <strong>Google Search Console</strong> to understand how our site performs in search results. These tools use cookies and similar technologies to collect anonymised usage data.</p>
+
+  <h2>What we use your information for</h2>
+  <p>We use the information you submit to respond to your enquiry — that is it. If you ask us about a drone, we will call or email you back to discuss it. If you book a callback time, we will ring you at that time.</p>
+  <p>We do not use your information for automated marketing, cold outreach or any purpose unrelated to the enquiry you made. We do not add you to any mailing list without your explicit consent.</p>
+
+  <h2>Who we share it with</h2>
+  <p>We do not sell your personal information to anyone. We do not share it with third parties for advertising or marketing purposes.</p>
+  <p>Your enquiry data passes through Netlify's infrastructure as part of form processing, and analytics data is processed by Google as described above. Both are standard, reputable services operating under their own privacy frameworks. Beyond that, your information stays with us.</p>
+  <p>We may disclose your information if required to do so by law or by a regulatory authority, but that is the only exception.</p>
+
+  <h2>How long we keep it</h2>
+  <p>We keep enquiry records for as long as is reasonably necessary to manage our customer relationships and meet any legal obligations. If you would like your information removed sooner, just ask — see the contact details below.</p>
+
+  <h2>Your rights</h2>
+  <p>You have the right to ask us what personal information we hold about you and to request that we correct or delete it. To do either of those things, send us an email at the address below and we will get back to you within a reasonable time.</p>
+
+  <h2>Cookies</h2>
+  <p>Our website uses cookies placed by Google Analytics and Google Tag Manager to understand how visitors use the site. These cookies do not identify you personally. Most browsers allow you to control or block cookies through their settings — if you prefer not to be tracked, you can do that without affecting your ability to use the site.</p>
+
+  <h2>Links to other sites</h2>
+  <p>Our website may contain links to external sites — for example, DJI's product pages. This privacy policy covers our site only. We are not responsible for the privacy practices of other websites.</p>
+
+  <h2>Changes to this policy</h2>
+  <p>If we make any significant changes to how we handle your information, we will update this page and revise the "last updated" date at the top. We recommend checking back occasionally if this is something you want to keep an eye on.</p>
+
+  <h2>Governing law</h2>
+  <p>This policy is governed by the laws of Western Australia, Australia. We comply with the <em>Privacy Act 1988</em> (Cth) and the Australian Privacy Principles where applicable.</p>
+
+  <div class="privacy-contact-box">
+    <p><strong>Questions or requests?</strong></p>
+    <p>If you have any questions about this policy, or if you want to access, correct or delete your personal information, please get in touch:</p>
+    <p>
+      <strong>Elk Fish Robotics Pty Ltd</strong><br />
+      1/72 Marine Terrace, Fremantle WA 6160<br />
+      <a href="mailto:agras@elkfishrobotics.com.au">agras@elkfishrobotics.com.au</a><br />
+      <a href="tel:+61861107423">(08) 6110 7423</a>
+    </p>
+  </div>
+
 </main>
 
-<!-- FOOTER (mirrors homepage with absolute links) -->
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
@@ -306,7 +389,6 @@ footer {
         <ul>
           <li><a href="/#products">DJI Agras T100</a></li>
           <li><a href="/#products">DJI Agras T25 P</a></li>
-          <li><a href="/#roi">ROI calculator</a></li>
           <li><a href="/#enquire">Schedule a callback</a></li>
         </ul>
       </div>
@@ -316,7 +398,6 @@ footer {
           <li><a href="/#service">Repairs &amp; service</a></li>
           <li><a href="/#included">What's included</a></li>
           <li>On-day setup, demo &amp; walkthrough</li>
-          <li>Finance options</li>
         </ul>
       </div>
       <div class="footer-col">
