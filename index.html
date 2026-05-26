@@ -2412,50 +2412,19 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
 /* =========================================================
    SPRAY CONDITIONS INLINE CARD (in enquiry form)
    ========================================================= */
-.sc-card {
-  width: 100%;
-  padding: 10px 14px;
-  margin-bottom: 12px;
-  border-left: 4px solid #888;        /* default: unavailable grey */
-  background: var(--paper-soft);
+/* Spray conditions — quiet data line above enquiry section */
+.sc-inline {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter) 20px;
   font-family: var(--font-mono);
   font-size: 11px;
-  line-height: 1.4;
-  letter-spacing: 0.03em;
-  color: var(--ink-soft);
-  max-height: 44px;
-  overflow: hidden;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0 6px;
-  row-gap: 4px;
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
 }
-.sc-card[data-status="good"]      { border-left-color: #4CAF50; }
-.sc-card[data-status="marginal"]  { border-left-color: #FF9800; }
-.sc-card[data-status="poor"]      { border-left-color: #F44336; }
-.sc-card[data-status="unavailable"] { border-left-color: #888; }
-.sc-card .sc-label { font-weight: 600; color: var(--ink); white-space: nowrap; }
-.sc-card .sc-dot   {
-  display: inline-block;
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: #888;
-  flex-shrink: 0;
-  margin-right: 4px;
-}
-.sc-card[data-status="good"]      .sc-dot { background: #4CAF50; }
-.sc-card[data-status="marginal"]  .sc-dot { background: #FF9800; }
-.sc-card[data-status="poor"]      .sc-dot { background: #F44336; }
-.sc-card .sc-readings { display: inline; white-space: nowrap; }
-.sc-card .sc-time { color: var(--ink-faint); white-space: nowrap; }
-/* Under 380px — allow wrap to two lines (max-height relaxes) */
-@media (max-width: 380px) {
-  .sc-card { max-height: none; flex-direction: column; align-items: flex-start; gap: 2px; }
-  .sc-card .sc-label { display: block; }
-  .sc-card .sc-readings, .sc-card .sc-time { font-size: 10px; }
-}
+.sc-inline .sc-status-good     { color: #4CAF50; }
+.sc-inline .sc-status-marginal { color: #FF9800; }
+.sc-inline .sc-status-poor     { color: #F44336; }
 </style>
 </head>
 <body>
@@ -3193,6 +3162,11 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
   </div>
 </section>
 
+<!-- SPRAY CONDITIONS — quiet data line, sits above enquire section -->
+<div class="sc-inline" id="sc-card" data-status="unavailable" aria-live="polite" aria-label="Current spray conditions">
+  <span id="sc-label">WA spray conditions — checking…</span>
+</div>
+
 <!-- ENQUIRE -->
 <section class="section enquire-bg" id="enquire">
   <div class="section-inner">
@@ -3298,9 +3272,9 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
 
             <h3 class="form-section-head">Enquiry Details</h3>
             <div class="field">
-              <label>Which Agras model are you considering?</label>
+              <label>Agras model</label>
               <select name="drone-interest">
-                <option value="" selected>Select a drone</option>
+                <option value="" selected>Which Agras model are you considering?</option>
                 <option>DJI Agras T25 P</option>
                 <option>DJI Agras T100</option>
                 <option>Not sure yet</option>
@@ -3333,11 +3307,6 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
             </div>
 
             <div class="form-actions">
-              <!-- SPRAY CONDITIONS INLINE CARD -->
-              <div class="sc-card" id="sc-card" data-status="unavailable" aria-live="polite" aria-label="Current spray conditions">
-                <span class="sc-dot"></span>
-                <span class="sc-label" id="sc-label">Checking spray conditions…</span>
-              </div>
               <button type="submit" class="btn-submit">Speak with our team <span class="arrow">→</span></button>
               <div class="response-note">We'll call you back at the time you nominate. If we can't reach you we'll try once more and leave it with you.</div>
             </div>
@@ -3697,38 +3666,32 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     card.setAttribute('data-status', status);
 
     if (status === 'unavailable') {
-      labelEl.innerHTML =
-        '<strong class="sc-label">Conditions unavailable</strong>' +
-        ' <span class="sc-readings">— check bom.gov.au</span>';
+      labelEl.textContent = 'WA spray conditions — unavailable';
       return;
     }
 
-    var wind = data.wind  != null ? data.wind.toFixed(0)         + ' km/h'  : '—';
-    var temp = data.temp  != null ? data.temp.toFixed(1)         + '°C'     : '—';
-    var hum  = data.humidity != null ? Math.round(data.humidity) + '%'      : '—';
-    var time = data.updated ? data.updated : '';
+    var wind = data.wind     != null ? data.wind.toFixed(0)         + ' km/h' : '—';
+    var temp = data.temp     != null ? data.temp.toFixed(1)         + '°C'    : '—';
+    var hum  = data.humidity != null ? Math.round(data.humidity)    + '%'     : '—';
+    var time = data.updated  ? data.updated : '';
 
     var copies = {
-      good:     'Good to spray today',
+      good:     'Good to spray',
       marginal: 'Marginal conditions',
-      poor:     'Poor conditions today',
+      poor:     'Poor conditions',
     };
     var copy = copies[status] || 'Conditions unavailable';
 
     labelEl.innerHTML =
-      '<strong class="sc-label">' + copy + '</strong>' +
-      ' <span class="sc-readings sc-time">· 💨 ' + wind +
-        ' 🌡 ' + temp +
-        ' 💧 ' + hum +
-        (time ? ' · ' + time : '') +
-      '</span>';
+      'WA spray conditions · ' +
+      '<span class="sc-status-' + status + '">' + copy + '</span>' +
+      ' · ' + wind + ' · ' + temp + ' · ' + hum +
+      (time ? ' · updated ' + time : '');
   }
 
   function setUnavailable(reason) {
     card.setAttribute('data-status', 'unavailable');
-    labelEl.innerHTML =
-      '<strong class="sc-label">Conditions unavailable</strong>' +
-      ' <span class="sc-readings">— check bom.gov.au</span>';
+    labelEl.textContent = 'WA spray conditions — unavailable';
     console.warn('[spray-conditions]', reason);
   }
 
