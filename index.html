@@ -1293,6 +1293,194 @@ footer {
   gap: 12px;
 }
 
+/* ---------- ROI CALCULATOR ---------- */
+.roi-calc {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 48px;
+  align-items: stretch;
+  background: var(--paper-soft);
+  border: 1px solid var(--border);
+  padding: 40px;
+  margin: 32px 0 24px;
+}
+@media (max-width: 900px) {
+  .roi-calc { grid-template-columns: 1fr; gap: 32px; padding: 28px 24px; }
+}
+.roi-calc-slider { display: flex; flex-direction: column; }
+.roi-calc-slider .calc-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 14px;
+}
+.slider-value {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(40px, 5vw, 56px);
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 24px;
+  letter-spacing: -0.022em;
+}
+.slider-value .ha-suffix {
+  font-family: var(--font-mono);
+  font-size: 0.28em;
+  letter-spacing: 0.18em;
+  color: var(--green-deep);
+  margin-left: 12px;
+  font-weight: 600;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+.slider-track-wrap {
+  position: relative;
+  padding: 8px 0;
+}
+.roi-calc-slider input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: var(--paper-deep);
+  outline: none;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.roi-calc-slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px; height: 24px;
+  background: var(--green-deep);
+  border: 3px solid var(--paper-soft);
+  border-radius: 50%;
+  cursor: grab;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+  transition: transform 0.15s var(--ease);
+}
+.roi-calc-slider input[type="range"]::-webkit-slider-thumb:active { cursor: grabbing; transform: scale(1.12); }
+.roi-calc-slider input[type="range"]::-moz-range-thumb {
+  width: 24px; height: 24px;
+  background: var(--green-deep);
+  border: 3px solid var(--paper-soft);
+  border-radius: 50%;
+  cursor: grab;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+}
+.slider-bounds {
+  display: flex; justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  margin: 10px 0 24px;
+}
+
+/* Spray-coverage visualisation: drone flies across, leaving a sprayed strip behind it.
+   This is the interactive "drone spraying" element, driven by the slider value. */
+.slider-paddock {
+  position: relative;
+  height: 64px;
+  background:
+    repeating-linear-gradient(90deg, rgba(31,27,22,0.05) 0 1px, transparent 1px 32px),
+    var(--paper);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  margin-top: auto;
+}
+.slider-paddock-fill {
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: var(--paddock-pct, 25%);
+  background: linear-gradient(90deg,
+    rgba(79, 107, 88, 0.55) 0%,
+    rgba(95, 124, 103, 0.75) 100%);
+  transition: width 0.25s var(--ease);
+}
+.slider-paddock-spray {
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: var(--paddock-pct, 25%);
+  background-image: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.55) 1.2px, transparent 1.6px);
+  background-size: 14px 14px;
+  opacity: 0.55;
+  transition: width 0.25s var(--ease);
+  pointer-events: none;
+}
+.slider-drone {
+  position: absolute;
+  top: 50%;
+  left: var(--paddock-pct, 25%);
+  transform: translate(-50%, -50%);
+  width: 36px;
+  height: 22px;
+  color: var(--green-deep);
+  transition: left 0.25s var(--ease);
+  pointer-events: none;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+}
+.slider-paddock-label {
+  position: absolute;
+  bottom: 4px; left: 8px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: var(--ink);            /* #1B1F1C — 5.6:1 on filled green, 11:1 on unfilled */
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.roi-calc-outputs {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+}
+.roi-output {
+  border-left: 3px solid var(--green-light);
+  padding: 6px 0 6px 20px;
+}
+.roi-output-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(28px, 3.4vw, 38px);
+  color: var(--ink);
+  line-height: 1;
+  letter-spacing: -0.018em;
+}
+.roi-output-num .currency { color: var(--green-deep); margin-right: 2px; }
+.roi-output-num .suffix {
+  color: var(--green-deep);
+  font-size: 0.42em;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+  margin-left: 6px;
+  text-transform: uppercase;
+}
+.roi-output-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  margin-top: 8px;
+  line-height: 1.5;
+}
+.roi-output-label small {
+  display: block;
+  color: var(--ink-faint);
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  margin-top: 3px;
+  font-weight: 400;
+  text-transform: none;
+}
+
 /* ---------- REVEAL UTILITY ---------- */
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
 .reveal.in { opacity: 1; transform: translateY(0); }
