@@ -2410,113 +2410,51 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
 }
 
 /* =========================================================
-   SPRAY CONDITIONS WIDGET
+   SPRAY CONDITIONS INLINE CARD (in enquiry form)
    ========================================================= */
-.spray-bar {
-  background: var(--ink);
-  border-top: 1px solid rgba(244,236,216,0.06);
-  border-bottom: 1px solid rgba(244,236,216,0.06);
-  padding: 18px var(--gutter);
-}
-.spray-bar-inner {
-  max-width: var(--container);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-.spray-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  flex-shrink: 0;
-}
-.spray-label {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--green-light);
-}
-.spray-region {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.06em;
-  color: var(--paper-soft);
-  opacity: 0.55;
-  text-transform: uppercase;
-}
-.spray-readings {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  flex: 1;
-}
-.spray-stat {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--paper-soft);
-  opacity: 0.8;
-  white-space: nowrap;
-}
-.spray-val {
-  font-weight: 600;
-  color: var(--paper-soft);
-  opacity: 1;
-}
-.spray-badge-wrap {
-  flex-shrink: 0;
-}
-.spray-badge {
-  display: inline-block;
-  padding: 7px 16px;
-  border-radius: 4px;
+.sc-card {
+  width: 100%;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  border-left: 4px solid #888;        /* default: unavailable grey */
+  background: var(--paper-soft);
   font-family: var(--font-mono);
   font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  white-space: nowrap;
+  line-height: 1.4;
+  letter-spacing: 0.03em;
+  color: var(--ink-soft);
+  max-height: 44px;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0 6px;
+  row-gap: 4px;
 }
-.spray-badge--loading {
-  background: rgba(244,236,216,0.1);
-  color: rgba(244,236,216,0.4);
-}
-.spray-badge--good {
-  background: #4CAF50;
-  color: #fff;
-}
-.spray-badge--marginal {
-  background: #FF9800;
-  color: #fff;
-}
-.spray-badge--poor {
-  background: #F44336;
-  color: #fff;
-}
-.spray-badge--unavailable {
-  background: rgba(244,236,216,0.12);
-  color: rgba(244,236,216,0.55);
-}
-.spray-foot {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--paper-soft);
-  opacity: 0.38;
-  letter-spacing: 0.04em;
-  white-space: nowrap;
+.sc-card[data-status="good"]      { border-left-color: #4CAF50; }
+.sc-card[data-status="marginal"]  { border-left-color: #FF9800; }
+.sc-card[data-status="poor"]      { border-left-color: #F44336; }
+.sc-card[data-status="unavailable"] { border-left-color: #888; }
+.sc-card .sc-label { font-weight: 600; color: var(--ink); white-space: nowrap; }
+.sc-card .sc-dot   {
+  display: inline-block;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #888;
   flex-shrink: 0;
+  margin-right: 4px;
 }
-@media (max-width: 680px) {
-  .spray-bar-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-  .spray-readings { gap: 14px; }
-  .spray-foot { opacity: 0.3; }
+.sc-card[data-status="good"]      .sc-dot { background: #4CAF50; }
+.sc-card[data-status="marginal"]  .sc-dot { background: #FF9800; }
+.sc-card[data-status="poor"]      .sc-dot { background: #F44336; }
+.sc-card .sc-readings { display: inline; white-space: nowrap; }
+.sc-card .sc-time { color: var(--ink-faint); white-space: nowrap; }
+/* Under 380px — allow wrap to two lines (max-height relaxes) */
+@media (max-width: 380px) {
+  .sc-card { max-height: none; flex-direction: column; align-items: flex-start; gap: 2px; }
+  .sc-card .sc-label { display: block; }
+  .sc-card .sc-readings, .sc-card .sc-time { font-size: 10px; }
 }
 </style>
 </head>
@@ -2658,25 +2596,6 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
       <div class="stat-num">Mon<span class="unit">to Fri</span></div>
       <div class="stat-label">Walk-in shop, Marine Terrace Fremantle</div>
     </div>
-  </div>
-</div>
-
-<!-- SPRAY CONDITIONS WIDGET -->
-<div class="spray-bar" id="spray-bar" aria-live="polite" aria-label="Current spray conditions">
-  <div class="spray-bar-inner">
-    <div class="spray-meta">
-      <span class="spray-label">WA SPRAY CONDITIONS</span>
-      <span class="spray-region">Perth Region</span>
-    </div>
-    <div class="spray-readings" id="spray-readings">
-      <span class="spray-stat"><span class="spray-icon" aria-hidden="true">💨</span> Wind <span class="spray-val" id="sc-wind">—</span> km/h</span>
-      <span class="spray-stat"><span class="spray-icon" aria-hidden="true">🌡</span> Temp <span class="spray-val" id="sc-temp">—</span>°C</span>
-      <span class="spray-stat"><span class="spray-icon" aria-hidden="true">💧</span> Humidity <span class="spray-val" id="sc-hum">—</span>%</span>
-    </div>
-    <div class="spray-badge-wrap">
-      <span class="spray-badge spray-badge--loading" id="sc-badge">Loading…</span>
-    </div>
-    <div class="spray-foot" id="sc-foot">BOM data · updates every 10 min</div>
   </div>
 </div>
 
@@ -3414,6 +3333,11 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
             </div>
 
             <div class="form-actions">
+              <!-- SPRAY CONDITIONS INLINE CARD -->
+              <div class="sc-card" id="sc-card" data-status="unavailable" aria-live="polite" aria-label="Current spray conditions">
+                <span class="sc-dot"></span>
+                <span class="sc-label" id="sc-label">Checking spray conditions…</span>
+              </div>
               <button type="submit" class="btn-submit">Speak with our team <span class="arrow">→</span></button>
               <div class="response-note">We'll call you back at the time you nominate. If we can't reach you we'll try once more and leave it with you.</div>
             </div>
@@ -3756,81 +3680,66 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 })();
 </script>
 
-<!-- SPRAY CONDITIONS WIDGET SCRIPT -->
+<!-- SPRAY CONDITIONS INLINE CARD SCRIPT -->
 <script>
 (function () {
   'use strict';
 
-  var ENDPOINT     = '/api/spray-conditions';
-  var INTERVAL_MS  = 10 * 60 * 1000; // 10 minutes
-  var badge        = document.getElementById('sc-badge');
-  var windEl       = document.getElementById('sc-wind');
-  var tempEl       = document.getElementById('sc-temp');
-  var humEl        = document.getElementById('sc-hum');
-  var footEl       = document.getElementById('sc-foot');
+  var ENDPOINT    = '/api/spray-conditions';
+  var INTERVAL_MS = 10 * 60 * 1000; // 10 minutes
+  var card        = document.getElementById('sc-card');
+  var labelEl     = document.getElementById('sc-label');
 
-  if (!badge) return; // widget not present on this page
+  if (!card) return; // card not on this page
 
-  function formatTime(isoStr) {
-    try {
-      var d = new Date(isoStr);
-      return d.toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit', timeZone: 'Australia/Perth' }) + ' AWST';
-    } catch (e) {
-      return '';
+  function render(data) {
+    var status = data.status || 'unavailable';
+    card.setAttribute('data-status', status);
+
+    if (status === 'unavailable') {
+      labelEl.innerHTML =
+        '<strong class="sc-label">Conditions unavailable</strong>' +
+        ' <span class="sc-readings">— check bom.gov.au</span>';
+      return;
     }
-  }
 
-  function setBadge(rating) {
-    badge.className = 'spray-badge';
-    if (rating === 'good') {
-      badge.classList.add('spray-badge--good');
-      badge.textContent = 'Good to spray';
-    } else if (rating === 'marginal') {
-      badge.classList.add('spray-badge--marginal');
-      badge.textContent = 'Marginal';
-    } else if (rating === 'poor') {
-      badge.classList.add('spray-badge--poor');
-      badge.textContent = 'Poor conditions';
-    } else {
-      badge.classList.add('spray-badge--unavailable');
-      badge.textContent = 'Conditions unavailable';
-    }
+    var wind = data.wind  != null ? data.wind.toFixed(0)         + ' km/h'  : '—';
+    var temp = data.temp  != null ? data.temp.toFixed(1)         + '°C'     : '—';
+    var hum  = data.humidity != null ? Math.round(data.humidity) + '%'      : '—';
+    var time = data.updated ? data.updated : '';
+
+    var copies = {
+      good:     'Good to spray today',
+      marginal: 'Marginal conditions',
+      poor:     'Poor conditions today',
+    };
+    var copy = copies[status] || 'Conditions unavailable';
+
+    labelEl.innerHTML =
+      '<strong class="sc-label">' + copy + '</strong>' +
+      ' <span class="sc-readings sc-time">· 💨 ' + wind +
+        ' 🌡 ' + temp +
+        ' 💧 ' + hum +
+        (time ? ' · ' + time : '') +
+      '</span>';
   }
 
   function setUnavailable(reason) {
-    setBadge('unavailable');
-    if (windEl) windEl.textContent = '—';
-    if (tempEl) tempEl.textContent = '—';
-    if (humEl)  humEl.textContent  = '—';
-    if (footEl) footEl.textContent = 'Conditions unavailable — check bom.gov.au';
+    card.setAttribute('data-status', 'unavailable');
+    labelEl.innerHTML =
+      '<strong class="sc-label">Conditions unavailable</strong>' +
+      ' <span class="sc-readings">— check bom.gov.au</span>';
     console.warn('[spray-conditions]', reason);
   }
 
   function load() {
     fetch(ENDPOINT)
       .then(function (res) { return res.json(); })
-      .then(function (data) {
-        if (!data.ok) {
-          setUnavailable(data.error || 'No data');
-          return;
-        }
-        if (windEl) windEl.textContent = data.wind.toFixed(0);
-        if (tempEl) tempEl.textContent = data.temp.toFixed(1);
-        if (humEl)  humEl.textContent  = Math.round(data.humidity);
-        setBadge(data.rating);
-        if (footEl) {
-          var ts = data.localTime ? formatTime(data.localTime) : formatTime(data.fetchedAt);
-          footEl.textContent = 'BOM data · updates every 10 min' + (ts ? ' · ' + ts : '');
-        }
-      })
-      .catch(function (err) {
-        setUnavailable(err.message || 'Fetch failed');
-      });
+      .then(function (data) { render(data); })
+      .catch(function (err) { setUnavailable(err.message || 'Fetch failed'); });
   }
 
-  // Initial load
   load();
-  // Refresh every 10 minutes
   setInterval(load, INTERVAL_MS);
 })();
 </script>
