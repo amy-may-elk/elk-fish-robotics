@@ -2155,6 +2155,30 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
   border-color: var(--error-soft);
 }
 
+/* Form section headers — used in the bottom enquiry form to group
+   Contact / Business / Enquiry fields. Spans the full grid row. */
+.form-section-head {
+  grid-column: 1 / -1;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green-deep);
+  padding-bottom: 8px;
+  margin-top: 8px;
+  border-bottom: 1px solid rgba(31, 27, 19, 0.08);
+}
+.form-section-head:first-of-type { margin-top: 0; }
+
+/* Textarea: vertical resize only, mirror input look */
+.field textarea {
+  resize: vertical;
+  min-height: 96px;
+  font-family: var(--font-body);
+  line-height: 1.5;
+}
+
 /* Reduced-motion baseline — collapse all transitions and animations to
    near-instant. This catches every animated element on the page in one
    shot, not just the Half-2 additions. */
@@ -2264,22 +2288,30 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
       <div class="hero-form-card">
         <div class="hero-form-eyebrow">Schedule a callback</div>
         <h2 class="hero-form-title">Schedule a callback <em>that suits you.</em></h2>
-        <p class="hero-form-sub">Three fields. Tell us when. We call you back, no follow-up barrage.</p>
+        <p class="hero-form-sub">A few quick details and we'll ring you back.</p>
         <form class="hero-form-fields" id="heroQuickForm" name="callback-quick" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
           <input type="hidden" name="form-name" value="callback-quick" />
           <p hidden>
             <label>Don't fill this out if you're human: <input name="bot-field" /></label>
           </p>
           <input type="hidden" name="source" value="elkfish.com.au : hero callback request" />
-          <input type="text" name="name" required placeholder="Your name" />
-          <input type="tel" name="phone" required placeholder="Best phone number" />
+          <input type="text" name="name" required placeholder="Full name" autocomplete="name" />
+          <input type="tel" name="phone" required placeholder="Phone number" autocomplete="tel" />
+          <input type="email" name="email" placeholder="Email (optional)" autocomplete="email" />
           <select name="drone-interest" required>
-            <option selected>Not sure, help me decide</option>
-            <option>DJI Agras T100 (broadacre)</option>
-            <option>DJI Agras T25 P (smaller blocks &amp; vineyards)</option>
+            <option value="" disabled>Interested in</option>
+            <option>DJI Agras T50</option>
+            <option>DJI Agras T100</option>
+            <option selected>Not sure yet</option>
+          </select>
+          <select name="best-time" required>
+            <option value="" disabled>Best time to call</option>
+            <option selected>Anytime</option>
+            <option>Morning</option>
+            <option>Afternoon</option>
           </select>
           <button type="submit" class="btn-submit-hero">
-            Schedule my callback <span class="arrow">→</span>
+            Request Callback <span class="arrow">→</span>
           </button>
         </form>
         <div class="hero-form-foot">
@@ -2882,7 +2914,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
       <div class="enquire-left reveal">
         <div class="eyebrow">Enquire</div>
         <h2>Schedule a callback <em>with our team.</em></h2>
-        <p class="lede">Tell us when. We'll call you back, no follow-up barrage, no sales pressure. Most decisions get made in one conversation.</p>
+        <p class="lede">Tell us when. We'll call you back at the time you nominate, no sales pressure. Most decisions get made in one conversation.</p>
         <p class="enquire-reassure"><strong>No quote pressure</strong>  ·  <strong>We'll tell you if a drone isn't the right answer</strong>  ·  <strong>Phone or in our Fremantle shop</strong></p>
 
         <div class="enquire-details">
@@ -2927,21 +2959,83 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
             </p>
             <input type="hidden" name="source" value="elkfish.com.au : bottom form" />
             <input type="hidden" name="product_interest" id="productInterest" value="" />
+
+            <h3 class="form-section-head">Contact Details</h3>
+            <div class="field full">
+              <label>Full name<span class="req">*</span></label>
+              <input type="text" name="name" required placeholder="Your full name" autocomplete="name" />
+            </div>
             <div class="field">
-              <label>Name<span class="req">*</span></label>
-              <input type="text" name="name" required placeholder="Your name" autocomplete="name" />
+              <label>Email<span class="req">*</span></label>
+              <input type="email" name="email" required placeholder="you@example.com" autocomplete="email" />
             </div>
             <div class="field">
               <label>Phone<span class="req">*</span></label>
               <input type="tel" name="phone" required placeholder="04XX XXX XXX" autocomplete="tel" />
             </div>
+
+            <h3 class="form-section-head">Business Information</h3>
             <div class="field full">
-              <label>When's a good time?<span class="opt">(optional)</span></label>
-              <input type="text" name="best-time" placeholder="e.g. Tomorrow morning, or after 4pm Friday" />
+              <label>Business / farm name</label>
+              <input type="text" name="business-name" placeholder="Your operation" autocomplete="organization" />
             </div>
+            <div class="field">
+              <label>Location / region</label>
+              <input type="text" name="location" placeholder="e.g. Wheatbelt, Margaret River" />
+            </div>
+            <div class="field">
+              <label>Industry</label>
+              <select name="industry">
+                <option value="" selected>Select an industry</option>
+                <option>Broadacre Cropping</option>
+                <option>Viticulture</option>
+                <option>Horticulture</option>
+                <option>Contract Spraying</option>
+                <option>Pastoral</option>
+                <option>Mixed Farming</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <h3 class="form-section-head">Enquiry Details</h3>
+            <div class="field">
+              <label>Interested in</label>
+              <select name="drone-interest">
+                <option value="" selected>Select a drone</option>
+                <option>DJI Agras T50</option>
+                <option>DJI Agras T100</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Current spray method</label>
+              <select name="current-spray-method">
+                <option value="" selected>Select a method</option>
+                <option>Ground rig</option>
+                <option>Contractor</option>
+                <option>Existing drone</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label>Approximate area managed</label>
+              <select name="area-managed">
+                <option value="" selected>Select an area</option>
+                <option>Under 100 ha</option>
+                <option>100 to 500 ha</option>
+                <option>500 to 2,000 ha</option>
+                <option>2,000 to 5,000 ha</option>
+                <option>5,000+ ha</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label>Message <span class="opt">(optional)</span></label>
+              <textarea name="message" rows="4" placeholder="Anything else you'd like us to know"></textarea>
+            </div>
+
             <div class="form-actions">
-              <button type="submit" class="btn-submit">Schedule my callback <span class="arrow">→</span></button>
-              <div class="response-note">We'll call you back at the time you suggest. If we miss you we'll try again, no follow-up barrage.</div>
+              <button type="submit" class="btn-submit">Speak with our team <span class="arrow">→</span></button>
+              <div class="response-note">We'll call you back at the time you nominate. If we can't reach you we'll try once more and leave it with you.</div>
             </div>
           </form>
 
