@@ -809,96 +809,6 @@ h3 {
 }
 .product-lead-time strong { color: var(--ink); }
 
-/* ---------- ROI ---------- */
-.roi-stat {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(64px, 11vw, 160px);
-  color: var(--ink);
-  letter-spacing: -0.03em;
-  line-height: 0.95;
-  margin: 40px 0 28px;
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.roi-stat .currency {
-  font-family: var(--font-mono);
-  font-size: 0.35em;
-  letter-spacing: 0.1em;
-  color: var(--gold-deep);
-  font-weight: 500;
-}
-.roi-stat .num {
-  color: var(--gold-deep);
-  font-style: italic;
-  font-variation-settings: "opsz" 144, "SOFT" 100;
-}
-.roi-stat .suffix {
-  font-family: var(--font-mono);
-  font-size: 0.16em;
-  letter-spacing: 0.22em;
-  color: var(--ink-soft);
-  text-transform: uppercase;
-  font-weight: 500;
-  border-left: 1px solid var(--border);
-  padding-left: 16px;
-  align-self: center;
-}
-.roi-para {
-  color: var(--ink-soft);
-  max-width: 62ch;
-  font-size: 17px;
-  line-height: 1.65;
-  margin-bottom: 48px;
-}
-.roi-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-bottom: 40px;
-}
-@media (max-width: 720px) { .roi-cards { grid-template-columns: 1fr; } }
-.roi-card { padding: 28px 24px; border-top: 2px solid var(--ink); }
-.roi-card .num-big {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(38px, 4.5vw, 56px);
-  line-height: 1;
-  color: var(--ink);
-  margin-bottom: 8px;
-  letter-spacing: -0.02em;
-}
-.roi-card .num-big .unit {
-  color: var(--gold-deep);
-  font-size: 0.4em;
-  font-family: var(--font-mono);
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  margin-left: 4px;
-  vertical-align: middle;
-}
-.roi-card .label {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  color: var(--ink-soft);
-  text-transform: uppercase;
-}
-.roi-inline-cta {
-  background: var(--paper-soft);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--gold);
-  padding: 24px 28px;
-  margin-top: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-.roi-inline-cta p { font-size: 15px; color: var(--ink); max-width: 50ch; font-weight: 500; }
 .disclaimer {
   font-family: var(--font-mono);
   font-size: 10px;
@@ -1519,7 +1429,7 @@ footer {
   font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.18em;
-  color: var(--ink-faint);
+  color: var(--ink);            /* #1B1F1C — 5.6:1 on filled green, 11:1 on unfilled */
   text-transform: uppercase;
   pointer-events: none;
 }
@@ -1589,9 +1499,6 @@ footer {
 .quote-cta:hover { background: var(--green); }
 .btn-submit:hover { background: var(--green-deep); }
 
-/* The headline $100,000 stays green (agricultural authority) */
-.roi-stat .num { color: var(--green-deep); }
-
 /* Hero headline italic emphasis: lime against the dark video overlay */
 .hero-headline em { color: var(--green-light); }
 
@@ -1614,8 +1521,6 @@ footer {
 /* Problem-card top accent bar: lime for a fresher pop on light bg */
 .problem-card { border-top-color: var(--green-light); }
 
-/* Roi inline CTA and SMS option borders: lime, the encouragement colour */
-.roi-inline-cta { border-left-color: var(--green-light); }
 .sms-option { border-left-color: var(--green-light); }
 
 /* Hero sound toggle: pill in bottom-right of the hero. Visible at all
@@ -1891,14 +1796,6 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
 }
 .fleet-close p { margin-bottom: 18px; }
 
-/* ROI CTA actions: stack on mobile, row on desktop */
-.roi-cta-actions {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 16px;
-}
-
 /* About contact block */
 .about-contact {
   margin-top: 24px;
@@ -1908,16 +1805,6 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
   font-size: 13px;
 }
 .about-contact p { margin: 4px 0; }
-
-/* Trust block (replaces testimonials): single readable column */
-.trust-block {
-  max-width: 720px;
-  margin: 24px 0 0;
-  font-size: 17px;
-  line-height: 1.65;
-}
-.trust-block p + p { margin-top: 16px; }
-.trust-block-cta { margin-top: 28px; }
 
 /* FAQ help: stack the inline link and CTA */
 .faq-help-cta { margin-top: 16px; }
@@ -1941,57 +1828,6 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
   letter-spacing: 0.04em;
   opacity: 0.6;
   margin-top: 24px;
-}
-
-/* ROI preset buttons (mobile-first ergonomics — visible on all sizes,
-   but particularly important on touch where the slider is fiddly) */
-.roi-presets {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 18px;
-  align-items: center;
-}
-.roi-presets-label {
-  font-family: var(--font-mono, monospace);
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--ink-faint, #6c655a);
-  margin-right: 4px;
-}
-.roi-preset {
-  background: transparent;
-  border: 1px solid rgba(167,196,138,0.55);
-  color: var(--green-deep, #4F6B58);
-  padding: 8px 14px;
-  border-radius: 999px;
-  font-family: var(--font-mono, monospace);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
-  -webkit-appearance: none;
-  appearance: none;
-}
-.roi-preset:hover,
-.roi-preset:focus-visible {
-  background: var(--green-light, #A7C48A);
-  border-color: var(--green-light, #A7C48A);
-  color: var(--ink, #14110D);
-  outline: none;
-}
-.roi-preset.is-active {
-  background: var(--green-light, #A7C48A);
-  border-color: var(--green-light, #A7C48A);
-  color: var(--ink, #14110D);
-}
-.roi-presets-suffix {
-  font-family: var(--font-mono, monospace);
-  font-size: 12px;
-  color: var(--ink-faint, #6c655a);
-  margin-left: 4px;
 }
 
 /* Mobile sticky CTA bar: visible on mobile only.
@@ -2355,25 +2191,6 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
 .mid-cta p              { color: rgba(255,255,255,0.80); }
 .mid-cta-meta           { color: rgba(255,255,255,0.50); }
 
-/* 7 — Testimonials/trust block: image left third, copy right */
-.trust-grid {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 48px;
-  align-items: start;
-  margin-top: 24px;
-}
-@media (max-width: 800px) {
-  .trust-grid { grid-template-columns: 1fr; gap: 28px; }
-}
-.trust-photo img {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  object-position: center top;
-  display: block;
-}
-
 /* =========================================================
    HECTARE QUICK-SELECT CHIPS
    ========================================================= */
@@ -2515,7 +2332,6 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
     </a>
     <nav class="topbar-nav" aria-label="Primary">
       <a href="#products">Drones</a>
-      <a href="#roi">ROI</a>
       <a href="#service">Service</a>
       <a href="#why">Why Us</a>
       <a href="#faq">FAQ</a>
@@ -2897,82 +2713,6 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
   </div>
 </section>
 
-<!-- ROI -->
-<section class="section" id="roi">
-  <div class="section-inner">
-    <div class="eyebrow reveal">The Numbers</div>
-    <h2 class="reveal">Run the maths for <em>your operation.</em></h2>
-    <p class="lede reveal">Drag the slider to your annual hectares and see what an Agras T100 looks like commercially. Numbers update live.</p>
-
-    <div class="roi-calc reveal">
-      <div class="roi-calc-slider">
-        <div class="calc-label">Your hectares per season</div>
-        <div class="slider-value"><span id="haValue">5,000</span><span class="ha-suffix">ha / yr</span></div>
-        <div class="slider-track-wrap">
-          <input type="range" id="haSlider" min="500" max="20000" step="100" value="5000" aria-label="Hectares per season" />
-        </div>
-        <div class="slider-bounds">
-          <span>500 ha</span>
-          <span>20,000 ha</span>
-        </div>
-
-        <div class="roi-presets" aria-label="Hectare preset buttons">
-          <span class="roi-presets-label">Quick set:</span>
-          <button type="button" class="roi-preset" data-ha="1000">1,000</button>
-          <button type="button" class="roi-preset" data-ha="3000">3,000</button>
-          <button type="button" class="roi-preset" data-ha="5000">5,000</button>
-          <button type="button" class="roi-preset" data-ha="10000">10,000</button>
-          <span class="roi-presets-suffix">ha</span>
-        </div>
-
-        <div class="slider-paddock" id="sliderPaddock">
-          <div class="slider-paddock-fill"></div>
-          <div class="slider-paddock-spray"></div>
-          <svg class="slider-drone" viewBox="0 0 36 22" fill="none" aria-hidden="true">
-            <line x1="6" y1="6" x2="30" y2="6" stroke="currentColor" stroke-width="1.2"/>
-            <line x1="6" y1="16" x2="30" y2="16" stroke="currentColor" stroke-width="1.2"/>
-            <rect x="14" y="8" width="8" height="6" fill="currentColor"/>
-            <circle cx="6" cy="6" r="2.5" stroke="currentColor" stroke-width="1" fill="var(--paper-soft)"/>
-            <circle cx="30" cy="6" r="2.5" stroke="currentColor" stroke-width="1" fill="var(--paper-soft)"/>
-            <circle cx="6" cy="16" r="2.5" stroke="currentColor" stroke-width="1" fill="var(--paper-soft)"/>
-            <circle cx="30" cy="16" r="2.5" stroke="currentColor" stroke-width="1" fill="var(--paper-soft)"/>
-          </svg>
-          <div class="slider-paddock-label">Spray coverage</div>
-        </div>
-      </div>
-
-      <div class="roi-calc-outputs">
-        <div class="roi-output">
-          <div class="roi-output-num"><span class="currency">$</span><span id="revenueOut">100,000</span></div>
-          <div class="roi-output-label">Revenue per season<small>At an indicative $20 per hectare contract rate</small></div>
-        </div>
-        <div class="roi-output">
-          <div class="roi-output-num"><span id="paybackOut">4.5</span><span class="suffix">months</span></div>
-          <div class="roi-output-label">Payback window on T100<small>Drone cost recovered at $30,380 from $20/ha contract revenue</small></div>
-        </div>
-        <div class="roi-output">
-          <div class="roi-output-num"><span id="daysOut">17</span><span class="suffix">days flown</span></div>
-          <div class="roi-output-label">Days to cover your hectares<small>At 300 hectares per flying day on the T100</small></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="roi-inline-cta reveal">
-      <p>The numbers above are indicative. They don't account for chemical, fuel, downtime, finance cost or your actual contract rates. Schedule a callback and we'll run the figures against your real paddocks, your chemistry and the rate you're charging.</p>
-      <p>No quote pressure. If a drone isn't the right answer for your operation, we'll say so.</p>
-      <div class="roi-cta-actions">
-        <a href="#enquire" class="btn btn-primary">Schedule a callback <span class="arrow">→</span></a>
-        <a href="tel:+61861107423" class="btn btn-outline">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          or call (08) 6110 7423
-        </a>
-      </div>
-    </div>
-
-    <p class="disclaimer">Indicative figures only. Real numbers depend on crop, terrain, chemistry, travel time, and your contract rates.</p>
-  </div>
-</section>
-
 <!-- WHAT'S INCLUDED -->
 <section class="section included-bg" id="included">
   <div class="section-inner">
@@ -2986,7 +2726,6 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
       <div class="included-item reveal"><div class="num">04</div><h3>Carry and transport.</h3><p>Hard-shell case sized for ute trays. Ready for paddock-to-paddock work.</p></div>
       <div class="included-item reveal"><div class="num">05</div><h3>On-day setup, demo and walkthrough.</h3><p>We deliver your Agras set up and paired. On the day, we run you through the controls, the mission planner and your first flights. Hands-on, in your paddock if that suits.</p></div>
       <div class="included-item reveal"><div class="num">06</div><h3>12-month warranty.</h3><p>Manufacturer warranty plus our local cover. Optional extended plans available.</p></div>
-      <div class="included-item reveal"><div class="num">07</div><h3>Warranty and extended cover.</h3><p>12-month manufacturer warranty. Extended cover available on request. All warranty claims handled directly by our team.</p></div>
     </div>
   </div>
 </section>
@@ -3106,27 +2845,6 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
   </div>
 </section>
 
-<!-- TRUST BLOCK (replaces empty testimonials, kept id for backwards compatibility) -->
-<section class="section" id="testimonials">
-  <div class="section-inner">
-    <div class="eyebrow reveal">From the Paddock</div>
-    <h2 class="reveal">What we're proving, <em>one customer at a time.</em></h2>
-    <div class="trust-grid">
-      <div class="trust-photo reveal">
-        <img src="assets/images/0S3B2432.jpg" alt="WA drone operator at work, face prominent against an agricultural backdrop" loading="lazy" />
-      </div>
-      <div class="trust-block reveal">
-        <!-- TODO: confirm founding year with Frank before going live — do not invent a date -->
-        <p>We've kept this section honest. We'd rather show you nothing here than a stock photo with a fake quote.</p>
-        <p>Real WA operator case studies will land on this page as our first customers finish their first season. If you want to be one of them, and want the better deal that comes with being early, schedule a call. [FLAG FOR FRANK: confirm founding year]</p>
-        <div class="trust-block-cta">
-          <a href="#enquire" class="btn btn-primary">Schedule a call <span class="arrow">→</span></a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- FAQ -->
 <section class="section why-bg" id="faq">
   <div class="section-inner">
@@ -3170,24 +2888,17 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" aria-expanded="false">
-          <span><span class="qnum">7.6</span>What's the realistic payback window?</span>
-          <svg class="faq-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 7h10M7 2v10"/></svg>
-        </button>
-        <div class="faq-a"><div class="faq-a-inner">Depends on contract rate, utilisation and operation. Our calculator above gives an indicative figure; in practice we see contractors at 3,000+ ha and $18 to $22/ha contract rates land in the 4 to 8 month range. We'll run it on your actual numbers on a callback.</div></div>
-      </div>
-      <div class="faq-item reveal">
-        <button class="faq-q" aria-expanded="false">
-          <span><span class="qnum">7.8</span>What's the warranty and what does it cover?</span>
+          <span><span class="qnum">7.6</span>What's the warranty and what does it cover?</span>
           <svg class="faq-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 7h10M7 2v10"/></svg>
         </button>
         <div class="faq-a"><div class="faq-a-inner">12 months from DJI as standard on the drone and electronics. We handle warranty claims at our Fremantle workshop. Extended cover available on request.</div></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" aria-expanded="false">
-          <span><span class="qnum">7.9</span>Do you sell to interstate operators?</span>
+          <span><span class="qnum">7.7</span>Do you sell to interstate operators?</span>
           <svg class="faq-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 7h10M7 2v10"/></svg>
         </button>
-        <div class="faq-a"><div class="faq-a-inner">Based in Fremantle, WA. Interstate enquiries welcome — get in touch and we'll talk through what's possible.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Our focus is Western Australia, because that's where we service and support. We don't refuse interstate buyers, but we'll tell you straight: you'll get a better service experience from a dealer in your own state.</div></div>
       </div>
     </div>
     <div class="faq-help">
@@ -3373,7 +3084,6 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
         <ul>
           <li><a href="#products">DJI Agras T100</a></li>
           <li><a href="#products">DJI Agras T25 P</a></li>
-          <li><a href="#roi">ROI calculator</a></li>
           <li><a href="#enquire">Schedule a callback</a></li>
         </ul>
       </div>
@@ -3439,46 +3149,6 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-/* Interactive ROI calculator
-   The slider drives three live outputs and a "spray coverage" visualisation
-   (a drone icon flies along the leading edge, a green-tinted strip with a
-   dotted spray pattern fills behind it as the value grows). */
-(function initROICalc() {
-  const haSlider   = document.getElementById('haSlider');
-  if (!haSlider) return;
-  const haValue    = document.getElementById('haValue');
-  const revenueOut = document.getElementById('revenueOut');
-  const paybackOut = document.getElementById('paybackOut');
-  const daysOut    = document.getElementById('daysOut');
-  const paddock    = document.getElementById('sliderPaddock');
-
-  // Assumptions: keep in sync with disclaimer copy and labels.
-  const RATE_PER_HA           = 20;     // AUD per hectare contract rate
-  const T100_COST             = 30380;  // AUD
-  const HA_PER_FLYING_DAY     = 300;
-  const WORKING_DAYS_PER_MONTH = 22;
-
-  function update() {
-    const ha = parseInt(haSlider.value, 10);
-    const revenue = ha * RATE_PER_HA;
-    const monthlyRevenuePotential = HA_PER_FLYING_DAY * RATE_PER_HA * WORKING_DAYS_PER_MONTH;
-    const payback = T100_COST / monthlyRevenuePotential;
-    const days = Math.ceil(ha / HA_PER_FLYING_DAY);
-
-    haValue.textContent    = ha.toLocaleString('en-AU');
-    revenueOut.textContent = revenue.toLocaleString('en-AU');
-    paybackOut.textContent = payback.toFixed(1);
-    daysOut.textContent    = days.toLocaleString('en-AU');
-
-    // Paddock fill: 500 ha → ~5%, 20000 ha → 100%
-    const pct = ((ha - 500) / (20000 - 500)) * 95 + 5;
-    paddock.style.setProperty('--paddock-pct', pct.toFixed(1) + '%');
-  }
-
-  haSlider.addEventListener('input', update);
-  update();
-})();
-
 /* FAQ accordion */
 document.querySelectorAll('.faq-item').forEach(item => {
   const btn = item.querySelector('.faq-q');
@@ -3525,29 +3195,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
   });
 });
-
-/* ROI preset buttons (mobile-first quick-select)
-   Each preset sets the slider to a common hectare value and triggers
-   the existing ROI calc input handler so live outputs refresh. */
-(function initROIPresets() {
-  const slider = document.getElementById('haSlider');
-  const presets = document.querySelectorAll('.roi-preset');
-  if (!slider || !presets.length) return;
-  function syncActive(value) {
-    presets.forEach(b => b.classList.toggle('is-active', String(b.dataset.ha) === String(value)));
-  }
-  presets.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const ha = btn.dataset.ha;
-      slider.value = ha;
-      slider.dispatchEvent(new Event('input', { bubbles: true }));
-      syncActive(ha);
-    });
-  });
-  /* Reflect slider drags back to preset state if user lands on an exact preset */
-  slider.addEventListener('input', () => syncActive(slider.value));
-  syncActive(slider.value);
-})();
 
 /* Intro overlay cleanup.
    The intro CSS is gated by html.efr-show-intro (set by the inline
