@@ -1354,9 +1354,16 @@ footer {
   text-transform: uppercase;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
   gap: 12px;
 }
+.footer-bottom a {
+  color: rgba(244,236,216,0.4);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.footer-bottom a:hover { color: rgba(244,236,216,0.75); }
 
 /* ---------- ROI CALCULATOR ---------- */
 .roi-calc {
@@ -3035,6 +3042,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
     </div>
     <div class="footer-bottom">
       <span>© 2026 Elk Fish Robotics Pty Ltd</span>
+      <a href="/privacy-policy">Privacy Policy</a>
       <span>Built in Fremantle · Serving WA broadacre, vineyards and horticulture</span>
     </div>
   </div>
