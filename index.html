@@ -712,12 +712,8 @@ h3 {
   background: var(--paper);
   border: 1px solid var(--border);
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
   margin-bottom: 28px;
   position: relative;
-  box-sizing: border-box;
 }
 .product-image .figlabel {
   position: absolute;
@@ -727,14 +723,17 @@ h3 {
   letter-spacing: 0.22em;
   color: var(--ink-faint);
 }
-.product-image picture { display: contents; }
+.product-image picture {
+  display: flex;
+  flex: 1;
+}
 .product-image img {
   display: block;
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
+  padding: 20px;
+  box-sizing: border-box;
 }
 .product-header {
   display: flex;
