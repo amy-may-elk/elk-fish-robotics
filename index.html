@@ -1145,19 +1145,20 @@ h3 {
 .faq-help {
   text-align: center;
   margin-top: 48px;
-  padding: 24px;
-  background: var(--paper-soft);
-  border: 1px solid var(--border);
+  padding: 40px 0;
   font-family: var(--font-mono);
   font-size: 13px;
   letter-spacing: 0.06em;
   color: var(--ink-soft);
 }
-.faq-help a {
+.faq-help > a {
   color: var(--gold-deep);
   font-weight: 700;
   border-bottom: 1px solid var(--gold);
 }
+/* Ensure btn-primary inside faq-help keeps white text regardless of link colour rules */
+.faq-help .btn-primary { color: #fff; }
+.faq-help .btn-primary:hover { color: #fff; }
 
 /* ---------- ENQUIRE ---------- */
 .enquire-bg { background: var(--paper-soft); }
