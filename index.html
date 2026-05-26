@@ -2200,6 +2200,156 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
 }
 
 /* =========================================================
+   IMAGE PLACEMENTS
+   ========================================================= */
+
+/* 1 — Stats strip: aerial spray background */
+.stats-strip {
+  position: relative;
+  background-image: url('assets/images/DJI_20250305175125_0149_D.jpg');
+  background-size: cover;
+  background-position: center;
+  border-bottom: 0;
+}
+.stats-strip::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.50);
+  z-index: 0;
+}
+.stats-strip-inner { position: relative; z-index: 1; }
+/* Override light-mode colours — text now sits on dark photo */
+.stat          { border-left-color: rgba(255,255,255,0.2); }
+.stat-num      { color: #fff; }
+.stat-num .unit { color: var(--green-light); }
+.stat-label    { color: rgba(255,255,255,0.70); }
+@media (max-width: 720px) {
+  .stat { border-top-color: rgba(255,255,255,0.2); }
+}
+
+/* 2 — Service section: copy left, photo right */
+.service-with-photo {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 56px;
+  align-items: start;
+}
+@media (max-width: 960px) {
+  .service-with-photo { grid-template-columns: 1fr; gap: 32px; }
+  .service-photo-col  { order: 2; }
+}
+.service-photo-col {
+  position: sticky;
+  top: calc(var(--topbar-h) + 24px);
+}
+.service-photo-col img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* 3 — Atmospheric divider */
+.atm-divider {
+  display: block;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  line-height: 0;
+}
+@media (max-width: 720px) { .atm-divider { height: 260px; } }
+.atm-divider img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* 4 — Engineers section: copy left, image right */
+.engineers-grid {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 56px;
+  align-items: start;
+  margin-top: 24px;
+}
+@media (max-width: 960px) {
+  .engineers-grid { grid-template-columns: 1fr; gap: 32px; }
+  .engineers-photo { order: -1; }       /* image above copy on mobile */
+}
+.engineers-photo img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* 5 — Products section: lede left, photo right */
+.products-intro-row {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 48px;
+  align-items: center;
+  margin-top: 32px;
+  margin-bottom: 56px;
+}
+@media (max-width: 900px) {
+  .products-intro-row { grid-template-columns: 1fr; gap: 24px; margin-bottom: 32px; }
+  .products-intro-img { order: 2; }
+}
+.products-intro-img img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* 6 — Mid-CTA: full-bleed aerial background */
+.mid-cta {
+  position: relative;
+  background-image: url('assets/images/DJI_20250305183208_0223_D.jpg');
+  background-size: cover;
+  background-position: center;
+  border-top: 0;
+  border-bottom: 0;
+}
+.mid-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 0;
+}
+.mid-cta .section-inner { position: relative; z-index: 1; }
+.mid-cta h2             { color: #fff; }
+.mid-cta p              { color: rgba(255,255,255,0.80); }
+.mid-cta-meta           { color: rgba(255,255,255,0.50); }
+
+/* 7 — Testimonials/trust block: image left third, copy right */
+.trust-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 48px;
+  align-items: start;
+  margin-top: 24px;
+}
+@media (max-width: 800px) {
+  .trust-grid { grid-template-columns: 1fr; gap: 28px; }
+}
+.trust-photo img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* =========================================================
    HECTARE QUICK-SELECT CHIPS
    ========================================================= */
 .ha-chips-wrap {
@@ -2535,13 +2685,20 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
   <div class="section-inner">
     <div class="eyebrow reveal">Our Approach</div>
     <h2 class="reveal">Engineers, <em>not just a dealership.</em></h2>
-    <div class="engineers-copy reveal">
-      <p>Elk Fish is the authorised DJI Agras dealer for Western Australia. We don't make the Agras. DJI does. The Agras platform is widely adopted across agriculture for its reliability and operational capability. What we add is engineering.</p>
-      <p>Every Agras goes through our Fremantle workshop before it leaves. We set it up, show you how it works on the day, and stay on the phone through your first season. Repairs happen at the same bench, handled by engineers. Not subcontractors, not third-party repair shops.</p>
-      <p>Buying through us keeps the margin in WA. Local jobs, local workshop, local engineers. That is what your purchase supports.</p>
-    </div>
-    <div class="engineers-cta reveal">
-      <a href="#enquire" class="btn btn-primary">Visit the workshop, schedule a callback <span class="arrow">→</span></a>
+    <div class="engineers-grid">
+      <div class="engineers-text-col">
+        <div class="engineers-copy reveal">
+          <p>Elk Fish is the authorised DJI Agras dealer for Western Australia. We don't make the Agras. DJI does. The Agras platform is widely adopted across agriculture for its reliability and operational capability. What we add is engineering.</p>
+          <p>Every Agras goes through our workshop before it leaves. We set it up, show you how it works on the day, and stay on the phone through your first season. Repairs happen at the same bench, handled by engineers. Not subcontractors, not third-party repair shops.</p>
+          <p>Buying through us keeps the margin in WA. Local jobs, local workshop, local engineers. That is what your purchase supports.</p>
+        </div>
+        <div class="engineers-cta reveal">
+          <a href="#enquire" class="btn btn-primary">Schedule a callback <span class="arrow">→</span></a>
+        </div>
+      </div>
+      <div class="engineers-photo reveal">
+        <img src="assets/images/BI5A3505.jpg" alt="Two operators with a DJI Agras drone in a Western Australian paddock, preparing for a spray run" loading="lazy" />
+      </div>
     </div>
   </div>
 </section>
@@ -2658,7 +2815,12 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
   <div class="section-inner">
     <div class="eyebrow reveal">The Fleet</div>
     <h2 class="reveal">Two drones. <em>Match the one to your operation.</em></h2>
-    <p class="lede reveal">Both are DJI Agras. Both authorised, supported, set up and repaired by us in Fremantle. The right one depends less on the drone and more on how you'll use it.</p>
+    <div class="products-intro-row">
+      <p class="lede reveal">Both are DJI Agras. Both authorised, supported, set up and repaired by us in Fremantle. The right one depends less on the drone and more on how you'll use it.</p>
+      <div class="products-intro-img reveal">
+        <img src="assets/images/0S3B2329.jpg" alt="Close-up of DJI Agras spray system components and boom assembly on a WA broadacre property" loading="lazy" />
+      </div>
+    </div>
 
     <div class="product-grid">
 
@@ -2888,10 +3050,12 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
 <!-- SERVICE PROMISE -->
 <section class="section service-bg" id="service">
   <div class="section-inner">
-    <div class="eyebrow reveal">The Service Promise</div>
-    <h2 class="reveal">When something goes wrong, <em>this is what happens.</em></h2>
-    <p class="lede reveal">Your spray season runs September to November. When something goes wrong, you need a supplier who can actually help. Here is how we do that.</p>
-    <div class="service-list">
+    <div class="service-with-photo">
+      <div class="service-copy-col">
+        <div class="eyebrow reveal">The Service Promise</div>
+        <h2 class="reveal">When something goes wrong, <em>this is what happens.</em></h2>
+        <p class="lede reveal">Your spray season runs September to November. When something goes wrong, you need a supplier who can actually help. Here is how we do that.</p>
+        <div class="service-list">
       <div class="service-item reveal">
         <div class="num-big">01</div>
         <div class="copy">
@@ -2922,9 +3086,19 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
         </div>
       </div>
       -->
-    </div>
-  </div>
+        </div><!-- /.service-list -->
+      </div><!-- /.service-copy-col -->
+      <div class="service-photo-col">
+        <img src="assets/images/0S3B2262.jpg" alt="Elk Fish Robotics operator and engineer inspecting a DJI Agras drone, keeping both the operator and aircraft in frame" loading="lazy" />
+      </div>
+    </div><!-- /.service-with-photo -->
+  </div><!-- /.section-inner -->
 </section>
+
+<!-- ATMOSPHERIC DIVIDER — BI5A5598 -->
+<div class="atm-divider" role="img" aria-label="DJI Agras spray drone over Western Australian farmland at dusk">
+  <img src="assets/images/BI5A5598.jpg" alt="" loading="lazy" />
+</div>
 
 <!-- MID-PAGE CTA -->
 <section class="mid-cta" id="midcta">
@@ -3000,12 +3174,17 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
   <div class="section-inner">
     <div class="eyebrow reveal">From the Paddock</div>
     <h2 class="reveal">What we're proving, <em>one customer at a time.</em></h2>
-    <div class="trust-block reveal">
-      <!-- TODO: replace with founding year -->
-      <p>We've kept this section honest. We started selling Agras drones in WA in [FLAG FOR FRANK: confirm founding year]. We'd rather show you nothing here than a stock photo with a fake quote.</p>
-      <p>Real WA operator case studies will land on this page as our first three customers finish their first season. If you want to be one of them, and want the better deal that comes with being early, schedule a callback.</p>
-      <div class="trust-block-cta">
-        <a href="#enquire" class="btn btn-primary">Schedule a callback <span class="arrow">→</span></a>
+    <div class="trust-grid">
+      <div class="trust-photo reveal">
+        <img src="assets/images/0S3B2432.jpg" alt="WA drone operator at work, face prominent against an agricultural backdrop" loading="lazy" />
+      </div>
+      <div class="trust-block reveal">
+        <!-- TODO: replace with founding year -->
+        <p>We've kept this section honest. We started selling Agras drones in WA in [FLAG FOR FRANK: confirm founding year]. We'd rather show you nothing here than a stock photo with a fake quote.</p>
+        <p>Real WA operator case studies will land on this page as our first three customers finish their first season. If you want to be one of them, and want the better deal that comes with being early, schedule a callback.</p>
+        <div class="trust-block-cta">
+          <a href="#enquire" class="btn btn-primary">Schedule a callback <span class="arrow">→</span></a>
+        </div>
       </div>
     </div>
   </div>
