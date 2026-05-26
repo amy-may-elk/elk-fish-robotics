@@ -1669,15 +1669,157 @@ footer {
     cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 36 36'><circle cx='18' cy='18' r='14' fill='%234F6B58' stroke='%234F6B58' stroke-width='1.8'/><circle cx='18' cy='18' r='2.5' fill='%23A7C48A'/></svg>") 18 18, grabbing;
   }
 }
+
+/* ---------------------------------------------------------------
+   Animated logo intro
+   Plays once per session. The CMY layers use the logo SVG as a CSS
+   mask, then snap into the brand-coloured composite for the final
+   state. Total run time ~1.6s. Respects prefers-reduced-motion.
+   --------------------------------------------------------------- */
+.intro-overlay { display: none; }
+html.efr-show-intro .intro-overlay {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #14110D; /* matches --ink */
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  animation: introOverlayOut 1.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.intro-logo-stack {
+  position: relative;
+  width: min(440px, 70vw);
+  aspect-ratio: 16 / 9;
+}
+.intro-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform, opacity;
+}
+.intro-layer:not(.intro-layer--final) {
+  -webkit-mask: url("EFR_LOGO.svg") center / contain no-repeat;
+          mask: url("EFR_LOGO.svg") center / contain no-repeat;
+  mix-blend-mode: screen;
+  opacity: 0;
+}
+.intro-layer--k { background: #1B1F1C; mix-blend-mode: normal; opacity: 0; }
+.intro-layer--c { background: #00E5FF; }
+.intro-layer--m { background: #FF2DAA; }
+.intro-layer--y { background: #FFE93A; }
+.intro-layer--final {
+  object-fit: contain;
+  opacity: 0;
+}
+
+html.efr-show-intro .intro-layer--k     { animation: introK     1.6s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+html.efr-show-intro .intro-layer--c     { animation: introC     1.6s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+html.efr-show-intro .intro-layer--m     { animation: introM     1.6s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+html.efr-show-intro .intro-layer--y     { animation: introY     1.6s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+
+@keyframes introOverlayOut {
+  0%, 78% { opacity: 1; visibility: visible; }
+  100%    { opacity: 0; visibility: hidden; }
+}
+@keyframes introK {
+  0%   { opacity: 0; transform: scale(0.96); }
+  12%  { opacity: 0.6; transform: scale(0.99); }
+  20%  { opacity: 0.55; transform: translate(2px, -1px) scale(1); }
+  30%  { opacity: 0.7; transform: translate(-1px, 1px) scale(1); }
+  45%  { opacity: 0; transform: translate(0, 0) scale(1); }
+  100% { opacity: 0; transform: translate(0, 0) scale(1); }
+}
+@keyframes introC {
+  0%, 16% { opacity: 0; transform: translate(0, 0); }
+  20%     { opacity: 0.9; transform: translate(-12px, 0); }
+  26%     { opacity: 0.45; transform: translate(-6px, 0); }
+  34%     { opacity: 0.85; transform: translate(-10px, -2px); }
+  42%     { opacity: 0.55; transform: translate(-4px, 0); }
+  52%     { opacity: 0; transform: translate(0, 0); }
+  100%    { opacity: 0; transform: translate(0, 0); }
+}
+@keyframes introM {
+  0%, 16% { opacity: 0; transform: translate(0, 0); }
+  20%     { opacity: 0.85; transform: translate(12px, 0); }
+  26%     { opacity: 0.45; transform: translate(6px, 0); }
+  34%     { opacity: 0.85; transform: translate(10px, 2px); }
+  42%     { opacity: 0.55; transform: translate(4px, 0); }
+  52%     { opacity: 0; transform: translate(0, 0); }
+  100%    { opacity: 0; transform: translate(0, 0); }
+}
+@keyframes introY {
+  0%, 18% { opacity: 0; transform: translate(0, 0); }
+  24%     { opacity: 0.8; transform: translate(0, -6px); }
+  32%     { opacity: 0.45; transform: translate(0, 3px); }
+  40%     { opacity: 0.7; transform: translate(0, -3px); }
+  50%     { opacity: 0; transform: translate(0, 0); }
+  100%    { opacity: 0; transform: translate(0, 0); }
+}
+@keyframes introFinal {
+  0%, 48% { opacity: 0; transform: scale(0.985); }
+  58%     { opacity: 1; transform: scale(1); }
+  100%    { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.efr-show-intro .intro-layer:not(.intro-layer--final) { animation: none; opacity: 0; }
+  html.efr-show-intro .intro-layer--final { animation: introFinalReduced 0.8s ease forwards; }
+  html.efr-show-intro .intro-overlay { animation: introOverlayReduced 0.8s ease forwards; }
+}
+@keyframes introFinalReduced  { 0% { opacity: 0; } 35% { opacity: 1; } 100% { opacity: 1; } }
+@keyframes introOverlayReduced { 0%, 55% { opacity: 1; } 100% { opacity: 0; visibility: hidden; } }
+
+/* Restrained RGB glitch hover on primary buttons. Desktop only, brief. */
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover {
+    animation: btnRgbGlitch 0.42s steps(4, end);
+  }
+}
+@keyframes btnRgbGlitch {
+  0%   { text-shadow: none; }
+  20%  { text-shadow: -1px 0 #00E5FF, 1px 0 #FF2DAA; }
+  45%  { text-shadow: 1px 0 #FFE93A, -1px 0 #00E5FF; }
+  70%  { text-shadow: -1px 0 #FF2DAA, 1px 0 #FFE93A; }
+  100% { text-shadow: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary:hover { animation: none; }
+}
 </style>
 </head>
 <body>
+<script>
+/* Set intro flag BEFORE the overlay paints so it never flashes on
+   second navigation in the same session. */
+(function () {
+  try {
+    if (sessionStorage.getItem('efr_intro_played') !== '1') {
+      document.documentElement.classList.add('efr-show-intro');
+    }
+  } catch (e) { /* private mode etc. -- fine, we just skip the intro */ }
+})();
+</script>
+
+<!-- Animated logo intro: plays once per session, respects reduced motion. -->
+<div class="intro-overlay" id="introOverlay" aria-hidden="true">
+  <div class="intro-logo-stack" aria-hidden="true">
+    <span class="intro-layer intro-layer--k"></span>
+    <span class="intro-layer intro-layer--c"></span>
+    <span class="intro-layer intro-layer--m"></span>
+    <span class="intro-layer intro-layer--y"></span>
+    <img class="intro-layer intro-layer--final" src="EFR_LOGO.svg" alt="Elk Fish Robotics" />
+  </div>
+</div>
 
 <!-- STICKY TOP BAR -->
 <header class="topbar">
   <div class="topbar-inner">
     <a href="#top" class="topbar-logo" aria-label="Elk Fish Robotics home">
-      <img src="EFR_LOGO.png" alt="Elk Fish Robotics" />
+      <img src="EFR_LOGO.svg" alt="Elk Fish Robotics" />
     </a>
     <nav class="topbar-nav" aria-label="Primary">
       <a href="#products">Drones</a>
@@ -2325,7 +2467,7 @@ footer {
   <div class="footer-inner">
     <div class="footer-top">
       <div class="footer-brand">
-        <img src="EFR_LOGO.png" alt="Elk Fish Robotics" />
+        <img src="EFR_LOGO.svg" alt="Elk Fish Robotics" />
         <p>Western Australia's authorised DJI Agras dealer. T100 and T25 P spray drones, sold, serviced and supported from Fremantle.</p>
       </div>
       <div class="footer-col">
@@ -2482,6 +2624,23 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
   });
 });
+
+/* Intro overlay cleanup.
+   The intro CSS is gated by html.efr-show-intro (set by the inline
+   script at the very top of <body>). Mark the session as played and
+   remove the overlay from the DOM after the 1.6s animation finishes
+   so it never blocks events on the page below. */
+(function finaliseIntro() {
+  if (!document.documentElement.classList.contains('efr-show-intro')) return;
+  try { sessionStorage.setItem('efr_intro_played', '1'); } catch (e) {}
+  const ov = document.getElementById('introOverlay');
+  if (!ov) return;
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  setTimeout(() => {
+    ov.remove();
+    document.documentElement.classList.remove('efr-show-intro');
+  }, reduce ? 900 : 1800);
+})();
 
 /* Hero video sound toggle.
    Video stays muted by default so autoplay works in every browser; user can
