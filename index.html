@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="icon" type="image/svg+xml" href="EFR_LOGO.svg" />
 <title>DJI Agras Spray Drones WA | T100 &amp; T25 P | Elk Fish Robotics Fremantle</title>
-<meta name="description" content="Western Australia's authorised DJI Agras dealer. T100 and T25 P spray drones, CASA-credentialed pilot training, in-house repairs and service. Based in Fremantle. Get a quote." />
+<meta name="description" content="Western Australia's authorised DJI Agras dealer. T100 and T25 P spray drones, CASA-certified operators, in-house service and repairs. Based in Fremantle. Schedule a callback." />
 <meta name="keywords" content="DJI Agras WA, DJI Agras Perth, spray drones WA, agricultural drones WA, drone spraying Western Australia, DJI dealer Perth, DJI Agras T100 Australia, broadacre spray drone, vineyard spray drone, CASA Part 137 WA" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="DJI Agras Spray Drones WA | Elk Fish Robotics Fremantle" />
@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
 
-<!-- LocalBusiness schema (placeholders to be confirmed with Frank) -->
+<!-- LocalBusiness schema -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -1790,6 +1790,193 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
 @media (prefers-reduced-motion: reduce) {
   .btn-primary:hover { animation: none; }
 }
+
+/* ---------------------------------------------------------------
+   Content rebuild — Half 1 additions
+   --------------------------------------------------------------- */
+
+/* Engineers section: centred body copy, max-width readable */
+.engineers-copy {
+  max-width: 720px;
+  margin: 24px 0 32px;
+  font-size: 17px;
+  line-height: 1.65;
+}
+.engineers-copy p + p { margin-top: 16px; }
+.engineers-cta { margin-top: 24px; }
+
+/* Card CTA row inside problem-card (Who This Is For section) */
+.card-cta-row {
+  margin-top: 18px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.card-cta-row a { color: var(--green-light, #A7C48A); text-decoration: none; }
+.card-cta-row a:hover { text-decoration: underline; }
+
+/* Outcomes CTA spacing */
+.outcomes-cta { margin-top: 32px; }
+
+/* Fleet section close: centred two-line CTA below the product grid */
+.fleet-close {
+  margin-top: 48px;
+  text-align: center;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.fleet-close p { margin-bottom: 18px; }
+
+/* ROI CTA actions: stack on mobile, row on desktop */
+.roi-cta-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+/* About contact block */
+.about-contact {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(31,27,19,0.12);
+  font-family: var(--font-mono, monospace);
+  font-size: 13px;
+}
+.about-contact p { margin: 4px 0; }
+
+/* Trust block (replaces testimonials): single readable column */
+.trust-block {
+  max-width: 720px;
+  margin: 24px 0 0;
+  font-size: 17px;
+  line-height: 1.65;
+}
+.trust-block p + p { margin-top: 16px; }
+.trust-block-cta { margin-top: 28px; }
+
+/* FAQ help: stack the inline link and CTA */
+.faq-help-cta { margin-top: 16px; }
+
+/* Enquire reassurance line */
+.enquire-reassure {
+  margin-top: 16px;
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  opacity: 0.85;
+  line-height: 1.7;
+}
+
+/* Footer ABN line */
+.footer-abn {
+  border-top: 1px solid rgba(244,236,216,0.06);
+  padding-top: 16px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  opacity: 0.6;
+  margin-top: 24px;
+}
+
+/* ROI preset buttons (mobile-first ergonomics — visible on all sizes,
+   but particularly important on touch where the slider is fiddly) */
+.roi-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+  align-items: center;
+}
+.roi-presets-label {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-faint, #6c655a);
+  margin-right: 4px;
+}
+.roi-preset {
+  background: transparent;
+  border: 1px solid rgba(167,196,138,0.55);
+  color: var(--green-deep, #4F6B58);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.roi-preset:hover,
+.roi-preset:focus-visible {
+  background: var(--green-light, #A7C48A);
+  border-color: var(--green-light, #A7C48A);
+  color: var(--ink, #14110D);
+  outline: none;
+}
+.roi-preset.is-active {
+  background: var(--green-light, #A7C48A);
+  border-color: var(--green-light, #A7C48A);
+  color: var(--ink, #14110D);
+}
+.roi-presets-suffix {
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  color: var(--ink-faint, #6c655a);
+  margin-left: 4px;
+}
+
+/* Mobile sticky CTA bar: visible on mobile only.
+   Two equal halves, safe-area inset for iPhone home indicator. */
+.mobile-sticky-bar { display: none; }
+@media (max-width: 768px) {
+  .mobile-sticky-bar {
+    display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 500;
+    background: var(--ink, #14110D);
+    border-top: 1px solid rgba(244,236,216,0.1);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.18);
+  }
+  .msb-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--paper-soft, #F4ECD8);
+    text-decoration: none;
+    font-family: var(--font-mono, monospace);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    height: 56px;
+    transition: background 0.18s ease, color 0.18s ease;
+  }
+  .msb-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+  .msb-call { background: rgba(244,236,216,0.04); }
+  .msb-call:active { background: rgba(244,236,216,0.10); }
+  .msb-callback {
+    background: var(--green-light, #A7C48A);
+    color: var(--ink, #14110D);
+  }
+  .msb-callback:active { background: #92b073; }
+  /* Push page content above the sticky bar so nothing is hidden */
+  body { padding-bottom: calc(56px + env(safe-area-inset-bottom, 0)); }
+  /* Keep the intro overlay clean — no bar overlap during intro */
+  html.efr-show-intro .mobile-sticky-bar { display: none; }
+}
 </style>
 </head>
 <body>
@@ -1834,7 +2021,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         <span class="phone-label">(08) 6110 7423</span>
       </a>
-      <a href="#enquire" class="quote-cta">Get a Quote</a>
+      <a href="#enquire" class="quote-cta">Schedule a callback</a>
     </div>
   </div>
 </header>
@@ -1843,6 +2030,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
 <div id="top"></div>
 
 <!-- HERO with video -->
+<!-- [PHOTO BRIEF: replace cinematic shot with 30-sec loop of real WA paddock job with HUD coverage overlay] -->
 <section class="hero">
   <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="hero-poster.jpg">
     <source src="Agras_t100_hero_video_1.mp4" type="video/mp4" />
@@ -1857,27 +2045,28 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
 
   <div class="hero-content">
     <div class="hero-left">
-      <div class="hero-eyebrow">Western Australia's DJI Agras Dealer</div>
-      <h1 class="hero-headline reveal">DJI Agras spray drones, sold, serviced and repaired <em>from Fremantle.</em></h1>
-      <p class="hero-sub reveal">Authorised dealer for the T100 and T25 P. Training from CASA-credentialed pilots. In-house repairs at our Fremantle shop.</p>
+      <div class="hero-eyebrow">WESTERN AUSTRALIA · DJI AGRAS AUTHORISED DEALER</div>
+      <h1 class="hero-headline reveal">Spray more hectares, with less labour, <em>on your own schedule.</em></h1>
+      <p class="hero-sub reveal">The authorised WA dealer for the DJI Agras T100 and T25 P. Sold, set up and supported by engineers in Fremantle.</p>
       <div class="hero-trust-mini reveal">
-        <span>DJI Authorised</span>
+        <span>DJI Authorised dealer</span>
         <span class="sep">·</span>
-        <span>CASA Part 101 + 137</span>
+        <span>WA drone engineers</span>
         <span class="sep">·</span>
-        <span>Fremantle WA</span>
+        <span>Based in Fremantle</span>
       </div>
       <div class="hero-ctas reveal">
+        <a href="#enquire" class="btn btn-primary">Schedule a callback <span class="arrow">→</span></a>
         <a href="tel:+61861107423" class="btn btn-outline-light">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          Call (08) 6110 7423
+          or call (08) 6110 7423
         </a>
       </div>
     </div>
 
     <div class="hero-right reveal">
       <div class="hero-form-card">
-        <div class="hero-form-eyebrow">Quick Quote</div>
+        <div class="hero-form-eyebrow">Schedule a callback</div>
         <h2 class="hero-form-title">Schedule a callback <em>that suits you.</em></h2>
         <p class="hero-form-sub">Three fields. Tell us when. We call you back, no follow-up barrage.</p>
         <form class="hero-form-fields" id="heroQuickForm" onsubmit="event.preventDefault(); alert('Demo only. Wire to GoHighLevel before launch.');">
@@ -1885,10 +2074,9 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
           <input type="text" name="name" required placeholder="Your name" />
           <input type="tel" name="phone" required placeholder="Best phone number" />
           <select name="drone" required>
-            <option value="">Which drone are you after?</option>
+            <option selected>Not sure, help me decide</option>
             <option>DJI Agras T100 (broadacre)</option>
             <option>DJI Agras T25 P (smaller blocks &amp; vineyards)</option>
-            <option>Not sure, help me decide</option>
           </select>
           <button type="submit" class="btn-submit-hero">
             Schedule my callback <span class="arrow">→</span>
@@ -1903,52 +2091,71 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
   </div>
 </section>
 
-<!-- TRUST STRIP -->
-<div class="trust-strip">
-  <div class="trust-strip-inner">
-    <div class="trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
-      <span><strong>DJI</strong> Authorised Dealer</span>
-    </div>
-    <div class="trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-      <span><strong>CASA</strong> Part 101 + 137</span>
-    </div>
-    <div class="trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      <span><strong>WA-Based</strong> Service &amp; Repairs</span>
-    </div>
-    <div class="trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      <span><strong>In-House</strong> Repairs &amp; Training</span>
-    </div>
-  </div>
-</div>
-
 <!-- STATS STRIP -->
 <div class="stats-strip">
   <div class="stats-strip-inner">
     <div class="stat">
       <div class="stat-num">300<span class="unit">HA/DAY</span></div>
-      <div class="stat-label">Daily coverage</div>
+      <div class="stat-label">One T100, one pilot, one spray day</div>
     </div>
     <div class="stat">
-      <div class="stat-num">&lt;4<span class="unit">MONTHS</span></div>
-      <div class="stat-label">Typical payback</div>
+      <div class="stat-num">T100<span class="unit">+ T25 P</span></div>
+      <div class="stat-label">Two drones, matched to your operation</div>
     </div>
     <div class="stat">
-      <div class="stat-num">DJI<span class="unit">AUTH.</span></div>
-      <div class="stat-label">WA authorised dealer</div>
+      <div class="stat-num">Mon<span class="unit">to Fri</span></div>
+      <div class="stat-label">Walk-in shop, Marine Terrace Fremantle</div>
     </div>
   </div>
 </div>
+
+<!-- ENGINEERS, NOT JUST A DEALERSHIP -->
+<section class="section" id="engineers">
+  <div class="section-inner">
+    <div class="eyebrow reveal">Our Approach</div>
+    <h2 class="reveal">Engineers, <em>not just a dealership.</em></h2>
+    <div class="engineers-copy reveal">
+      <p>Elk Fish is the authorised DJI Agras dealer for Western Australia. We don't make the Agras. DJI does, and they make it well. What we add is engineering.</p>
+      <p>Every Agras goes through our Fremantle workshop before it leaves. We set it up, train you on it on the day, and stay on the phone through your first season. Repairs happen at the same bench, handled by engineers. Not subcontractors, not third-party repair shops.</p>
+      <p>Buying through us keeps the margin in WA. Local jobs, local workshop, local engineers. That is what your purchase supports.</p>
+    </div>
+    <div class="engineers-cta reveal">
+      <a href="#enquire" class="btn btn-primary">Visit the workshop, schedule a callback <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- WHO THIS IS FOR -->
+<section class="section" id="audience">
+  <div class="section-inner">
+    <div class="eyebrow reveal">Who This Is For</div>
+    <h2 class="reveal">Built for <em>three kinds of operator.</em></h2>
+    <div class="problem-grid">
+      <div class="problem-card reveal">
+        <h3>Contractors scaling up.</h3>
+        <p>You already run a spraying business. You're losing hectares to wet ground, drift complaints, or operator shortages. An Agras adds coverage without adding a tractor or a second operator.</p>
+        <p class="card-cta-row"><a href="#enquire">Schedule a callback <span class="arrow">→</span></a></p>
+      </div>
+      <div class="problem-card reveal">
+        <h3>Operators starting out.</h3>
+        <p>You're thinking about building a spraying contracting business. We sell you the drone, run you through the controls on the day, and stay on the phone through your first season.</p>
+        <p class="card-cta-row"><a href="#enquire">Schedule a callback <span class="arrow">→</span></a></p>
+      </div>
+      <div class="problem-card reveal">
+        <h3>Growers going in-house.</h3>
+        <p>You'd rather own and run the kit than book it in around someone else's calendar. Most of our growers spray their own and contract the overflow.</p>
+        <p class="card-cta-row"><a href="#enquire">Schedule a callback <span class="arrow">→</span></a></p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- PROBLEM -->
 <section class="section" id="problem">
   <div class="section-inner">
     <div class="eyebrow reveal">The Problem</div>
     <h2 class="reveal">Why WA growers are switching <em>to spray drones.</em></h2>
-    <p class="lede reveal">Three problems we hear on almost every quote call. A spray drone fixes all three.</p>
+    <p class="lede reveal">Four problems we hear on almost every call. A spray drone fixes all of them.</p>
     <div class="problem-grid">
       <div class="problem-card reveal">
         <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -1976,9 +2183,51 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
           <path d="M36 14 L40 16 L36 18"/>
           <path d="M36 22 L44 24 L36 26" opacity="0.7"/>
         </svg>
-        <h3>Drift is harder to manage every year.</h3>
-        <p>Targeted application, GPS-locked passes and lower product volumes give you a cleaner compliance picture than a wide boom in awkward conditions.</p>
+        <h3>Drift complaints cost you the next job.</h3>
+        <p>Targeted application, GPS-locked passes and lower product volumes give you a cleaner compliance position. And a cleaner phone call with the neighbour.</p>
       </div>
+      <div class="problem-card reveal">
+        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="8" y="10" width="32" height="30" rx="2"/>
+          <line x1="8" y1="18" x2="40" y2="18"/>
+          <line x1="16" y1="6" x2="16" y2="14"/>
+          <line x1="32" y1="6" x2="32" y2="14"/>
+          <line x1="14" y1="26" x2="20" y2="26"/>
+          <line x1="22" y1="26" x2="28" y2="26"/>
+          <line x1="14" y1="32" x2="20" y2="32"/>
+        </svg>
+        <h3>Peak season is shorter every year.</h3>
+        <p>The spring window narrows when conditions shift. A drone stretches your billable days at both ends of the season.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUTCOMES -->
+<section class="section" id="outcomes">
+  <div class="section-inner">
+    <div class="eyebrow reveal">Outcomes</div>
+    <h2 class="reveal">What changes <em>when you run one.</em></h2>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <h3>More hectares per spray day.</h3>
+        <p>300 ha/day with one T100 and one pilot, in conditions where the tractor stays in the shed.</p>
+      </div>
+      <div class="why-card reveal">
+        <h3>One operator covers what two used to.</h3>
+        <p>Trained drone pilots are easier to find, and to keep, than experienced spray rig operators.</p>
+      </div>
+      <div class="why-card reveal">
+        <h3>More billable days per season.</h3>
+        <p>Wet paddocks and awkward terrain become workable instead of cancelled.</p>
+      </div>
+      <div class="why-card reveal">
+        <h3>Cleaner compliance.</h3>
+        <p>Targeted application reduces drift exposure and gives you a defensible record for every job.</p>
+      </div>
+    </div>
+    <div class="outcomes-cta reveal">
+      <a href="#enquire" class="btn btn-primary">Schedule a callback to talk this through <span class="arrow">→</span></a>
     </div>
   </div>
 </section>
@@ -1987,8 +2236,8 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
 <section class="section products-bg" id="products">
   <div class="section-inner">
     <div class="eyebrow reveal">The Fleet</div>
-    <h2 class="reveal">Two drones. <em>Pick the one that fits your country.</em></h2>
-    <p class="lede reveal">Both are DJI Agras. Both are authorised, supported, trained on and repaired by us in Fremantle. The difference is the size of your operation.</p>
+    <h2 class="reveal">Two drones. <em>Match the one to your operation.</em></h2>
+    <p class="lede reveal">Both are DJI Agras. Both authorised, supported, trained on and repaired by us in Fremantle. The right one depends less on the drone and more on how you'll use it.</p>
 
     <div class="product-grid">
 
@@ -2038,18 +2287,18 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
         </div>
         <div class="product-header">
           <div class="product-name">Agras <em>T100</em></div>
-          <div class="product-model">FLAGSHIP</div>
+          <div class="product-model">FOR CONTRACTORS &amp; BROADACRE</div>
         </div>
-        <p class="product-tagline">Built for broadacre. Most-bought by WA contractors covering 3,000+ hectares a season.</p>
+        <p class="product-tagline">The T100 is the drone you buy when spray days are billable days. 75 kg payload, 11 m spray width, around 300 hectares in a single day with one pilot. Most go to contractors and mixed broadacre operations.</p>
+        <p class="product-tagline"><strong>Typical buyer:</strong> spraying 3,000 ha or more a season, running on contract or in-house at scale.</p>
         <div class="product-specs">
           <div>PAYLOAD<span class="spec-val">75<span class="unit">KG</span></span></div>
           <div>FLIGHT TIME<span class="spec-val">28<span class="unit">MIN</span></span></div>
           <div>COVERAGE<span class="spec-val">21<span class="unit">HA/HR</span></span></div>
           <div>SPRAY WIDTH<span class="spec-val">11<span class="unit">M</span></span></div>
         </div>
-        <div class="product-price">$30,380.00 <span class="small">AUD</span></div>
-        <div class="product-lead-time">CURRENT LEAD TIME: <strong>4 to 6 weeks</strong></div>
-        <a href="#enquire" class="btn btn-primary" data-product="T100">Quote the T100 <span class="arrow">→</span></a>
+        <div class="product-lead-time">LEAD TIME &amp; PRICING: <strong>confirm on the callback</strong></div>
+        <a href="#enquire" class="btn btn-primary" data-product="T100">Talk to us about the T100 <span class="arrow">→</span></a>
       </div>
 
       <!-- T25 P -->
@@ -2097,20 +2346,25 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
         </div>
         <div class="product-header">
           <div class="product-name">Agras <em>T25 P</em></div>
-          <div class="product-model">AGILE</div>
+          <div class="product-model">FOR VINEYARDS, ORCHARDS &amp; SMALLER BLOCKS</div>
         </div>
-        <p class="product-tagline">Built for vineyards and smaller blocks. Most-bought by WA growers under 1,500 hectares or running specialty crops.</p>
+        <p class="product-tagline">Built for operations where a T100 is more drone than you need. Vineyards, orchards, hilly country, mixed-use blocks. 25 kg payload, 8 m spray width, fits in a Hilux tray.</p>
+        <p class="product-tagline"><strong>Typical buyer:</strong> vineyard, orchard, mixed cropping under about 1,500 ha, or a contractor running both alongside a T100.</p>
         <div class="product-specs">
           <div>PAYLOAD<span class="spec-val">25<span class="unit">KG</span></span></div>
           <div>FLIGHT TIME<span class="spec-val">17<span class="unit">MIN</span></span></div>
           <div>COVERAGE<span class="spec-val">14<span class="unit">HA/HR</span></span></div>
           <div>SPRAY WIDTH<span class="spec-val">8<span class="unit">M</span></span></div>
         </div>
-        <div class="product-price">$17,530.00 <span class="small">AUD</span></div>
-        <div class="product-lead-time">CURRENT LEAD TIME: <strong>3 to 5 weeks</strong></div>
-        <a href="#enquire" class="btn btn-primary" data-product="T25P">Quote the T25 P <span class="arrow">→</span></a>
+        <div class="product-lead-time">LEAD TIME &amp; PRICING: <strong>confirm on the callback</strong></div>
+        <a href="#enquire" class="btn btn-primary" data-product="T25P">Talk to us about the T25 P <span class="arrow">→</span></a>
       </div>
 
+    </div>
+
+    <div class="fleet-close reveal">
+      <p>Not sure which one fits your operation? Schedule a callback to talk it through. No quote pressure, no obligation.</p>
+      <a href="#enquire" class="btn btn-primary">Schedule a callback <span class="arrow">→</span></a>
     </div>
   </div>
 </section>
@@ -2132,6 +2386,15 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
         <div class="slider-bounds">
           <span>500 ha</span>
           <span>20,000 ha</span>
+        </div>
+
+        <div class="roi-presets" aria-label="Hectare preset buttons">
+          <span class="roi-presets-label">Quick set:</span>
+          <button type="button" class="roi-preset" data-ha="1000">1,000</button>
+          <button type="button" class="roi-preset" data-ha="3000">3,000</button>
+          <button type="button" class="roi-preset" data-ha="5000">5,000</button>
+          <button type="button" class="roi-preset" data-ha="10000">10,000</button>
+          <span class="roi-presets-suffix">ha</span>
         </div>
 
         <div class="slider-paddock" id="sliderPaddock">
@@ -2167,11 +2430,15 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
     </div>
 
     <div class="roi-inline-cta reveal">
-      <p>Want a real-world ROI for your exact paddocks and contract rate? Phone our team and we will work it out on the call.</p>
-      <a href="tel:+61861107423" class="btn btn-outline">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        Call (08) 6110 7423
-      </a>
+      <p>The numbers above are indicative. They don't account for chemical, fuel, downtime, finance cost or your actual contract rates. Schedule a callback and we'll run the figures against your real paddocks, your chemistry and the rate you're charging.</p>
+      <p>No quote pressure. If a drone isn't the right answer for your operation, we'll say so.</p>
+      <div class="roi-cta-actions">
+        <a href="#enquire" class="btn btn-primary">Schedule a callback <span class="arrow">→</span></a>
+        <a href="tel:+61861107423" class="btn btn-outline">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          or call (08) 6110 7423
+        </a>
+      </div>
     </div>
 
     <p class="disclaimer">Indicative figures only. Real numbers depend on crop, terrain, chemistry, travel time, and your contract rates.</p>
@@ -2186,13 +2453,13 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
     <p class="lede reveal">No surprises, no hidden add-ons, no kit-yet-to-arrive. Everything you need to fly, spray, and stay supported through your first season.</p>
     <div class="included-grid">
       <div class="included-item reveal"><div class="num">01</div><h3>The drone.</h3><p>T100 or T25 P with spray and spreader systems where applicable.</p></div>
-      <div class="included-item reveal"><div class="num">02</div><h3>Batteries and charger.</h3><p>Spare batteries and a fast-charge station rated for spray-season throughput.</p></div>
+      <div class="included-item reveal"><div class="num">02</div><h3>Batteries and charger.</h3><p>Spare batteries and a fast-charge station for spray-season use.</p></div>
       <div class="included-item reveal"><div class="num">03</div><h3>Remote and goggles.</h3><p>The DJI smart controller and viewing kit. Set up and paired before delivery.</p></div>
       <div class="included-item reveal"><div class="num">04</div><h3>Carry and transport.</h3><p>Hard-shell case sized for ute trays. Ready for paddock-to-paddock work.</p></div>
-      <div class="included-item reveal"><div class="num">05</div><h3>CASA training session.</h3><p>One operator put through the Part 101 and Part 137 pathway with us.</p></div>
+      <div class="included-item reveal"><div class="num">05</div><h3>On-day setup and operator training.</h3><p>We deliver your Agras set up and paired. On the day, we run you through the controls, the mission planner and your first flights. Hands-on, in your paddock if that suits.</p></div>
       <div class="included-item reveal"><div class="num">06</div><h3>12-month warranty.</h3><p>Manufacturer warranty plus our local cover. Optional extended plans available.</p></div>
       <div class="included-item reveal"><div class="num">07</div><h3>First service free.</h3><p>End-of-first-season check-up at our Fremantle shop. No charge.</p></div>
-      <div class="included-item reveal"><div class="num">08</div><h3>Finance available.</h3><p>Through partner lenders. Application handled with the quote on request.</p></div>
+      <div class="included-item reveal"><div class="num">08</div><h3>Finance available.</h3><p>Through partner lenders. Finance application handled alongside your callback.</p></div>
     </div>
   </div>
 </section>
@@ -2214,24 +2481,26 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
       <div class="service-item reveal">
         <div class="num-big">02</div>
         <div class="copy">
-          <h3>Genuine DJI parts kept locally.</h3>
-          <p>Critical service parts stocked at our shop in Fremantle rather than ordered in from interstate or overseas mid-season.</p>
-        </div>
-      </div>
-      <div class="service-item reveal">
-        <div class="num-big">03</div>
-        <div class="copy">
           <h3>Diagnosed before quoted.</h3>
           <p>Faults identified and explained before any work or cost is committed. No surprise invoices, no scope creep.</p>
         </div>
       </div>
       <div class="service-item reveal">
-        <div class="num-big">04</div>
+        <div class="num-big">03</div>
         <div class="copy">
-          <h3>A real person on the phone.</h3>
-          <p>Spray season questions answered by someone who flies the same drones in the same conditions you do.</p>
+          <h3>A real person on the phone in spray season.</h3>
+          <p>September to November is the busiest stretch. The same engineers who repair the drones answer the calls.</p>
         </div>
       </div>
+      <!-- TODO: CONFIRM WITH FRANK before publishing. Only include if loaner policy is real.
+      <div class="service-item reveal">
+        <div class="num-big">04</div>
+        <div class="copy">
+          <h3>Loaner drone if yours is in for repair mid-season.</h3>
+          <p>[Loaner copy here once policy is confirmed.]</p>
+        </div>
+      </div>
+      -->
     </div>
   </div>
 </section>
@@ -2240,47 +2509,15 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
 <section class="mid-cta" id="midcta">
   <div class="section-inner">
     <h2>Ready to talk?</h2>
-    <p>Send a few details or just ring us. Most quotes done in one call. We respond within one business hour during spray season.</p>
+    <p>Send a few details or just ring us. Most decisions get made in one conversation.</p>
     <div class="mid-cta-actions">
-      <a href="tel:+61861107423" class="btn btn-primary">
+      <a href="#enquire" class="btn btn-primary">Schedule a callback <span class="arrow">→</span></a>
+      <a href="tel:+61861107423" class="btn btn-outline">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         Call (08) 6110 7423
       </a>
-      <a href="#enquire" class="btn btn-outline">Send an enquiry <span class="arrow">→</span></a>
     </div>
     <div class="mid-cta-meta">Open Mon to Fri 8.00am to 5.00pm AWST · Shop visits welcome by appointment</div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="section" id="testimonials">
-  <div class="section-inner">
-    <div class="eyebrow reveal">From the Paddock</div>
-    <h2 class="reveal">WA growers using Elk Fish drones.</h2>
-    <p class="lede reveal">Real names, real operations, real numbers. We will fill these in with our first three customers happy to put their face to it.</p>
-    <div class="testi-grid">
-      <div class="testi-card reveal">
-        <div class="photo"></div>
-        <div class="body">
-          <p class="quote">"Customer testimonial coming soon."</p>
-          <p class="meta"><strong>[Name]</strong><br />Broadacre · Wheatbelt<br />T100 · 5,800 ha sprayed 2025</p>
-        </div>
-      </div>
-      <div class="testi-card reveal">
-        <div class="photo"></div>
-        <div class="body">
-          <p class="quote">"Customer testimonial coming soon."</p>
-          <p class="meta"><strong>[Name]</strong><br />Contract Sprayer · Mid West<br />T100 · 4,200 ha sprayed 2025</p>
-        </div>
-      </div>
-      <div class="testi-card reveal">
-        <div class="photo"></div>
-        <div class="body">
-          <p class="quote">"Customer testimonial coming soon."</p>
-          <p class="meta"><strong>[Name]</strong><br />Vineyard · Margaret River<br />T25 P · 280 ha sprayed 2025</p>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -2289,27 +2526,27 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
   <div class="section-inner">
     <div class="eyebrow reveal">Why Us</div>
     <h2 class="reveal">Why buy from Elk Fish, <em>not interstate.</em></h2>
-    <p class="lede reveal">Half a dozen interstate dealers will sell you the same drone for around the same price. Here is what they cannot match.</p>
+    <p class="lede reveal">Plenty of dealers will ship you a T100 from the east coast. Here's what they don't include.</p>
     <div class="why-grid">
       <div class="why-card reveal">
-        <div class="num">01 / SERVICE</div>
-        <h3>Service and repairs in Fremantle.</h3>
-        <p>Diagnosis, repairs, parts and training handled at our Fremantle shop. Genuine DJI parts stocked locally. Not waiting on freight from the eastern states for every fix.</p>
+        <div class="num">01 / ENGINEERS</div>
+        <h3>Engineers, not just a dealership.</h3>
+        <p>We're a robotics engineering company. Engineers set up your Agras, repair it, and answer your calls. That depth doesn't exist at a reseller.</p>
       </div>
       <div class="why-card reveal">
-        <div class="num">02 / TRAINING</div>
-        <h3>Pilot training run by us.</h3>
-        <p>CASA-credentialed Part 101 and Part 137 pathways. Run in WA by people who fly the same drones in the same conditions you will.</p>
+        <div class="num">02 / LOCAL</div>
+        <h3>Local team, local workshop.</h3>
+        <p>Repairs handled in our Fremantle shop by engineers we employ ourselves. The same people who set up your drone answer the phone when you ring.</p>
       </div>
       <div class="why-card reveal">
-        <div class="num">03 / GENUINE</div>
-        <h3>Authorised DJI dealer.</h3>
-        <p>Genuine kit, genuine warranty, genuine support. Every drone we sell comes through the official DJI Agras channel with full manufacturer backing.</p>
+        <div class="num">03 / TRAINING</div>
+        <h3>We don't just drop it off.</h3>
+        <p>Every Agras leaves our workshop set up, paired and flight-tested. On delivery day we walk you through the controls, the mission planner and your first flights, in your paddock if that suits. For your full CASA Part 101 and Part 137 certification, we point you to WA-based training providers we trust.</p>
       </div>
       <div class="why-card reveal">
-        <div class="num">04 / HERITAGE</div>
-        <h3>WA industrial robotics heritage.</h3>
-        <p>Trusted by mining operators before we ever touched agriculture. We know what robust looks like in WA conditions.</p>
+        <div class="num">04 / AUTHORISED</div>
+        <h3>Authorised DJI Agras dealer.</h3>
+        <p>Genuine kit, genuine warranty, genuine support. Every Agras we sell comes through the official DJI channel with full manufacturer backing.</p>
       </div>
     </div>
   </div>
@@ -2322,11 +2559,32 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
       <div class="about-photo reveal"></div>
       <div class="about-copy reveal">
         <div class="eyebrow">About</div>
-        <h2>The team you'll talk to.</h2>
-        <p>Elk Fish Robotics is based in <strong>Fremantle, Western Australia</strong>. We came up through industrial robotics, building and supporting drones for WA mining and infrastructure work since [YEAR PLACEHOLDER].</p>
-        <p>Agriculture is where we have brought everything we learned: rugged operation, parts you can actually get, and a phone you can actually ring.</p>
-        <p>We are an authorised DJI dealer for the Agras spray drone range. Every drone we sell, we have flown. Every repair we do is in-house. Every customer we onboard, we train in WA.</p>
-        <p>We are based in Fremantle and work with growers and contractors across Western Australia. For demos, service visits or pick-ups, get in touch and we will sort the logistics.</p>
+        <h2>We're engineers, <em>based in Fremantle.</em></h2>
+        <p>Elk Fish Robotics is a Western Australian engineering company. We're the authorised DJI Agras dealer for the state. DJI builds the Agras, and we handle everything else: sales, setup, on-day training, service and repairs, from our Fremantle workshop.</p>
+        <p>Every drone leaves the shop set up and tested. Every repair is handled by engineers, not subcontractors. Every operator we deliver to gets walked through their first flights on the day.</p>
+        <p>We employ locally. We engineer locally. The Agras you buy here helps keep all of that going.</p>
+        <div class="about-contact">
+          <p><strong>Find us:</strong> 1/72 Marine Terrace, Fremantle WA 6160</p>
+          <p><strong>Hours:</strong> Mon to Fri 8.00am to 5.00pm AWST</p>
+          <p><strong>Phone:</strong> <a href="tel:+61861107423">(08) 6110 7423</a></p>
+          <p><strong>Email:</strong> <a href="mailto:agras@elkfishrobotics.com.au">agras@elkfishrobotics.com.au</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BLOCK (replaces empty testimonials, kept id for backwards compatibility) -->
+<section class="section" id="testimonials">
+  <div class="section-inner">
+    <div class="eyebrow reveal">From the Paddock</div>
+    <h2 class="reveal">What we're proving, <em>one customer at a time.</em></h2>
+    <div class="trust-block reveal">
+      <!-- TODO: replace with founding year -->
+      <p>We've kept this section honest. We started selling Agras drones in WA in [FLAG FOR FRANK: confirm founding year]. We'd rather show you nothing here than a stock photo with a fake quote.</p>
+      <p>Real WA operator case studies will land on this page as our first three customers finish their first season. If you want to be one of them, and want the better deal that comes with being early, schedule a callback.</p>
+      <div class="trust-block-cta">
+        <a href="#enquire" class="btn btn-primary">Schedule a callback <span class="arrow">→</span></a>
       </div>
     </div>
   </div>
@@ -2336,53 +2594,82 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
 <section class="section why-bg" id="faq">
   <div class="section-inner">
     <div class="eyebrow reveal">Questions</div>
-    <h2 class="reveal">What buyers usually ask first.</h2>
+    <h2 class="reveal">Questions buyers ask <em>in the research phase.</em></h2>
     <div class="faq-list">
       <div class="faq-item reveal">
         <button class="faq-q" aria-expanded="false">
-          <span><span class="qnum">7.1</span>What does it cost to get started?</span>
+          <span><span class="qnum">7.1</span>Do I need a drone, or should I just hire a contractor for the work?</span>
           <svg class="faq-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 7h10M7 2v10"/></svg>
         </button>
-        <div class="faq-a"><div class="faq-a-inner">$17,530 AUD for the T25 P and $30,380 AUD for the T100. Pricing includes the drone, batteries, charger, controller, case, one operator training session, 12-month warranty and first service. Finance available through partner lenders.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Depends on your hectares and your appetite for owning kit. Below about 800 ha a season, a contractor is usually the right call. Above that, and especially if you have a recurring spray window every year, owning makes sense within two to three seasons. We'll do this maths with you on a callback.</div></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" aria-expanded="false">
-          <span><span class="qnum">7.2</span>What CASA training do I need to fly an Agras commercially?</span>
+          <span><span class="qnum">7.2</span>Should I buy a T100 or a T25 P?</span>
           <svg class="faq-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 7h10M7 2v10"/></svg>
         </button>
-        <div class="faq-a"><div class="faq-a-inner">Commercial agricultural use requires a Remote Pilot Licence (RePL) and Part 137 certification for chemical application. We run both pathways in-house. Included training in your package covers one operator.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">T100 if you're contracting or running mixed broadacre at scale. T25 P if you're a vineyard, orchard, or under about 1,500 ha. If you're crossing both worlds, broadacre and specialty, most of our buyers run a T100 and add a T25 P in year two. Schedule a callback and we'll work it through against your actual operation.</div></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" aria-expanded="false">
-          <span><span class="qnum">7.3</span>How long does a typical repair take?</span>
+          <span><span class="qnum">7.3</span>What CASA training do I need to spray commercially with an Agras?</span>
           <svg class="faq-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 7h10M7 2v10"/></svg>
         </button>
-        <div class="faq-a"><div class="faq-a-inner">Repair times depend on the fault. We diagnose every job when it arrives at our Fremantle shop and explain the work and cost before we start. Genuine DJI parts are stocked locally rather than ordered from overseas for every job.</div></div>
+        <div class="faq-a"><div class="faq-a-inner"><p>Commercial agricultural use requires a Remote Pilot Licence (RePL) and a Part 137 certification for chemical application. We don't run these courses ourselves, but we work alongside WA-based CASA-credentialed training providers and we'll connect you with the right one for your situation.</p><p>What we include in every Agras package is on-day setup, a hands-on demo, and operator training so you're flying confidently from delivery.</p></div></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" aria-expanded="false">
-          <span><span class="qnum">7.4</span>Can I finance the purchase?</span>
+          <span><span class="qnum">7.4</span>How long does it actually take to learn to fly one?</span>
           <svg class="faq-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 7h10M7 2v10"/></svg>
         </button>
-        <div class="faq-a"><div class="faq-a-inner">Yes. We work with partner lenders for chattel mortgage and equipment finance arrangements. Application is handled alongside your quote. Talk to us about a structure that fits your spray season cash flow.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Most new pilots are flight-confident inside their first day of hands-on time and operationally productive inside their first 50 hectares. The drone does the flying. The skill is in mission planning, chemistry, and managing the spray window.</div></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" aria-expanded="false">
-          <span><span class="qnum">7.5</span>What's the warranty?</span>
+          <span><span class="qnum">7.5</span>What happens if something goes wrong in the middle of spray season?</span>
           <svg class="faq-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 7h10M7 2v10"/></svg>
         </button>
-        <div class="faq-a"><div class="faq-a-inner">12 months from DJI as standard, plus our local cover for warranty work handled in-house. Extended warranty plans available.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">You call us. Diagnosis happens at our Fremantle shop. We'll talk through repair options and timing once we've looked at it.</div></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" aria-expanded="false">
-          <span><span class="qnum">7.6</span>How does drone spraying compare to a traditional boom?</span>
+          <span><span class="qnum">7.6</span>Can I finance the drone?</span>
           <svg class="faq-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 7h10M7 2v10"/></svg>
         </button>
-        <div class="faq-a"><div class="faq-a-inner">Drones do not replace booms for all work. They complement them. Drones win on wet paddocks, awkward terrain, smaller blocks, targeted application and labour efficiency. A boom still wins on flat, dry, high-volume work. Most operations we set up end up running both.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Yes. We work with equipment finance lenders for chattel mortgage arrangements that line up with spray season cashflow. The finance application runs alongside your purchase. We can introduce you to a broker on the callback.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          <span><span class="qnum">7.7</span>What's the realistic payback window?</span>
+          <svg class="faq-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 7h10M7 2v10"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Depends on contract rate, utilisation and operation. Our calculator above gives an indicative figure; in practice we see contractors at 3,000+ ha and $18 to $22/ha contract rates land in the 4 to 8 month range. We'll run it on your actual numbers on a callback.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          <span><span class="qnum">7.8</span>What's the warranty and what does it cover?</span>
+          <svg class="faq-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 7h10M7 2v10"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">12 months from DJI as standard on the drone and electronics. We handle warranty work in-house at our Fremantle shop. Extended cover available on request.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          <span><span class="qnum">7.9</span>Do you sell to interstate operators?</span>
+          <svg class="faq-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 7h10M7 2v10"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Our focus is Western Australia, because that's where we service and support. We don't refuse interstate buyers, but we'll tell you straight: you'll get a better service experience from a dealer in your own state.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          <span><span class="qnum">7.10</span>I'm thinking about starting a spraying contracting business. Where do I start?</span>
+          <svg class="faq-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 7h10M7 2v10"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">A callback with us. We'll walk you through the kit, the CASA pathway, the realistic capex, the typical first-season hectares for a new contractor, and the regulatory ground you need to cover. No obligation, and we'll tell you if we think it's not the right move.</div></div>
       </div>
     </div>
     <div class="faq-help">
-      Question not answered here? Phone us on <a href="tel:+61861107423">(08) 6110 7423</a>.
+      Question not answered? Schedule a callback or ring <a href="tel:+61861107423">(08) 6110 7423</a>.
+      <div class="faq-help-cta"><a href="#enquire" class="btn btn-primary">Schedule a callback <span class="arrow">→</span></a></div>
     </div>
   </div>
 </section>
@@ -2394,8 +2681,9 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
 
       <div class="enquire-left reveal">
         <div class="eyebrow">Enquire</div>
-        <h2>Send a quote enquiry.</h2>
-        <p class="lede">We will respond within one business hour during spray season. Most quotes are done in one phone call once we know your operation.</p>
+        <h2>Schedule a callback <em>with our team.</em></h2>
+        <p class="lede">Tell us when. We'll call you back, no follow-up barrage, no sales pressure. Most decisions get made in one conversation.</p>
+        <p class="enquire-reassure"><strong>No quote pressure</strong>  ·  <strong>We'll tell you if a drone isn't the right answer</strong>  ·  <strong>Phone or in our Fremantle shop</strong></p>
 
         <div class="enquire-details">
           <div class="enquire-detail">
@@ -2444,18 +2732,21 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
               <input type="tel" name="phone" required placeholder="04XX XXX XXX" autocomplete="tel" />
             </div>
             <div class="field full">
-              <label>Hectares per year<span class="opt">(optional)</span></label>
-              <input type="number" name="hectares" placeholder="e.g. 5,000" />
+              <label>When's a good time?<span class="opt">(optional)</span></label>
+              <input type="text" name="callback_time" placeholder="e.g. Tomorrow morning, or after 4pm Friday" />
             </div>
             <div class="form-actions">
               <button type="submit" class="btn-submit">Schedule my callback <span class="arrow">→</span></button>
-              <div class="response-note">Response within 1 business hour.</div>
+              <div class="response-note">We'll call you back at the time you suggest. If we miss you we'll try again, no follow-up barrage.</div>
             </div>
           </form>
 
+          <!-- TODO: live SMS number required
           <div class="sms-option">
             <strong>Prefer SMS?</strong> Text your hectares and best time to call to <a href="sms:+61400000000">04XX XXX XXX</a>. We text you back within the hour during business hours.
           </div>
+          -->
+
         </div>
       </div>
 
@@ -2469,7 +2760,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
     <div class="footer-top">
       <div class="footer-brand">
         <img src="EFR_LOGO.svg" alt="Elk Fish Robotics" />
-        <p>Western Australia's authorised DJI Agras dealer. T100 and T25 P spray drones, sold, serviced and supported from Fremantle.</p>
+        <p>WA drone engineers and the state's authorised DJI Agras dealer. Sold, set up and serviced from our Fremantle workshop.</p>
       </div>
       <div class="footer-col">
         <h4>Drones</h4>
@@ -2477,7 +2768,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
           <li><a href="#products">DJI Agras T100</a></li>
           <li><a href="#products">DJI Agras T25 P</a></li>
           <li><a href="#roi">ROI calculator</a></li>
-          <li><a href="#enquire">Request a quote</a></li>
+          <li><a href="#enquire">Schedule a callback</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -2485,7 +2776,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
         <ul>
           <li><a href="#service">Repairs &amp; service</a></li>
           <li><a href="#included">What's included</a></li>
-          <li>CASA training (Part 101 + 137)</li>
+          <li>On-day setup &amp; operator training</li>
           <li>Finance options</li>
         </ul>
       </div>
@@ -2498,6 +2789,10 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
           <li>Mon to Fri · 8.00am to 5.00pm AWST</li>
         </ul>
       </div>
+    </div>
+    <div class="footer-abn">
+      <!-- TODO: add ABN once confirmed -->
+      <span>ABN [FLAG FOR FRANK: add ABN]</span>
     </div>
     <div class="footer-bottom">
       <span>© 2026 Elk Fish Robotics Pty Ltd</span>
@@ -2626,6 +2921,29 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
+/* ROI preset buttons (mobile-first quick-select)
+   Each preset sets the slider to a common hectare value and triggers
+   the existing ROI calc input handler so live outputs refresh. */
+(function initROIPresets() {
+  const slider = document.getElementById('haSlider');
+  const presets = document.querySelectorAll('.roi-preset');
+  if (!slider || !presets.length) return;
+  function syncActive(value) {
+    presets.forEach(b => b.classList.toggle('is-active', String(b.dataset.ha) === String(value)));
+  }
+  presets.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const ha = btn.dataset.ha;
+      slider.value = ha;
+      slider.dispatchEvent(new Event('input', { bubbles: true }));
+      syncActive(ha);
+    });
+  });
+  /* Reflect slider drags back to preset state if user lands on an exact preset */
+  slider.addEventListener('input', () => syncActive(slider.value));
+  syncActive(slider.value);
+})();
+
 /* Intro overlay cleanup.
    The intro CSS is gated by html.efr-show-intro (set by the inline
    script at the very top of <body>). Mark the session as played and
@@ -2662,6 +2980,18 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 })();
 </script>
+
+<!-- MOBILE STICKY CTA BAR (mobile only, hidden on desktop) -->
+<div class="mobile-sticky-bar" aria-hidden="false">
+  <a href="tel:+61861107423" class="msb-btn msb-call" aria-label="Call Elk Fish Robotics on (08) 6110 7423">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    <span>Call</span>
+  </a>
+  <a href="#enquire" class="msb-btn msb-callback" aria-label="Schedule a callback">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    <span>Schedule a callback</span>
+  </a>
+</div>
 
 </body>
 </html>
