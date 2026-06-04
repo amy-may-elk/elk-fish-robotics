@@ -323,15 +323,11 @@ h3 {
   margin: 0 auto;
   padding: 0 var(--gutter);
   color: var(--paper-soft);
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 48px;
+  display: flex;
   align-items: center;
 }
 @media (max-width: 980px) {
   .hero-content {
-    grid-template-columns: 1fr;
-    gap: 32px;
     padding-top: calc(var(--topbar-h) + 24px);
     padding-bottom: 24px;
     align-items: start;
@@ -388,148 +384,111 @@ h3 {
   align-items: center;
 }
 
-/* hero quick-quote form card on the right */
-.hero-form-card {
-  background: rgba(20,17,13,0.72);
+/* ---------- FLOATING CORNER CALLBACK CARD ---------- */
+.corner-card {
+  position: fixed;
+  bottom: 28px;
+  left: 24px;
+  z-index: 300;
+  width: 272px;
+  background: rgba(20,17,13,0.88);
   backdrop-filter: blur(18px) saturate(140%);
   -webkit-backdrop-filter: blur(18px) saturate(140%);
-  border: 1px solid rgba(244,236,216,0.18);
+  border: 1px solid rgba(244,236,216,0.15);
   border-top: 2px solid var(--green-light);
-  padding: 32px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
   color: var(--paper-soft);
-  position: relative;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+  transition: opacity 0.2s ease, transform 0.2s var(--ease);
 }
-@media (max-width: 980px) {
-  .hero-form-card { padding: 28px 24px; }
+.corner-card.cc-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
 }
-.hero-form-eyebrow {
+/* Hide on mobile — the existing sticky bar handles capture there */
+@media (max-width: 768px) {
+  .corner-card { display: none; }
+}
+.corner-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px 0;
+}
+.corner-card-eyebrow {
   font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 600;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.24em;
   color: var(--green-light);
   text-transform: uppercase;
-  margin-bottom: 12px;
 }
-.hero-form-title {
-  font-family: var(--font-display);
-  font-variation-settings: "opsz" 144, "SOFT" 50;
-  font-weight: 600;
-  font-size: 26px;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  color: var(--paper-soft);
-  margin-bottom: 8px;
+.corner-card-close {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: rgba(244,236,216,0.45);
+  line-height: 0;
+  transition: color 0.15s ease;
 }
-.hero-form-title em {
-  font-style: italic;
-  font-variation-settings: "opsz" 144, "SOFT" 100;
+.corner-card-close:hover { color: rgba(244,236,216,0.85); }
+.corner-card-close svg { width: 12px; height: 12px; display: block; }
+.corner-card-body { padding: 12px 16px 18px; }
+.corner-card-success {
+  padding: 20px 16px 22px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
   color: var(--green-light);
-  font-weight: 500;
+  text-align: center;
+  line-height: 1.6;
 }
-.hero-form-sub {
-  font-size: 13px;
-  color: rgba(244,236,216,0.7);
-  margin-bottom: 22px;
-  line-height: 1.5;
-}
-.hero-form-fields {
+/* Shared dark-glass input styles used by the corner card form */
+.cc-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
-.hero-form-fields input,
-.hero-form-fields select {
+.cc-form input {
   background: rgba(244,236,216,0.06);
   border: 1px solid rgba(244,236,216,0.18);
   color: var(--paper-soft);
   font-family: var(--font-body);
-  font-size: 15px;
-  padding: 14px 16px;
+  font-size: 14px;
+  padding: 11px 14px;
   outline: none;
-  transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
   width: 100%;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
 }
-.hero-form-fields input::placeholder {
-  color: rgba(244,236,216,0.5);
-}
-.hero-form-fields input:focus,
-.hero-form-fields select:focus {
+.cc-form input::placeholder { color: rgba(244,236,216,0.45); }
+.cc-form input:focus {
   border-color: var(--green-light);
   background: rgba(244,236,216,0.1);
 }
-.hero-form-fields select {
-  appearance: none;
-  background-image: linear-gradient(45deg, transparent 50%, var(--green-light) 50%), linear-gradient(135deg, var(--green-light) 50%, transparent 50%);
-  background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%;
-  background-size: 5px 5px;
-  background-repeat: no-repeat;
-  padding-right: 36px;
-  color: rgba(244,236,216,0.9);
-}
-.hero-form-fields select option { background: var(--ink); color: var(--paper-soft); }
-.btn-submit-hero {
+.cc-submit {
   background: var(--green-deep);
-  color: var(--paper);
-  padding: 16px 24px;
+  color: #fff;
+  padding: 12px 18px;
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   border: 0;
   cursor: pointer;
-  transition: background 0.25s var(--ease), transform 0.15s var(--ease);
+  width: 100%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  margin-top: 4px;
-  position: relative;
-  overflow: hidden;
+  gap: 8px;
+  margin-top: 2px;
+  transition: background 0.2s var(--ease), transform 0.15s var(--ease);
 }
-.btn-submit-hero:hover { background: var(--green); transform: translateY(-1px); }
-.btn-submit-hero:active { transform: translateY(0); }
-.btn-submit-hero .arrow { transition: transform 0.25s var(--ease); }
-.btn-submit-hero:hover .arrow { transform: translateX(4px); }
-
-/* spray-bloom hover effect on submit button: tasteful nod to drone spraying */
-.btn-submit-hero::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: var(--green-light);
-  transition: width 0.3s var(--ease), left 0.3s var(--ease);
-}
-.btn-submit-hero:hover::after {
-  width: 100%;
-  left: 0;
-}
-
-.hero-form-foot {
-  margin-top: 18px;
-  padding-top: 16px;
-  border-top: 1px solid rgba(244,236,216,0.1);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  color: rgba(244,236,216,0.7);
-}
-.hero-form-foot a {
-  color: var(--green-light);
-  font-weight: 600;
-  border-bottom: 1px solid rgba(167,196,138,0.4);
-}
-.hero-form-foot a:hover { color: var(--paper-soft); }
-.hero-form-foot svg { width: 12px; height: 12px; flex-shrink: 0; }
+.cc-submit:hover { background: var(--green); transform: translateY(-1px); }
+.cc-submit:active { transform: translateY(0); }
+.cc-submit .arrow { transition: transform 0.2s var(--ease); display: inline-block; }
+.cc-submit:hover .arrow { transform: translateX(3px); }
 .btn {
   display: inline-flex; align-items: center; gap: 10px;
   padding: 16px 26px;
@@ -1746,7 +1705,6 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
    Restraint over decoration. No glow, no neon, no colour shift. */
 .btn-primary,
 .btn-submit,
-.btn-submit-hero,
 .quote-cta {
   transition:
     transform var(--motion-duration-fast) var(--motion-ease),
@@ -1754,35 +1712,30 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
     box-shadow var(--motion-duration-fast) var(--motion-ease);
 }
 .btn-primary .arrow,
-.btn-submit .arrow,
-.btn-submit-hero .arrow {
+.btn-submit .arrow {
   display: inline-block;
   transition: transform var(--motion-duration-fast) var(--motion-ease);
 }
 @media (hover: hover) and (pointer: fine) {
   .btn-primary:hover,
   .btn-submit:hover,
-  .btn-submit-hero:hover,
   .quote-cta:hover {
     transform: translateY(-2px);
     filter: brightness(1.05);
   }
   .btn-primary:hover .arrow,
-  .btn-submit:hover .arrow,
-  .btn-submit-hero:hover .arrow {
+  .btn-submit:hover .arrow {
     transform: translateX(4px);
   }
 }
 .btn-primary:active,
 .btn-submit:active,
-.btn-submit-hero:active,
 .quote-cta:active {
   transform: translateY(0) scale(0.98);
   transition-duration: 100ms;
 }
 .btn-primary:focus-visible,
 .btn-submit:focus-visible,
-.btn-submit-hero:focus-visible,
 .quote-cta:focus-visible {
   outline: 2px solid var(--accent-line);
   outline-offset: 2px;
@@ -2049,25 +2002,13 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
   border-color: var(--error-soft);
 }
 
-/* Hero form (.hero-form-fields) — no labels, placeholders only */
-.hero-form-fields input,
-.hero-form-fields select {
+/* Corner card inputs — focus transition */
+.cc-form input {
   transition:
     border-color var(--motion-duration-fast) var(--motion-ease),
-    box-shadow var(--motion-duration-fast) var(--motion-ease);
+    background var(--motion-duration-fast) var(--motion-ease);
 }
-.hero-form-fields input:focus,
-.hero-form-fields select:focus {
-  border-color: var(--accent-line);
-  box-shadow: 0 1px 0 0 var(--accent-line);
-  outline: none;
-}
-.hero-form-fields input:not(:placeholder-shown):valid:not(:focus) {
-  border-color: var(--accent-line-soft);
-}
-.hero-form-fields input:not(:placeholder-shown):invalid:not(:focus) {
-  border-color: var(--error-soft);
-}
+.cc-form input:focus { outline: none; }
 
 
 /* Textarea: vertical resize only, mirror input look */
@@ -2294,48 +2235,11 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
       <h1 class="hero-headline reveal">Spray more hectares, with less labour, <em>on your own schedule.</em></h1>
       <p class="hero-sub reveal">Authorised WA dealer for the DJI Agras T100 and T25 P, set up and supported by engineers in Fremantle.</p>
       <div class="hero-ctas reveal">
-        <a href="#enquire" class="btn btn-primary">Schedule a callback <span class="arrow">→</span></a>
+        <button class="btn btn-primary" id="heroCallbackBtn">Schedule a callback <span class="arrow">→</span></button>
         <a href="tel:+61861107423" class="btn btn-outline-light">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           or call (08) 6110 7423
         </a>
-      </div>
-    </div>
-
-    <div class="hero-right reveal">
-      <div class="hero-form-card">
-        <div class="hero-form-eyebrow">Schedule a callback</div>
-        <h2 class="hero-form-title">Schedule a callback <em>that suits you.</em></h2>
-        <p class="hero-form-sub">A few quick details and we'll ring you back.</p>
-        <form class="hero-form-fields" id="heroQuickForm" name="callback-quick" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
-          <input type="hidden" name="form-name" value="callback-quick" />
-          <p hidden>
-            <label>Don't fill this out if you're human: <input name="bot-field" /></label>
-          </p>
-          <input type="hidden" name="source" value="elkfish.com.au : hero callback request" />
-          <input type="text" name="name" required placeholder="Full name" autocomplete="name" />
-          <input type="tel" name="phone" required placeholder="Phone number" autocomplete="tel" />
-          <input type="email" name="email" placeholder="Email (optional)" autocomplete="email" />
-          <select name="drone-interest" required>
-            <option value="" disabled>Interested in</option>
-            <option>DJI Agras T25 P</option>
-            <option>DJI Agras T100</option>
-            <option selected>Not sure yet</option>
-          </select>
-          <select name="best-time" required>
-            <option value="" disabled>Best time to call</option>
-            <option selected>Anytime</option>
-            <option>Morning</option>
-            <option>Afternoon</option>
-          </select>
-          <button type="submit" class="btn-submit-hero">
-            Request Callback <span class="arrow">→</span>
-          </button>
-        </form>
-        <div class="hero-form-foot">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          <span>Or call <a href="tel:+61861107423">(08) 6110 7423</a> now</span>
-        </div>
       </div>
     </div>
   </div>
@@ -3102,6 +3006,89 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 
   load();
   setInterval(load, INTERVAL_MS);
+})();
+</script>
+
+<!-- FLOATING CORNER CALLBACK CARD -->
+<div class="corner-card" id="cornerCard" role="complementary" aria-label="Quick callback form">
+  <div class="corner-card-head">
+    <span class="corner-card-eyebrow">Schedule a callback</span>
+    <button class="corner-card-close" id="cornerCardClose" type="button" aria-label="Close">
+      <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg>
+    </button>
+  </div>
+  <div class="corner-card-body" id="cornerCardBody">
+    <form class="cc-form" id="cornerCardForm" name="callback-corner" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="callback-corner" />
+      <p hidden><label>Don't fill this out if you're human: <input name="bot-field" /></label></p>
+      <input type="hidden" name="source" value="elkfish.com.au : corner card" />
+      <input type="text"  name="name"  id="cornerName"  required placeholder="Name" autocomplete="name" />
+      <input type="email" name="email" id="cornerEmail"  placeholder="Email (optional)" autocomplete="email" />
+      <input type="tel"   name="phone" id="cornerPhone"  placeholder="Phone (optional)" autocomplete="tel" />
+      <button type="submit" class="cc-submit">Schedule a callback <span class="arrow">→</span></button>
+    </form>
+  </div>
+  <div class="corner-card-success" id="cornerCardSuccess" hidden>
+    Done. We will be in touch shortly.
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var card    = document.getElementById('cornerCard');
+  var form    = document.getElementById('cornerCardForm');
+  var body    = document.getElementById('cornerCardBody');
+  var success = document.getElementById('cornerCardSuccess');
+  var closeBtn = document.getElementById('cornerCardClose');
+  var heroBtn  = document.getElementById('heroCallbackBtn');
+  var nameInput = document.getElementById('cornerName');
+
+  if (!card || !form) return;
+
+  /* Dismiss — hide for this session */
+  if (sessionStorage.getItem('cc_dismissed')) {
+    card.classList.add('cc-hidden');
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', function () {
+      card.classList.add('cc-hidden');
+      try { sessionStorage.setItem('cc_dismissed', '1'); } catch (e) {}
+    });
+  }
+
+  /* Hero button focuses the name field and un-hides the card if dismissed */
+  if (heroBtn) {
+    heroBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      card.classList.remove('cc-hidden');
+      try { sessionStorage.removeItem('cc_dismissed'); } catch (e) {}
+      if (nameInput) {
+        nameInput.focus();
+        nameInput.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    });
+  }
+
+  /* AJAX submit to Netlify — keeps the page in place, shows success inline */
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var data = new URLSearchParams(new FormData(form)).toString();
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: data
+    }).then(function () {
+      body.hidden = true;
+      success.hidden = false;
+    }).catch(function () {
+      /* On error fall back to standard redirect */
+      form.submit();
+    });
+  });
+
 })();
 </script>
 
