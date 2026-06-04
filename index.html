@@ -382,20 +382,6 @@ h3 {
   margin-bottom: 28px;
   line-height: 1.55;
 }
-.hero-trust-mini {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin-bottom: 28px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  color: rgba(244,236,216,0.7);
-  text-transform: uppercase;
-}
-.hero-trust-mini span:not(.sep) { color: var(--paper-soft); }
-.hero-trust-mini .sep { color: rgba(244,236,216,0.3); }
 .hero-ctas {
   display: flex; gap: 14px;
   flex-wrap: wrap;
@@ -2083,21 +2069,6 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
   border-color: var(--error-soft);
 }
 
-/* Form section headers — used in the bottom enquiry form to group
-   Contact / Business / Enquiry fields. Spans the full grid row. */
-.form-section-head {
-  grid-column: 1 / -1;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--green-deep);
-  padding-bottom: 8px;
-  margin-top: 8px;
-  border-bottom: 1px solid rgba(31, 27, 19, 0.08);
-}
-.form-section-head:first-of-type { margin-top: 0; }
 
 /* Textarea: vertical resize only, mirror input look */
 .field textarea {
@@ -2236,65 +2207,6 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
 .mid-cta p              { color: rgba(255,255,255,0.80); }
 .mid-cta-meta           { color: rgba(255,255,255,0.50); }
 
-/* =========================================================
-   HECTARE QUICK-SELECT CHIPS
-   ========================================================= */
-.ha-chips-wrap {
-  grid-column: 1 / -1;          /* full width inside .form grid */
-  padding-bottom: 20px;
-  border-bottom: 1px solid rgba(27, 31, 28, 0.08);
-  margin-bottom: 4px;
-}
-.ha-chips-label {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-bottom: 12px;
-}
-.ha-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.ha-chip {
-  display: inline-flex;
-  align-items: center;
-  padding: 8px 18px;
-  border-radius: 999px;
-  border: 1.5px solid var(--green-deep);
-  background: transparent;
-  color: var(--green-deep);
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease, transform 0.15s var(--motion-ease);
-  -webkit-user-select: none;
-          user-select: none;
-  -webkit-tap-highlight-color: transparent;
-}
-.ha-chip:hover {
-  background: rgba(79, 107, 88, 0.10);
-  transform: translateY(-1px);
-}
-.ha-chip.is-active {
-  background: var(--green-deep);
-  color: #fff;
-  border-color: var(--green-deep);
-}
-.ha-chip:focus-visible {
-  outline: 2px solid var(--green-deep);
-  outline-offset: 3px;
-}
-@media (prefers-reduced-motion: reduce) {
-  .ha-chip { transition: none; }
-  .ha-chip:hover { transform: none; }
-}
 
 /* =========================================================
    SPRAY CONDITIONS INLINE CARD (in enquiry form)
@@ -2380,14 +2292,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
     <div class="hero-left">
       <div class="hero-eyebrow">WESTERN AUSTRALIA · DJI AGRAS AUTHORISED DEALER</div>
       <h1 class="hero-headline reveal">Spray more hectares, with less labour, <em>on your own schedule.</em></h1>
-      <p class="hero-sub reveal">The authorised WA dealer for the DJI Agras T100 and T25 P. Sold, set up and supported by engineers in Fremantle.</p>
-      <div class="hero-trust-mini reveal">
-        <span>DJI Authorised dealer</span>
-        <span class="sep">·</span>
-        <span>WA drone engineers</span>
-        <span class="sep">·</span>
-        <span>Based in Fremantle</span>
-      </div>
+      <p class="hero-sub reveal">Authorised WA dealer for the DJI Agras T100 and T25 P, set up and supported by engineers in Fremantle.</p>
       <div class="hero-ctas reveal">
         <a href="#enquire" class="btn btn-primary">Schedule a callback <span class="arrow">→</span></a>
         <a href="tel:+61861107423" class="btn btn-outline-light">
@@ -2896,95 +2801,34 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
               <label>Don't fill this out if you're human: <input name="bot-field" /></label>
             </p>
             <input type="hidden" name="source" value="elkfish.com.au : bottom form" />
-            <input type="hidden" name="product_interest" id="productInterest" value="" />
-            <input type="hidden" name="hectares" id="haHiddenField" value="" />
 
-            <!-- HECTARE CHIPS -->
-            <div class="ha-chips-wrap">
-              <span class="ha-chips-label">How many hectares are you managing?</span>
-              <div class="ha-chips" role="group" aria-label="Select approximate hectares">
-                <button type="button" class="ha-chip" data-ha="1,000" aria-pressed="false">1,000 ha</button>
-                <button type="button" class="ha-chip" data-ha="5,000" aria-pressed="false">5,000 ha</button>
-                <button type="button" class="ha-chip" data-ha="10,000" aria-pressed="false">10,000 ha</button>
-                <button type="button" class="ha-chip" data-ha="20,000+" aria-pressed="false">20,000+ ha</button>
-              </div>
-            </div>
-
-            <h3 class="form-section-head">Contact Details</h3>
             <div class="field full">
               <label>Full name<span class="req">*</span></label>
               <input type="text" name="name" required placeholder="Your full name" autocomplete="name" />
             </div>
-            <div class="field">
-              <label>Email<span class="req">*</span></label>
-              <input type="email" name="email" required placeholder="you@example.com" autocomplete="email" />
-            </div>
-            <div class="field">
+            <div class="field full">
               <label>Phone<span class="req">*</span></label>
               <input type="tel" name="phone" required placeholder="04XX XXX XXX" autocomplete="tel" />
             </div>
-
-            <h3 class="form-section-head">Business Information</h3>
             <div class="field full">
-              <label>Business / farm name</label>
-              <input type="text" name="business-name" placeholder="Your operation" autocomplete="organization" />
-            </div>
-            <div class="field">
-              <label>Location / region</label>
-              <input type="text" name="location" placeholder="e.g. Wheatbelt, Margaret River" />
-            </div>
-            <div class="field">
-              <label>Industry</label>
-              <select name="industry">
-                <option value="" selected>Select an industry</option>
-                <option>Broadacre Cropping</option>
-                <option>Viticulture</option>
-                <option>Horticulture</option>
-                <option>Contract Spraying</option>
-                <option>Pastoral</option>
-                <option>Mixed Farming</option>
-                <option>Other</option>
+              <label>Best time to call</label>
+              <select name="best-time">
+                <option value="" selected>Anytime</option>
+                <option>Morning</option>
+                <option>Afternoon</option>
               </select>
             </div>
-
-            <h3 class="form-section-head">Enquiry Details</h3>
-            <div class="field">
-              <label>Agras model</label>
+            <div class="field full">
+              <label>Which Agras <span class="opt">(optional)</span></label>
               <select name="drone-interest">
-                <option value="" selected>Which Agras model are you considering?</option>
+                <option value="" selected>Not sure yet</option>
                 <option>DJI Agras T25 P</option>
                 <option>DJI Agras T100</option>
-                <option>Not sure yet</option>
               </select>
-            </div>
-            <div class="field">
-              <label>Current spray method</label>
-              <select name="current-spray-method">
-                <option value="" selected>Select a method</option>
-                <option>Ground rig</option>
-                <option>Contractor</option>
-                <option>Existing drone</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div class="field full">
-              <label>Approximate area managed</label>
-              <select name="area-managed">
-                <option value="" selected>Select an area</option>
-                <option>Under 100 ha</option>
-                <option>100 to 500 ha</option>
-                <option>500 to 2,000 ha</option>
-                <option>2,000 to 5,000 ha</option>
-                <option>5,000+ ha</option>
-              </select>
-            </div>
-            <div class="field full">
-              <label>Message <span class="opt">(optional)</span></label>
-              <textarea name="message" rows="4" placeholder="Anything else you'd like us to know"></textarea>
             </div>
 
             <div class="form-actions">
-              <button type="submit" class="btn-submit">Speak with our team <span class="arrow">→</span></button>
+              <button type="submit" class="btn-submit">Schedule a callback <span class="arrow">→</span></button>
               <div class="response-note">We'll call you back at the time you nominate. If we can't reach you we'll try once more and leave it with you.</div>
             </div>
           </form>
@@ -3106,13 +2950,6 @@ document.querySelectorAll('.faq-item').forEach(item => {
   });
 });
 
-/* Product-interest capture for GHL routing */
-document.querySelectorAll('[data-product]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const productField = document.getElementById('productInterest');
-    if (productField) productField.value = btn.dataset.product;
-  });
-});
 
 /* Smooth anchor scroll with topbar offset */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
@@ -3209,58 +3046,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   </a>
 </div>
 
-<!-- HECTARE CHIP SCRIPT -->
-<script>
-(function () {
-  'use strict';
-
-  var form       = document.getElementById('enquireForm');
-  if (!form) return;
-
-  var chips      = form.querySelectorAll('.ha-chip');
-  var hidden     = document.getElementById('haHiddenField');
-  var submitBtn  = form.querySelector('.btn-submit');
-  var defaultTxt = submitBtn ? submitBtn.innerHTML : '';
-
-  chips.forEach(function (chip) {
-    chip.addEventListener('click', function () {
-      var ha = chip.getAttribute('data-ha');
-
-      // Toggle off if already active (deselect)
-      var wasActive = chip.classList.contains('is-active');
-
-      // Reset all chips
-      chips.forEach(function (c) {
-        c.classList.remove('is-active');
-        c.setAttribute('aria-pressed', 'false');
-      });
-
-      if (wasActive) {
-        // Second tap clears the selection
-        if (hidden)    hidden.value = '';
-        if (submitBtn) submitBtn.innerHTML = defaultTxt;
-        console.log('[ha-chips] Cleared selection');
-        return;
-      }
-
-      // Activate chosen chip
-      chip.classList.add('is-active');
-      chip.setAttribute('aria-pressed', 'true');
-      if (hidden) hidden.value = ha;
-
-      // Update submit button label
-      if (submitBtn) {
-        var label = ha === '20,000+'
-          ? 'Get a quote for your large-scale operation'
-          : 'Get a quote for your ' + ha + ' ha operation';
-        submitBtn.innerHTML = label + ' <span class="arrow">→</span>';
-      }
-
-      console.log('[ha-chips] Selected: ' + ha + ' ha');
-    });
-  });
-})();
-</script>
 
 <!-- SPRAY CONDITIONS INLINE CARD SCRIPT -->
 <script>
