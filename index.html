@@ -275,7 +275,7 @@ h3 {
 /* ---------- LAYOUT ---------- */
 .section {
   position: relative;
-  padding: clamp(72px, 9vw, 120px) var(--gutter);
+  padding: clamp(56px, 7vw, 96px) var(--gutter);
 }
 .section-inner {
   max-width: var(--container);
@@ -842,34 +842,29 @@ h3 {
 .included-item h3 { font-size: 17px; margin-bottom: 8px; color: var(--ink); }
 .included-item p { font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
 
-/* ---------- FROM THE PADDOCK — TESTIMONIALS ---------- */
+/* ---------- TESTIMONIALS ---------- */
 .testimonials-bg {
   background: var(--ink);
   color: var(--paper-soft);
 }
-.testimonials-bg .eyebrow { color: var(--green-light); }
-.testimonials-bg .eyebrow::before { background: var(--green-light); }
-.testimonials-bg h2 { color: var(--paper-soft); }
-.testimonials-bg h2 em { color: var(--green-light); }
-
 .testimonial-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
-  max-width: 680px;
-  margin: 48px auto 0;
+  max-width: 780px;
+  margin: 36px auto 0;
 }
-@media (max-width: 640px) {
+@media (max-width: 680px) {
   .testimonial-grid {
     grid-template-columns: 1fr;
-    max-width: 320px;
-    gap: 48px;
+    max-width: 360px;
+    gap: 40px;
   }
 }
 .testimonial-video-wrap {
   width: 100%;
-  max-width: 280px;
-  margin: 0 auto 18px;
+  max-width: 340px;
+  margin: 0 auto 16px;
   aspect-ratio: 9 / 16;
   background: #000;
   border-radius: 4px;
@@ -883,10 +878,10 @@ h3 {
 }
 .testimonial-caption {
   font-size: 15px;
-  line-height: 1.55;
+  line-height: 1.5;
   color: rgba(244,236,216,0.85);
-  margin-bottom: 12px;
-  max-width: 280px;
+  margin-bottom: 10px;
+  max-width: 340px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -897,7 +892,7 @@ h3 {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--green-light);
-  max-width: 280px;
+  max-width: 340px;
   margin-left: auto;
   margin-right: auto;
   display: block;
@@ -2193,11 +2188,11 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
 .atm-divider {
   display: block;
   width: 100%;
-  height: 400px;
+  height: 260px;
   overflow: hidden;
   line-height: 0;
 }
-@media (max-width: 720px) { .atm-divider { height: 260px; } }
+@media (max-width: 720px) { .atm-divider { height: 180px; } }
 .atm-divider img {
   width: 100%;
   height: 100%;
@@ -2626,6 +2621,44 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
+<section class="section testimonials-bg" id="testimonials">
+  <div class="section-inner">
+    <h2 class="reveal">In Sam's words.</h2>
+    <div class="testimonial-grid">
+
+      <div class="testimonial-card reveal">
+        <div class="testimonial-video-wrap">
+          <video
+            controls
+            preload="none"
+            poster="assets/images/poster-testimonial-efficiency.jpg"
+            aria-label="Sam McQuoid on the T100 bridging the gap for spray efficiency">
+            <source src="assets/videos/testimonial-sam-efficiency.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <p class="testimonial-caption">On the T100 bridging the gap for spray efficiency.</p>
+        <span class="testimonial-attrib">Sam McQuoid · Wheatbelt Drone Services</span>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <div class="testimonial-video-wrap">
+          <video
+            controls
+            preload="none"
+            poster="assets/images/poster-testimonial-delivery.jpg"
+            aria-label="Sam McQuoid on Frank delivering the T100 personally on the day">
+            <source src="assets/videos/testimonial-sam-delivery.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <p class="testimonial-caption">On Frank driving out and handing it over personally on the day.</p>
+        <span class="testimonial-attrib">Sam McQuoid · Wheatbelt Drone Services</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- WHAT'S INCLUDED -->
 <section class="section included-bg" id="included">
   <div class="section-inner">
@@ -2639,45 +2672,6 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
       <div class="included-item reveal"><div class="num">04</div><h3>Carry and transport.</h3><p>Hard-shell case sized for ute trays. Ready for paddock-to-paddock work.</p></div>
       <div class="included-item reveal"><div class="num">05</div><h3>On-day setup, demo and walkthrough.</h3><p>We deliver your Agras set up and paired. On the day, we run you through the controls, the mission planner and your first flights. Hands-on, in your paddock if that suits.</p></div>
       <div class="included-item reveal"><div class="num">06</div><h3>12-month warranty.</h3><p>Manufacturer warranty plus our local cover. Optional extended plans available.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- FROM THE PADDOCK — TESTIMONIALS -->
-<section class="section testimonials-bg" id="testimonials">
-  <div class="section-inner">
-    <div class="eyebrow reveal">From the Paddock</div>
-    <h2 class="reveal">What a WA operator says, <em>one week in.</em></h2>
-    <div class="testimonial-grid">
-
-      <div class="testimonial-card reveal">
-        <div class="testimonial-video-wrap">
-          <video
-            controls
-            preload="none"
-            poster="assets/images/poster-testimonial-efficiency.jpg"
-            aria-label="Sam McQuoid on the T100 bridging the gap for spray efficiency in the industry">
-            <source src="assets/videos/testimonial-sam-efficiency.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <p class="testimonial-caption">On the T100 bridging the gap for efficiency across the industry.</p>
-        <span class="testimonial-attrib">Sam McQuoid · Wheatbelt Drone Services</span>
-      </div>
-
-      <div class="testimonial-card reveal">
-        <div class="testimonial-video-wrap">
-          <video
-            controls
-            preload="none"
-            poster="assets/images/poster-testimonial-delivery.jpg"
-            aria-label="Sam McQuoid on Frank King personally delivering and walking through the T100 on day one">
-            <source src="assets/videos/testimonial-sam-delivery.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <p class="testimonial-caption">On Frank personally driving out, delivering the drone and walking him through it on the day.</p>
-        <span class="testimonial-attrib">Sam McQuoid · Wheatbelt Drone Services</span>
-      </div>
-
     </div>
   </div>
 </section>
@@ -2763,28 +2757,6 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
         <div class="num">04 / AUTHORISED</div>
         <h3>Authorised DJI Agras dealer.</h3>
         <p>Genuine kit, genuine warranty, genuine support. Every Agras we sell comes through the official DJI channel with full manufacturer backing.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section class="section" id="about">
-  <div class="section-inner">
-    <div class="about-grid">
-      <div class="about-photo reveal"></div>
-      <div class="about-copy reveal">
-        <div class="eyebrow">About</div>
-        <h2>We're engineers, <em>based in Fremantle.</em></h2>
-        <p>Elk Fish Robotics is a Western Australian engineering company. We're the authorised DJI Agras dealer for the state. DJI builds the Agras, and we handle everything else: sales, setup, on-day handover, service and repairs, from our Fremantle workshop.</p>
-        <p>Every drone leaves our workshop set up and tested. Every repair is handled by engineers. Every operator we deliver to gets walked through their first flights on the day.</p>
-        <p>We employ locally. We engineer locally. The Agras you buy here helps keep all of that going.</p>
-        <div class="about-contact">
-          <p><strong>Workshop:</strong> 1/72 Marine Terrace, Fremantle WA 6160</p>
-          <p><strong>Hours:</strong> Mon to Fri 8.00am to 5.00pm AWST</p>
-          <p><strong>Phone:</strong> <a href="tel:+61861107423">(08) 6110 7423</a></p>
-          <p><strong>Email:</strong> <a href="mailto:agras@elkfishrobotics.com.au">agras@elkfishrobotics.com.au</a></p>
-        </div>
       </div>
     </div>
   </div>
