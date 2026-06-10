@@ -842,6 +842,67 @@ h3 {
 .included-item h3 { font-size: 17px; margin-bottom: 8px; color: var(--ink); }
 .included-item p { font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
 
+/* ---------- FROM THE PADDOCK — TESTIMONIALS ---------- */
+.testimonials-bg {
+  background: var(--ink);
+  color: var(--paper-soft);
+}
+.testimonials-bg .eyebrow { color: var(--green-light); }
+.testimonials-bg .eyebrow::before { background: var(--green-light); }
+.testimonials-bg h2 { color: var(--paper-soft); }
+.testimonials-bg h2 em { color: var(--green-light); }
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 680px;
+  margin: 48px auto 0;
+}
+@media (max-width: 640px) {
+  .testimonial-grid {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+    gap: 48px;
+  }
+}
+.testimonial-video-wrap {
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto 18px;
+  aspect-ratio: 9 / 16;
+  background: #000;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.testimonial-video-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.testimonial-caption {
+  font-size: 15px;
+  line-height: 1.55;
+  color: rgba(244,236,216,0.85);
+  margin-bottom: 12px;
+  max-width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.testimonial-attrib {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green-light);
+  max-width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
 /* ---------- SERVICE PROMISE ---------- */
 .service-bg {
   background: var(--ink); /* fallback if image fails */
@@ -2576,6 +2637,45 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
       <div class="included-item reveal"><div class="num">04</div><h3>Carry and transport.</h3><p>Hard-shell case sized for ute trays. Ready for paddock-to-paddock work.</p></div>
       <div class="included-item reveal"><div class="num">05</div><h3>On-day setup, demo and walkthrough.</h3><p>We deliver your Agras set up and paired. On the day, we run you through the controls, the mission planner and your first flights. Hands-on, in your paddock if that suits.</p></div>
       <div class="included-item reveal"><div class="num">06</div><h3>12-month warranty.</h3><p>Manufacturer warranty plus our local cover. Optional extended plans available.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FROM THE PADDOCK — TESTIMONIALS -->
+<section class="section testimonials-bg" id="testimonials">
+  <div class="section-inner">
+    <div class="eyebrow reveal">From the Paddock</div>
+    <h2 class="reveal">What a WA operator says, <em>one week in.</em></h2>
+    <div class="testimonial-grid">
+
+      <div class="testimonial-card reveal">
+        <div class="testimonial-video-wrap">
+          <video
+            controls
+            preload="none"
+            poster="assets/images/poster-testimonial-efficiency.jpg"
+            aria-label="Sam McQuoid on the T100 bridging the gap for spray efficiency in the industry">
+            <source src="assets/videos/testimonial-sam-efficiency.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <p class="testimonial-caption">On the T100 bridging the gap for efficiency across the industry.</p>
+        <span class="testimonial-attrib">Sam McQuoid · Wheatbelt Drone Services</span>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <div class="testimonial-video-wrap">
+          <video
+            controls
+            preload="none"
+            poster="assets/images/poster-testimonial-delivery.jpg"
+            aria-label="Sam McQuoid on Frank King personally delivering and walking through the T100 on day one">
+            <source src="assets/videos/testimonial-sam-delivery.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <p class="testimonial-caption">On Frank personally driving out, delivering the drone and walking him through it on the day.</p>
+        <span class="testimonial-attrib">Sam McQuoid · Wheatbelt Drone Services</span>
+      </div>
+
     </div>
   </div>
 </section>
