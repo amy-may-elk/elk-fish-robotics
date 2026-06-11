@@ -2452,8 +2452,26 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
 .po-item p  { font-size: 14px; color: var(--ink-soft); line-height: 1.55; }
 
 /* ---------- FOUNDER PULL-QUOTE (inline in Who-For) ---------- */
-.founder-pull {
+.founder-pull-wrap {
   margin-top: 36px;
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+.founder-pull-photo {
+  width: 160px;
+  height: 200px;
+  object-fit: cover;
+  object-position: center 15%;
+  flex-shrink: 0;
+  border-radius: 2px;
+}
+@media (max-width: 600px) {
+  .founder-pull-wrap { flex-direction: column; gap: 16px; }
+  .founder-pull-photo { width: 100%; height: 200px; }
+}
+.founder-pull {
+  margin-top: 0;
   padding: 22px 26px;
   border-left: 3px solid var(--accent-line);
   background: var(--paper-soft);
@@ -2681,11 +2699,14 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
         <p class="card-cta-row"><a href="#enquire">Schedule a callback <span class="arrow">→</span></a></p>
       </div>
     </div>
-    <p class="audience-note reveal">CASA Part 101 certification required for commercial spraying. We'll connect you with WA-based training providers we trust. Most operators complete it in a weekend.</p>
-    <blockquote class="founder-pull reveal">
-      <p>Don't bring your own skis to the mountain. If they break, the shop's right there. It's the same with a drone.</p>
-      <cite>Francis King · Managing Director, Elk Fish Robotics</cite>
-    </blockquote>
+    <p class="audience-note reveal">CASA Part 101 certification required for commercial spraying. We'll connect you with WA-based training providers we trust. Most operators complete it in one week.</p>
+    <div class="founder-pull-wrap reveal">
+      <img class="founder-pull-photo" src="assets/images/frank-setup-customer.jpg" alt="Frank King, MD of Elk Fish Robotics, setting up a DJI Agras T100" />
+      <blockquote class="founder-pull">
+        <p>Don't bring your own skis to the mountain. If they break, the shop's right there. It's the same with a drone.</p>
+        <cite>Francis King · Managing Director, Elk Fish Robotics</cite>
+      </blockquote>
+    </div>
   </div>
 </section>
 
@@ -2755,7 +2776,10 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
       <div class="product-card reveal">
         <div class="product-image">
           <span class="figlabel">FIG. 01 / T100</span>
-          <div class="product-img-placeholder">Photo coming soon</div>
+          <picture>
+            <source srcset="assets/images/agras-t100.webp" type="image/webp" />
+            <img src="assets/images/agras-t100.png" alt="DJI Agras T100 agricultural spray drone" loading="lazy" />
+          </picture>
         </div>
         <div class="product-header">
           <div class="product-name">Agras <em>T100</em></div>
@@ -2778,7 +2802,10 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
       <div class="product-card reveal">
         <div class="product-image">
           <span class="figlabel">FIG. 02 / T25 P</span>
-          <div class="product-img-placeholder">Photo coming soon</div>
+          <picture>
+            <source srcset="assets/images/agras-t25p.webp" type="image/webp" />
+            <img src="assets/images/agras-t25p.png" alt="DJI Agras T25P agricultural spray drone" loading="lazy" />
+          </picture>
         </div>
         <div class="product-header">
           <div class="product-name">Agras <em>T25 P</em></div>
