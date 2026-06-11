@@ -531,6 +531,22 @@ h3 {
 .hero-form-foot a:hover { color: var(--paper-soft); }
 .hero-form-foot svg { width: 12px; height: 12px; flex-shrink: 0; }
 
+/* hero form trust line */
+.hero-form-trust {
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(244,236,216,0.45);
+  text-align: center;
+}
+.hero-form-trust::before {
+  content: '✓ ';
+  color: var(--green-light);
+}
+
 /* hero left-column phone link */
 .hero-phone-cta { margin-top: 32px; }
 .hero-phone-link {
@@ -968,6 +984,17 @@ h3 {
   color: var(--ink-soft);
   margin-bottom: 8px;
   max-width: 340px;
+}
+.audience-note {
+  margin-top: 28px;
+  font-size: 13px;
+  color: var(--ink-faint);
+  line-height: 1.55;
+  font-family: var(--font-mono);
+  letter-spacing: 0.03em;
+  padding: 14px 18px;
+  border-left: 2px solid var(--border);
+  background: var(--paper-deep);
 }
 .frank-id-tag {
   font-family: var(--font-mono);
@@ -2486,6 +2513,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
     </a>
     <nav class="topbar-nav" aria-label="Primary">
       <a href="#products">Drones</a>
+      <a href="#products">Pricing</a>
       <a href="#service">Service</a>
       <a href="#why">Why Us</a>
       <a href="#faq">FAQ</a>
@@ -2555,6 +2583,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
           </button>
         </form>
       </div>
+      <p class="hero-form-trust">T100s operating across the Wheatbelt, Esperance &amp; South-West WA</p>
     </div>
   </div>
 </section>
@@ -2652,6 +2681,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
         <p class="card-cta-row"><a href="#enquire">Schedule a callback <span class="arrow">→</span></a></p>
       </div>
     </div>
+    <p class="audience-note reveal">CASA Part 101 certification required for commercial spraying. We'll connect you with WA-based training providers we trust — most operators complete it in a weekend.</p>
     <blockquote class="founder-pull reveal">
       <p>Don't bring your own skis to the mountain. If they break, the shop's right there. It's the same with a drone.</p>
       <cite>Francis King · Managing Director, Elk Fish Robotics</cite>
@@ -2917,8 +2947,8 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
 <!-- MID-PAGE CTA -->
 <section class="mid-cta" id="midcta">
   <div class="section-inner">
-    <h2>Ready to talk?</h2>
-    <p>Send a few details or just ring us. Most decisions get made in one conversation.</p>
+    <h2>Still working out if an Agras suits your operation?</h2>
+    <p>That's exactly what the callback is for. Frank will answer your questions honestly — and tell you if it's not the right fit for where you're at.</p>
     <div class="mid-cta-actions">
       <a href="#enquire" class="btn btn-primary">Schedule a callback <span class="arrow">→</span></a>
       <a href="tel:+61861107423" class="btn btn-outline">
