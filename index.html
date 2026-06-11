@@ -2611,8 +2611,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
       </div>
 
       <div class="testimonial-card reveal">
-        <h3 class="testimonial-video-heading">The day Frank showed up himself.</h3>
-        <div class="frank-id-tag">Frank King · Managing Director, Elk Fish Robotics</div>
+        <h3 class="testimonial-video-heading">The day our MD delivered it personally.</h3>
         <div class="testimonial-video-wrap">
           <video
             controls
@@ -2622,7 +2621,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
             <source src="assets/videos/testimonial-frank-v2.mp4" type="video/mp4" />
           </video>
         </div>
-        <p class="testimonial-caption">Sam on the handover — and what it meant to have the owner show up on delivery day.</p>
+        <p class="testimonial-caption">Sam on what it meant when Frank King, our Managing Director, showed up to deliver and set up the drone himself.</p>
         <span class="testimonial-attrib">Sam McQuoid · Wheatbelt Drone Services</span>
       </div>
 
@@ -2631,7 +2630,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
     <div class="frank-photos">
       <div class="frank-photo reveal">
         <img src="assets/images/frank-customer-t100.jpg" alt="Frank King and a customer assembling the T100 at their property" />
-        <span class="frank-photo-cap">Frank King (MD) and a new T100 owner — pre-flight walkthrough at their property.</span>
+        <span class="frank-photo-cap">Frank King (MD) and a new T100 owner. Pre-flight walkthrough at their property.</span>
       </div>
       <div class="frank-photo reveal">
         <img src="assets/images/frank-setup-customer.jpg" alt="Frank King setting up the DJI Agras T100 on delivery day" />
@@ -2681,7 +2680,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
         <p class="card-cta-row"><a href="#enquire">Schedule a callback <span class="arrow">→</span></a></p>
       </div>
     </div>
-    <p class="audience-note reveal">CASA Part 101 certification required for commercial spraying. We'll connect you with WA-based training providers we trust — most operators complete it in a weekend.</p>
+    <p class="audience-note reveal">CASA Part 101 certification required for commercial spraying. We'll connect you with WA-based training providers we trust. Most operators complete it in a weekend.</p>
     <blockquote class="founder-pull reveal">
       <p>Don't bring your own skis to the mountain. If they break, the shop's right there. It's the same with a drone.</p>
       <cite>Francis King · Managing Director, Elk Fish Robotics</cite>
@@ -2948,7 +2947,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
 <section class="mid-cta" id="midcta">
   <div class="section-inner">
     <h2>Still working out if an Agras suits your operation?</h2>
-    <p>That's exactly what the callback is for. Frank will answer your questions honestly — and tell you if it's not the right fit for where you're at.</p>
+    <p>That's exactly what the callback is for. Frank will answer your questions honestly and tell you if it's not the right fit.</p>
     <div class="mid-cta-actions">
       <a href="#enquire" class="btn btn-primary">Schedule a callback <span class="arrow">→</span></a>
       <a href="tel:+61861107423" class="btn btn-outline">
@@ -2962,7 +2961,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
 
 <!-- SPRAY CONDITIONS — quiet data line, sits above enquire section -->
 <div class="sc-inline" id="sc-card" data-status="unavailable" aria-live="polite" aria-label="Current spray conditions">
-  <span id="sc-label">WA spray conditions — checking…</span>
+  <span id="sc-label">WA spray conditions: checking…</span>
 </div>
 
 <!-- ENQUIRE -->
@@ -3002,7 +3001,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
             <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
             <div class="text">
               <div class="label">Open</div>
-              <div class="val">Mon to Fri 8.00am to 5.00pm AWST<br />Pop in anytime — Marine Terrace, Fremantle. No appointment needed.</div>
+              <div class="val">Mon to Fri 8.00am to 5.00pm AWST<br />Pop in anytime. Marine Terrace, Fremantle. No appointment needed.</div>
             </div>
           </div>
         </div>
@@ -3277,7 +3276,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     card.setAttribute('data-status', status);
 
     if (status === 'unavailable') {
-      labelEl.textContent = 'WA spray conditions — unavailable';
+      labelEl.textContent = 'WA spray conditions: unavailable';
       return;
     }
 
@@ -3302,7 +3301,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 
   function setUnavailable(reason) {
     card.setAttribute('data-status', 'unavailable');
-    labelEl.textContent = 'WA spray conditions — unavailable';
+    labelEl.textContent = 'WA spray conditions: unavailable';
     console.warn('[spray-conditions]', reason);
   }
 
