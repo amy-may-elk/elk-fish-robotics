@@ -530,6 +530,77 @@ h3 {
 }
 .hero-form-foot a:hover { color: var(--paper-soft); }
 .hero-form-foot svg { width: 12px; height: 12px; flex-shrink: 0; }
+
+/* hero left-column phone link */
+.hero-phone-cta { margin-top: 32px; }
+.hero-phone-link {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  text-decoration: none;
+}
+.hero-phone-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(244,236,216,0.5);
+}
+.hero-phone-number {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(24px, 2.5vw, 34px);
+  letter-spacing: -0.02em;
+  color: var(--paper-soft);
+  transition: color 0.2s var(--ease);
+}
+.hero-phone-link:hover .hero-phone-number { color: var(--green-light); }
+
+/* drone choice radio chips inside hero form */
+.drone-chips-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(244,236,216,0.5);
+  margin-bottom: 8px;
+}
+.drone-chips { display: flex; gap: 8px; }
+.drone-chips input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.drone-chips label {
+  flex: 1;
+  padding: 12px 6px;
+  background: rgba(244,236,216,0.06);
+  border: 1px solid rgba(244,236,216,0.18);
+  color: rgba(244,236,216,0.75);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease), color 0.2s;
+  white-space: nowrap;
+}
+.drone-chips input[type="radio"]:checked + label {
+  border-color: var(--green-light);
+  background: rgba(167,196,138,0.12);
+  color: var(--green-light);
+}
+.drone-chips label:hover {
+  border-color: rgba(167,196,138,0.4);
+  background: rgba(244,236,216,0.1);
+}
+
 .btn {
   display: inline-flex; align-items: center; gap: 10px;
   padding: 16px 26px;
@@ -2410,23 +2481,19 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
 
   <div class="hero-content">
     <div class="hero-left">
-      <div class="hero-eyebrow">WESTERN AUSTRALIA · DJI AGRAS AUTHORISED DEALER</div>
       <h1 class="hero-headline reveal">Spray more hectares, with less labour, <em>on your own schedule.</em></h1>
-      <p class="hero-sub reveal">Authorised WA dealer for the DJI Agras T100 and T25 P, set up and supported by engineers in Fremantle.</p>
-      <div class="hero-ctas reveal">
-        <a href="#enquire" class="btn btn-primary">Schedule a callback <span class="arrow">→</span></a>
-        <a href="tel:+61861107423" class="btn btn-outline-light">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          or call (08) 6110 7423
+      <p class="hero-sub reveal">Set up and supported by our Fremantle engineers. T25 P from $17,530 · T100 from $30,380.</p>
+      <div class="hero-phone-cta reveal">
+        <a href="tel:+61861107423" class="hero-phone-link">
+          <span class="hero-phone-label">Or call direct</span>
+          <span class="hero-phone-number">(08) 6110 7423</span>
         </a>
       </div>
     </div>
 
     <div class="hero-right reveal">
       <div class="hero-form-card">
-        <div class="hero-form-eyebrow">Schedule a callback</div>
-        <h2 class="hero-form-title">Schedule a callback <em>that suits you.</em></h2>
-        <p class="hero-form-sub">A few quick details and we'll ring you back.</p>
+        <h2 class="hero-form-title">Request a callback.</h2>
         <form class="hero-form-fields" id="heroQuickForm" name="callback-quick" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
           <input type="hidden" name="form-name" value="callback-quick" />
           <p hidden>
@@ -2435,27 +2502,21 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
           <input type="hidden" name="source" value="elkfish.com.au : hero callback request" />
           <input type="text" name="name" required placeholder="Full name" autocomplete="name" />
           <input type="tel" name="phone" required placeholder="Phone number" autocomplete="tel" />
-          <input type="email" name="email" placeholder="Email (optional)" autocomplete="email" />
-          <select name="drone-interest" required>
-            <option value="" disabled>Interested in</option>
-            <option>DJI Agras T25 P</option>
-            <option>DJI Agras T100</option>
-            <option selected>Not sure yet</option>
-          </select>
-          <select name="best-time" required>
-            <option value="" disabled>Best time to call</option>
-            <option selected>Anytime</option>
-            <option>Morning</option>
-            <option>Afternoon</option>
-          </select>
+          <div>
+            <span class="drone-chips-label">Which drone?</span>
+            <div class="drone-chips">
+              <input type="radio" name="drone-interest" id="chip-t25" value="DJI Agras T25 P" />
+              <label for="chip-t25">T25 P</label>
+              <input type="radio" name="drone-interest" id="chip-t100" value="DJI Agras T100" />
+              <label for="chip-t100">T100</label>
+              <input type="radio" name="drone-interest" id="chip-unsure" value="Not sure yet" checked />
+              <label for="chip-unsure">Not sure</label>
+            </div>
+          </div>
           <button type="submit" class="btn-submit-hero">
             Request Callback <span class="arrow">→</span>
           </button>
         </form>
-        <div class="hero-form-foot">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          <span>Or call <a href="tel:+61861107423">(08) 6110 7423</a> now</span>
-        </div>
       </div>
     </div>
   </div>
