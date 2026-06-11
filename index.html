@@ -275,7 +275,7 @@ h3 {
 /* ---------- LAYOUT ---------- */
 .section {
   position: relative;
-  padding: clamp(56px, 7vw, 96px) var(--gutter);
+  padding: clamp(40px, 5vw, 68px) var(--gutter);
 }
 .section-inner {
   max-width: var(--container);
@@ -1999,8 +1999,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
    and Why Us cards. */
 .product-card,
 #audience .problem-card,
-#why .why-card,
-#outcomes .why-card {
+#why .why-card {
   position: relative;
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
@@ -2013,8 +2012,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
 @media (hover: hover) and (pointer: fine) {
   .product-card:hover,
   #audience .problem-card:hover,
-  #why .why-card:hover,
-  #outcomes .why-card:hover {
+  #why .why-card:hover {
     transform: translateY(-6px);
     border-color: var(--accent-line);
     box-shadow:
@@ -2280,6 +2278,62 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
 .sc-inline .sc-status-good     { color: #4CAF50; }
 .sc-inline .sc-status-marginal { color: #FF9800; }
 .sc-inline .sc-status-poor     { color: #F44336; }
+
+/* ---------- PROBLEM + OUTCOMES MERGED ---------- */
+.po-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-top: 40px;
+}
+@media (max-width: 860px) { .po-grid { grid-template-columns: 1fr; gap: 0; } }
+.po-col-head {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 4px;
+}
+.po-item {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+}
+.po-item:last-child { border-bottom: none; }
+.po-item h3 { font-size: 17px; margin-bottom: 6px; color: var(--ink); }
+.po-item p  { font-size: 14px; color: var(--ink-soft); line-height: 1.55; }
+
+/* ---------- FOUNDER PULL-QUOTE (inline in Who-For) ---------- */
+.founder-pull {
+  margin-top: 36px;
+  padding: 22px 26px;
+  border-left: 3px solid var(--accent-line);
+  background: var(--paper-soft);
+  font-family: var(--font-display);
+  font-size: clamp(15px, 1.6vw, 19px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.founder-pull p { margin: 0; }
+.founder-pull cite {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* Who-For: 2-column grid (not 3) */
+#audience .problem-grid { grid-template-columns: 1fr 1fr; }
 </style>
 </head>
 <body>
@@ -2453,35 +2507,6 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
   </div>
 </div>
 
-<!-- ENGINEERS, NOT JUST A DEALERSHIP -->
-<section class="section" id="engineers">
-  <div class="section-inner">
-    <div class="eyebrow reveal">Our Approach</div>
-    <h2 class="reveal">Engineers, <em>not just a dealership.</em></h2>
-    <div class="engineers-grid">
-      <div class="engineers-text-col">
-        <div class="engineers-copy reveal">
-          <p>Elk Fish is the authorised DJI Agras dealer for Western Australia. We don't make the Agras. DJI does. The Agras platform is widely adopted across agriculture for its reliability and operational capability. What we add is engineering.</p>
-          <p>Every Agras goes through our workshop before it leaves. We set it up, show you how it works on the day, and stay on the phone through your first season. Repairs happen at the same bench, handled by engineers.</p>
-          <p>Buying through us keeps the margin in WA. Local jobs, local workshop, local engineers. That is what your purchase supports.</p>
-        </div>
-        <div class="engineers-cta reveal">
-          <a href="#enquire" class="btn btn-primary">Schedule a callback <span class="arrow">→</span></a>
-        </div>
-      </div>
-      <div class="engineers-photo reveal">
-        <img src="assets/images/BI5A3505.jpg" alt="Two operators with a DJI Agras drone in a Western Australian paddock, preparing for a spray run" loading="lazy" />
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOUNDER QUOTE -->
-<blockquote id="founder-note">
-  <p>Don't bring your own skis to the mountain. If they break, the shop's right there. It's the same with a drone. You can buy one online, but the shop won't be right there when you need it.</p>
-  <cite>Francis King, Managing Director, Elk Fish Robotics</cite>
-</blockquote>
-
 <!-- WHO THIS IS FOR -->
 <section class="section" id="audience">
   <div class="section-inner">
@@ -2499,83 +2524,56 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
         <p class="card-cta-row"><a href="#enquire">Schedule a callback <span class="arrow">→</span></a></p>
       </div>
     </div>
+    <blockquote class="founder-pull reveal">
+      <p>Don't bring your own skis to the mountain. If they break, the shop's right there. It's the same with a drone.</p>
+      <cite>Francis King · Managing Director, Elk Fish Robotics</cite>
+    </blockquote>
   </div>
 </section>
 
-<!-- PROBLEM -->
+<!-- PROBLEM + OUTCOMES -->
 <section class="section" id="problem">
   <div class="section-inner">
-    <div class="eyebrow reveal">The Problem</div>
-    <h2 class="reveal">Why WA growers are switching <em>to spray drones.</em></h2>
-    <p class="lede reveal">Four problems we hear on almost every call. A spray drone fixes all of them.</p>
-    <div class="problem-grid">
-      <div class="problem-card reveal">
-        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M6 32 Q12 26 18 32 T30 32 T42 32"/>
-          <path d="M6 38 Q12 32 18 38 T30 38 T42 38" opacity="0.6"/>
-          <path d="M24 6 L26 14 L32 16 L27 22 L29 30 L24 26 L19 30 L21 22 L16 16 L22 14 Z"/>
-        </svg>
-        <h3>Wet ground stops the tractor.</h3>
-        <p>Soggy paddocks close your spray window. A drone flies regardless of how wet the ground is, so the crop gets treated on time.</p>
+    <div class="eyebrow reveal">The Case for Spray Drones</div>
+    <h2 class="reveal">Why WA growers are switching, <em>and what changes when they do.</em></h2>
+    <div class="po-grid">
+      <div class="po-col">
+        <div class="po-col-head">The problems</div>
+        <div class="po-item reveal">
+          <h3>Wet ground stops the tractor.</h3>
+          <p>Soggy paddocks close your spray window. A drone flies regardless, so the crop gets treated on time.</p>
+        </div>
+        <div class="po-item reveal">
+          <h3>Skilled spray operators are scarce.</h3>
+          <p>Experienced operators are hard to find on short notice. One trained drone pilot covers two or three traditional operators.</p>
+        </div>
+        <div class="po-item reveal">
+          <h3>Drift complaints cost you the next job.</h3>
+          <p>Targeted application and GPS-locked passes give you a cleaner compliance position.</p>
+        </div>
+        <div class="po-item reveal">
+          <h3>Peak season is shorter every year.</h3>
+          <p>The spring window narrows when conditions shift. A drone stretches your billable days at both ends of the season.</p>
+        </div>
       </div>
-      <div class="problem-card reveal">
-        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
-          <circle cx="24" cy="14" r="5"/>
-          <path d="M16 38 V26 Q16 22 20 22 H28 Q32 22 32 26 V38"/>
-          <path d="M13 38 H35"/>
-        </svg>
-        <h3>Skilled spray operators are scarce.</h3>
-        <p>Experienced operators are hard to find on short notice. One trained drone pilot covers the workload of two or three traditional operators.</p>
-      </div>
-      <div class="problem-card reveal">
-        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M4 16 Q14 12 24 16 T44 16"/>
-          <path d="M4 24 Q18 20 30 24 T44 24" opacity="0.8"/>
-          <path d="M4 32 Q14 28 24 32 T44 32" opacity="0.5"/>
-          <path d="M36 14 L40 16 L36 18"/>
-          <path d="M36 22 L44 24 L36 26" opacity="0.7"/>
-        </svg>
-        <h3>Drift complaints cost you the next job.</h3>
-        <p>Targeted application, GPS-locked passes and lower product volumes give you a cleaner compliance position. And a cleaner phone call with the neighbour.</p>
-      </div>
-      <div class="problem-card reveal">
-        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
-          <rect x="8" y="10" width="32" height="30" rx="2"/>
-          <line x1="8" y1="18" x2="40" y2="18"/>
-          <line x1="16" y1="6" x2="16" y2="14"/>
-          <line x1="32" y1="6" x2="32" y2="14"/>
-          <line x1="14" y1="26" x2="20" y2="26"/>
-          <line x1="22" y1="26" x2="28" y2="26"/>
-          <line x1="14" y1="32" x2="20" y2="32"/>
-        </svg>
-        <h3>Peak season is shorter every year.</h3>
-        <p>The spring window narrows when conditions shift. A drone stretches your billable days at both ends of the season.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- OUTCOMES -->
-<section class="section" id="outcomes">
-  <div class="section-inner">
-    <div class="eyebrow reveal">Outcomes</div>
-    <h2 class="reveal">What changes <em>when you run one.</em></h2>
-    <div class="why-grid">
-      <div class="why-card reveal">
-        <h3>More hectares per spray day.</h3>
-        <p>300 ha/day with one T100 and one pilot, in conditions where the tractor stays in the shed.</p>
-      </div>
-      <div class="why-card reveal">
-        <h3>One operator covers what two used to.</h3>
-        <p>Trained drone pilots are easier to find, and to keep, than experienced spray rig operators.</p>
-      </div>
-      <div class="why-card reveal">
-        <h3>More billable days per season.</h3>
-        <p>Wet paddocks and awkward terrain become workable instead of cancelled.</p>
-      </div>
-      <div class="why-card reveal">
-        <h3>Cleaner compliance.</h3>
-        <p>Targeted application reduces drift exposure and gives you a defensible record for every job.</p>
+      <div class="po-col">
+        <div class="po-col-head">What changes</div>
+        <div class="po-item reveal">
+          <h3>More hectares per spray day.</h3>
+          <p>300 ha/day with one T100 and one pilot, in conditions where the tractor stays in the shed.</p>
+        </div>
+        <div class="po-item reveal">
+          <h3>One operator covers what two used to.</h3>
+          <p>Trained drone pilots are easier to find, and to keep, than experienced spray rig operators.</p>
+        </div>
+        <div class="po-item reveal">
+          <h3>More billable days per season.</h3>
+          <p>Wet paddocks and awkward terrain become workable instead of cancelled.</p>
+        </div>
+        <div class="po-item reveal">
+          <h3>Cleaner compliance.</h3>
+          <p>Targeted application reduces drift exposure and gives you a defensible record for every job.</p>
+        </div>
       </div>
     </div>
     <div class="outcomes-cta reveal">
@@ -2710,27 +2708,6 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
   </div>
 </section>
 
-<!-- ATMOSPHERIC DIVIDER — BI5A5598 -->
-<div class="atm-divider" role="img" aria-label="DJI Agras spray drone over Western Australian farmland at dusk">
-  <img src="assets/images/BI5A5598.jpg" alt="" loading="lazy" />
-</div>
-
-<!-- MID-PAGE CTA -->
-<section class="mid-cta" id="midcta">
-  <div class="section-inner">
-    <h2>Ready to talk?</h2>
-    <p>Send a few details or just ring us. Most decisions get made in one conversation.</p>
-    <div class="mid-cta-actions">
-      <a href="#enquire" class="btn btn-primary">Schedule a callback <span class="arrow">→</span></a>
-      <a href="tel:+61861107423" class="btn btn-outline">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        Call (08) 6110 7423
-      </a>
-    </div>
-    <div class="mid-cta-meta">Mon to Fri · 8.00am to 5.00pm AWST · We come to you</div>
-  </div>
-</section>
-
 <!-- WHY US -->
 <section class="section why-bg" id="why">
   <div class="section-inner">
@@ -2815,6 +2792,22 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
       Question not answered? Schedule a callback or ring <a href="tel:+61861107423">(08) 6110 7423</a>.
       <div class="faq-help-cta"><a href="#enquire" class="btn btn-primary">Schedule a callback <span class="arrow">→</span></a></div>
     </div>
+  </div>
+</section>
+
+<!-- MID-PAGE CTA -->
+<section class="mid-cta" id="midcta">
+  <div class="section-inner">
+    <h2>Ready to talk?</h2>
+    <p>Send a few details or just ring us. Most decisions get made in one conversation.</p>
+    <div class="mid-cta-actions">
+      <a href="#enquire" class="btn btn-primary">Schedule a callback <span class="arrow">→</span></a>
+      <a href="tel:+61861107423" class="btn btn-outline">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Call (08) 6110 7423
+      </a>
+    </div>
+    <div class="mid-cta-meta">Mon to Fri · 8.00am to 5.00pm AWST · We come to you</div>
   </div>
 </section>
 
