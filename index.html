@@ -2514,6 +2514,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
     <nav class="topbar-nav" aria-label="Primary">
       <a href="#products">Drones</a>
       <a href="#products">Pricing</a>
+      <a href="#roi">ROI</a>
       <a href="#service">Service</a>
       <a href="#why">Why Us</a>
       <a href="#faq">FAQ</a>
@@ -2802,6 +2803,69 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
       <p>Not sure which one fits your operation? Schedule a callback to talk it through. No quote pressure, no obligation.</p>
       <a href="#enquire" class="btn btn-primary">Schedule a callback <span class="arrow">→</span></a>
     </div>
+  </div>
+</section>
+
+<!-- ROI -->
+<section class="section" id="roi">
+  <div class="section-inner">
+    <div class="eyebrow reveal">The Numbers</div>
+    <h2 class="reveal">Run the maths for <em>your operation.</em></h2>
+    <p class="lede reveal">Drag the slider to your annual hectares and see what an Agras T100 looks like commercially. Numbers update live.</p>
+
+    <div class="roi-calc reveal">
+      <div class="roi-calc-slider">
+        <div class="calc-label">Your hectares per season</div>
+        <div class="slider-value"><span id="haValue">5,000</span><span class="ha-suffix">ha / yr</span></div>
+        <div class="slider-track-wrap">
+          <input type="range" id="haSlider" min="500" max="20000" step="100" value="5000" aria-label="Hectares per season" />
+        </div>
+        <div class="slider-bounds">
+          <span>500 ha</span>
+          <span>20,000 ha</span>
+        </div>
+
+        <div class="slider-paddock" id="sliderPaddock">
+          <div class="slider-paddock-fill"></div>
+          <div class="slider-paddock-spray"></div>
+          <svg class="slider-drone" viewBox="0 0 36 22" fill="none" aria-hidden="true">
+            <line x1="6" y1="6" x2="30" y2="6" stroke="currentColor" stroke-width="1.2"/>
+            <line x1="6" y1="16" x2="30" y2="16" stroke="currentColor" stroke-width="1.2"/>
+            <rect x="14" y="8" width="8" height="6" fill="currentColor"/>
+            <circle cx="6" cy="6" r="2.5" stroke="currentColor" stroke-width="1" fill="var(--paper-soft)"/>
+            <circle cx="30" cy="6" r="2.5" stroke="currentColor" stroke-width="1" fill="var(--paper-soft)"/>
+            <circle cx="6" cy="16" r="2.5" stroke="currentColor" stroke-width="1" fill="var(--paper-soft)"/>
+            <circle cx="30" cy="16" r="2.5" stroke="currentColor" stroke-width="1" fill="var(--paper-soft)"/>
+          </svg>
+          <div class="slider-paddock-label">Spray coverage</div>
+        </div>
+      </div>
+
+      <div class="roi-calc-outputs">
+        <div class="roi-output">
+          <div class="roi-output-num"><span class="currency">$</span><span id="revenueOut">100,000</span></div>
+          <div class="roi-output-label">Revenue per season<small>At an indicative $20 per hectare contract rate</small></div>
+        </div>
+        <div class="roi-output">
+          <div class="roi-output-num"><span id="paybackOut">4.5</span><span class="suffix">months</span></div>
+          <div class="roi-output-label">Payback window on T100<small>Drone cost recovered at $30,380 from $20/ha contract revenue</small></div>
+        </div>
+        <div class="roi-output">
+          <div class="roi-output-num"><span id="daysOut">17</span><span class="suffix">days flown</span></div>
+          <div class="roi-output-label">Days to cover your hectares<small>At 300 hectares per flying day on the T100</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="roi-inline-cta reveal">
+      <p>Want a real-world ROI for your exact paddocks and contract rate? Phone our team and we will work it out on the call.</p>
+      <a href="tel:+61861107423" class="btn btn-outline">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Call (08) 6110 7423
+      </a>
+    </div>
+
+    <p class="disclaimer">Indicative figures only. Real numbers depend on crop, terrain, chemistry, travel time, and your contract rates.</p>
   </div>
 </section>
 
@@ -3136,6 +3200,41 @@ const io = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* Interactive ROI calculator */
+(function initROICalc() {
+  const haSlider   = document.getElementById('haSlider');
+  if (!haSlider) return;
+  const haValue    = document.getElementById('haValue');
+  const revenueOut = document.getElementById('revenueOut');
+  const paybackOut = document.getElementById('paybackOut');
+  const daysOut    = document.getElementById('daysOut');
+  const paddock    = document.getElementById('sliderPaddock');
+
+  const RATE_PER_HA           = 20;
+  const T100_COST             = 30380;
+  const HA_PER_FLYING_DAY     = 300;
+  const WORKING_DAYS_PER_MONTH = 22;
+
+  function update() {
+    const ha = parseInt(haSlider.value, 10);
+    const revenue = ha * RATE_PER_HA;
+    const monthlyRevenuePotential = HA_PER_FLYING_DAY * RATE_PER_HA * WORKING_DAYS_PER_MONTH;
+    const payback = T100_COST / monthlyRevenuePotential;
+    const days = Math.ceil(ha / HA_PER_FLYING_DAY);
+
+    haValue.textContent    = ha.toLocaleString('en-AU');
+    revenueOut.textContent = revenue.toLocaleString('en-AU');
+    paybackOut.textContent = payback.toFixed(1);
+    daysOut.textContent    = days.toLocaleString('en-AU');
+
+    const pct = ((ha - 500) / (20000 - 500)) * 95 + 5;
+    paddock.style.setProperty('--paddock-pct', pct.toFixed(1) + '%');
+  }
+
+  haSlider.addEventListener('input', update);
+  update();
+})();
 
 /* FAQ accordion */
 document.querySelectorAll('.faq-item').forEach(item => {
