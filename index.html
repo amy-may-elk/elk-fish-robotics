@@ -844,31 +844,46 @@ h3 {
 
 /* ---------- TESTIMONIALS ---------- */
 .testimonials-bg {
-  background: var(--ink);
-  color: var(--paper-soft);
+  background: var(--paper-soft);
+}
+.testimonials-bg h2 { color: var(--ink); }
+.testimonial-intro {
+  font-size: 15px;
+  color: var(--ink-soft);
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
 }
 .testimonial-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  max-width: 780px;
-  margin: 36px auto 0;
+  gap: 56px;
+  margin-top: 48px;
+  align-items: start;
 }
-@media (max-width: 680px) {
+@media (max-width: 720px) {
   .testimonial-grid {
     grid-template-columns: 1fr;
-    max-width: 360px;
-    gap: 40px;
+    gap: 48px;
   }
+}
+.testimonial-video-heading {
+  font-family: var(--font-display);
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 16px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
 }
 .testimonial-video-wrap {
   width: 100%;
-  max-width: 340px;
-  margin: 0 auto 16px;
+  max-width: 480px;
   aspect-ratio: 9 / 16;
   background: #000;
-  border-radius: 4px;
   overflow: hidden;
+  margin-bottom: 16px;
 }
 .testimonial-video-wrap video {
   width: 100%;
@@ -878,12 +893,10 @@ h3 {
 }
 .testimonial-caption {
   font-size: 15px;
-  line-height: 1.5;
-  color: rgba(244,236,216,0.85);
-  margin-bottom: 10px;
-  max-width: 340px;
-  margin-left: auto;
-  margin-right: auto;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+  max-width: 480px;
 }
 .testimonial-attrib {
   font-family: var(--font-mono);
@@ -891,10 +904,7 @@ h3 {
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--green-light);
-  max-width: 340px;
-  margin-left: auto;
-  margin-right: auto;
+  color: var(--green-deep);
   display: block;
 }
 
@@ -2219,25 +2229,25 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
   display: block;
 }
 
-/* 5 — Products section: lede left, photo right */
+/* 5 — Products section: lede only (no intro photo) */
 .products-intro-row {
-  display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: 48px;
-  align-items: center;
   margin-top: 32px;
-  margin-bottom: 56px;
+  margin-bottom: 48px;
 }
-@media (max-width: 900px) {
-  .products-intro-row { grid-template-columns: 1fr; gap: 24px; margin-bottom: 32px; }
-  .products-intro-img { order: 2; }
-}
-.products-intro-img img {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  object-position: center;
-  display: block;
+
+/* Product image placeholder — shown until real photos are uploaded */
+.product-img-placeholder {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
 }
 
 /* 6 — Mid-CTA: full-bleed aerial background */
@@ -2454,7 +2464,8 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
 <!-- TESTIMONIALS -->
 <section class="section testimonials-bg" id="testimonials">
   <div class="section-inner">
-    <h2 class="reveal">In Sam's words.</h2>
+    <h2 class="reveal">Hear from Sam.</h2>
+    <p class="testimonial-intro reveal">Sam McQuoid, Wheatbelt Drone Services. Bought a T100 through us.</p>
     <div class="testimonial-grid">
 
       <div class="testimonial-card reveal">
@@ -2462,12 +2473,12 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
           <video
             controls
             preload="none"
-            poster="assets/images/poster-testimonial-efficiency.jpg"
-            aria-label="Sam McQuoid on the T100 bridging the gap for spray efficiency">
-            <source src="assets/videos/testimonial-sam-efficiency.mp4" type="video/mp4" />
+            poster="assets/images/poster-sam-v2.jpg"
+            aria-label="Sam McQuoid on the efficiency difference with the T100">
+            <source src="assets/videos/testimonial-sam-v2.mp4" type="video/mp4" />
           </video>
         </div>
-        <p class="testimonial-caption">On the T100 bridging the gap for spray efficiency.</p>
+        <p class="testimonial-caption">On the efficiency difference.</p>
         <span class="testimonial-attrib">Sam McQuoid · Wheatbelt Drone Services</span>
       </div>
 
@@ -2476,12 +2487,12 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
           <video
             controls
             preload="none"
-            poster="assets/images/poster-testimonial-delivery.jpg"
-            aria-label="Sam McQuoid on Frank delivering the T100 personally on the day">
-            <source src="assets/videos/testimonial-sam-delivery.mp4" type="video/mp4" />
+            poster="assets/images/poster-frank-v2.jpg"
+            aria-label="Sam McQuoid on Frank delivering the T100 in person">
+            <source src="assets/videos/testimonial-frank-v2.mp4" type="video/mp4" />
           </video>
         </div>
-        <p class="testimonial-caption">On Frank driving out and handing it over personally on the day.</p>
+        <p class="testimonial-caption">On Frank delivering it in person.</p>
         <span class="testimonial-attrib">Sam McQuoid · Wheatbelt Drone Services</span>
       </div>
 
@@ -2589,9 +2600,6 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
     <h2 class="reveal">Two drones. <em>Match the one to your operation.</em></h2>
     <div class="products-intro-row">
       <p class="lede reveal">Both are DJI Agras. Both authorised, supported, set up and repaired by us in Fremantle. The right one depends less on the drone and more on how you'll use it.</p>
-      <div class="products-intro-img reveal">
-        <img src="assets/images/0S3B2329.jpg" alt="Close-up of DJI Agras spray system components and boom assembly on a WA broadacre property" loading="lazy" />
-      </div>
     </div>
 
     <div class="product-grid">
@@ -2600,10 +2608,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
       <div class="product-card reveal">
         <div class="product-image">
           <span class="figlabel">FIG. 01 / T100</span>
-          <picture>
-            <source srcset="assets/images/agras-t100.webp" type="image/webp" />
-            <img src="assets/images/agras-t100.png" alt="DJI Agras T100 agricultural spray drone, side view" loading="lazy" />
-          </picture>
+          <div class="product-img-placeholder">Photo coming soon</div>
         </div>
         <div class="product-header">
           <div class="product-name">Agras <em>T100</em></div>
@@ -2626,10 +2631,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
       <div class="product-card reveal">
         <div class="product-image">
           <span class="figlabel">FIG. 02 / T25 P</span>
-          <picture>
-            <source srcset="assets/images/agras-t25p.webp" type="image/webp" />
-            <img src="assets/images/agras-t25p.png" alt="DJI Agras T25P agricultural spray drone, side view" loading="lazy" />
-          </picture>
+          <div class="product-img-placeholder">Photo coming soon</div>
         </div>
         <div class="product-header">
           <div class="product-name">Agras <em>T25 P</em></div>
