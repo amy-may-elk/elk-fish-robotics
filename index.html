@@ -950,7 +950,7 @@ h3 {
 }
 .testimonial-video-wrap {
   width: 100%;
-  max-width: 480px;
+  max-width: 340px;
   aspect-ratio: 9 / 16;
   background: #000;
   overflow: hidden;
@@ -967,7 +967,43 @@ h3 {
   line-height: 1.55;
   color: var(--ink-soft);
   margin-bottom: 8px;
-  max-width: 480px;
+  max-width: 340px;
+}
+.frank-id-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green-deep);
+  display: inline-block;
+  padding: 5px 10px;
+  background: rgba(79,107,88,0.1);
+  border-left: 2px solid var(--green-deep);
+  margin-bottom: 14px;
+}
+.frank-photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 48px;
+}
+@media (max-width: 680px) { .frank-photos { grid-template-columns: 1fr; } }
+.frank-photo img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+}
+.frank-photo-cap {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--ink-soft);
 }
 .testimonial-attrib {
   font-family: var(--font-mono);
@@ -1007,7 +1043,7 @@ h3 {
 .service-hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(10, 20, 10, 0.72);
+  background: rgba(10, 20, 10, 0.62);
 }
 .service-hero-content {
   position: relative;
@@ -2545,21 +2581,34 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
       </div>
 
       <div class="testimonial-card reveal">
-        <h3 class="testimonial-video-heading">Frank delivered it himself.</h3>
+        <h3 class="testimonial-video-heading">The day Frank showed up himself.</h3>
+        <div class="frank-id-tag">Frank King · Managing Director, Elk Fish Robotics</div>
         <div class="testimonial-video-wrap">
           <video
             controls
             preload="none"
             poster="assets/images/poster-frank-v2.jpg"
-            aria-label="Sam McQuoid on Frank delivering the T100 in person">
+            aria-label="Sam McQuoid on Frank King delivering the T100 in person">
             <source src="assets/videos/testimonial-frank-v2.mp4" type="video/mp4" />
           </video>
         </div>
-        <p class="testimonial-caption">On the handover and what it meant to have the owner show up.</p>
+        <p class="testimonial-caption">Sam on the handover — and what it meant to have the owner show up on delivery day.</p>
         <span class="testimonial-attrib">Sam McQuoid · Wheatbelt Drone Services</span>
       </div>
 
     </div>
+
+    <div class="frank-photos">
+      <div class="frank-photo reveal">
+        <img src="assets/images/frank-customer-t100.jpg" alt="Frank King and a customer assembling the T100 at their Wheatbelt property" />
+        <span class="frank-photo-cap">Frank King (MD) and a new T100 owner — pre-flight walkthrough at their property, Wheatbelt WA.</span>
+      </div>
+      <div class="frank-photo reveal">
+        <img src="assets/images/frank-setup-customer.jpg" alt="Frank King setting up the DJI Agras T100 on delivery day" />
+        <span class="frank-photo-cap">On-day setup. Every Agras leaves our hands flight-ready before it leaves the ute.</span>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -2743,7 +2792,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
 <section class="section service-bg" id="service">
   <!-- Full-bleed background -->
   <div class="service-hero-bg" aria-hidden="true">
-    <img src="assets/images/0S3B2262.jpg" alt="" />
+    <img src="assets/images/frank-customer-t100.jpg" alt="" style="object-position: center 40%;" />
     <div class="service-hero-overlay"></div>
   </div>
   <!-- Content sits above overlay -->
