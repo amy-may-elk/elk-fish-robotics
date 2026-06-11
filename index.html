@@ -984,11 +984,12 @@ h3 {
 }
 .frank-photos {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 24px;
   margin-top: 48px;
 }
-@media (max-width: 680px) { .frank-photos { grid-template-columns: 1fr; } }
+@media (max-width: 860px) { .frank-photos { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .frank-photos { grid-template-columns: 1fr; } }
 .frank-photo img {
   width: 100%;
   aspect-ratio: 4 / 3;
@@ -2606,6 +2607,10 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
       <div class="frank-photo reveal">
         <img src="assets/images/frank-setup-customer.jpg" alt="Frank King setting up the DJI Agras T100 on delivery day" />
         <span class="frank-photo-cap">On-day setup. Every Agras leaves our hands flight-ready before it leaves the ute.</span>
+      </div>
+      <div class="frank-photo reveal">
+        <img src="assets/images/frank-delivery.jpg" alt="Frank King delivering the DJI Agras T100 to a customer's property in the Wheatbelt" />
+        <span class="frank-photo-cap">Frank personally delivers to site. The drone arrives boxed; it leaves flight-ready.</span>
       </div>
     </div>
 
