@@ -1641,57 +1641,6 @@ footer {
 
 /* Spray-coverage visualisation: drone flies across, leaving a sprayed strip behind it.
    This is the interactive "drone spraying" element, driven by the slider value. */
-.slider-paddock {
-  position: relative;
-  height: 64px;
-  background:
-    repeating-linear-gradient(90deg, rgba(31,27,22,0.05) 0 1px, transparent 1px 32px),
-    var(--paper);
-  border: 1px solid var(--border);
-  overflow: hidden;
-  margin-top: auto;
-}
-.slider-paddock-fill {
-  position: absolute;
-  top: 0; left: 0; bottom: 0;
-  width: var(--paddock-pct, 25%);
-  background: linear-gradient(90deg,
-    rgba(79, 107, 88, 0.55) 0%,
-    rgba(95, 124, 103, 0.75) 100%);
-  transition: width 0.25s var(--ease);
-}
-.slider-paddock-spray {
-  position: absolute;
-  top: 0; left: 0; bottom: 0;
-  width: var(--paddock-pct, 25%);
-  background-image: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.55) 1.2px, transparent 1.6px);
-  background-size: 14px 14px;
-  opacity: 0.55;
-  transition: width 0.25s var(--ease);
-  pointer-events: none;
-}
-.slider-drone {
-  position: absolute;
-  top: 50%;
-  left: var(--paddock-pct, 25%);
-  transform: translate(-50%, -50%);
-  width: 36px;
-  height: 22px;
-  color: var(--green-deep);
-  transition: left 0.25s var(--ease);
-  pointer-events: none;
-  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
-}
-.slider-paddock-label {
-  position: absolute;
-  bottom: 4px; left: 8px;
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.18em;
-  color: var(--ink);            /* #1B1F1C — 5.6:1 on filled green, 11:1 on unfilled */
-  text-transform: uppercase;
-  pointer-events: none;
-}
 
 .roi-calc-outputs {
   display: flex;
@@ -2852,20 +2801,7 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
           <span>20,000 ha</span>
         </div>
 
-        <div class="slider-paddock" id="sliderPaddock">
-          <div class="slider-paddock-fill"></div>
-          <div class="slider-paddock-spray"></div>
-          <svg class="slider-drone" viewBox="0 0 36 22" fill="none" aria-hidden="true">
-            <line x1="6" y1="6" x2="30" y2="6" stroke="currentColor" stroke-width="1.2"/>
-            <line x1="6" y1="16" x2="30" y2="16" stroke="currentColor" stroke-width="1.2"/>
-            <rect x="14" y="8" width="8" height="6" fill="currentColor"/>
-            <circle cx="6" cy="6" r="2.5" stroke="currentColor" stroke-width="1" fill="var(--paper-soft)"/>
-            <circle cx="30" cy="6" r="2.5" stroke="currentColor" stroke-width="1" fill="var(--paper-soft)"/>
-            <circle cx="6" cy="16" r="2.5" stroke="currentColor" stroke-width="1" fill="var(--paper-soft)"/>
-            <circle cx="30" cy="16" r="2.5" stroke="currentColor" stroke-width="1" fill="var(--paper-soft)"/>
-          </svg>
-          <div class="slider-paddock-label">Spray coverage</div>
-        </div>
+
       </div>
 
       <div class="roi-calc-outputs">
@@ -2938,8 +2874,8 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
         <div class="num-big">02</div>
         <div class="copy">
           <h3>A real person on the phone in spray season.</h3>
-          <p>September to November is the busiest stretch. The same engineers who repair the drones answer the calls.</p>
-          <p class="service-trust">Sep to Nov. Same engineers, same number.</p>
+          <p>September to November is the busiest stretch. <!-- [COPY NEEDED — Amy to confirm] --></p>
+          <p class="service-trust">Sep to Nov.</p>
         </div>
       </div>
     </div>
@@ -2957,12 +2893,12 @@ html.efr-show-intro .intro-layer--final { animation: introFinal 1.6s cubic-bezie
       <div class="why-card reveal">
         <div class="num">01 / ENGINEERS</div>
         <h3>Engineers, not just a dealership.</h3>
-        <p>We're a robotics engineering company. Engineers set up your Agras, repair it, and answer your calls.</p>
+        <p>We're a robotics engineering company. Engineers set up your Agras and repair it. <!-- [COPY NEEDED — Amy to confirm] --></p>
       </div>
       <div class="why-card reveal">
         <div class="num">02 / LOCAL</div>
         <h3>Local team, local workshop.</h3>
-        <p>Repairs handled by engineers we employ directly. The same people who set up your drone answer the phone when you ring.</p>
+        <p>Repairs handled by engineers we employ directly. <!-- [COPY NEEDED — Amy to confirm] --></p>
       </div>
       <div class="why-card reveal">
         <div class="num">03 / HANDOVER</div>
@@ -3236,8 +3172,6 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   const revenueOut = document.getElementById('revenueOut');
   const paybackOut = document.getElementById('paybackOut');
   const daysOut    = document.getElementById('daysOut');
-  const paddock    = document.getElementById('sliderPaddock');
-
   const RATE_PER_HA           = 20;
   const T100_COST             = 30380;
   const HA_PER_FLYING_DAY     = 300;
@@ -3254,9 +3188,6 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
     revenueOut.textContent = revenue.toLocaleString('en-AU');
     paybackOut.textContent = payback.toFixed(1);
     daysOut.textContent    = days.toLocaleString('en-AU');
-
-    const pct = ((ha - 500) / (20000 - 500)) * 95 + 5;
-    paddock.style.setProperty('--paddock-pct', pct.toFixed(1) + '%');
   }
 
   haSlider.addEventListener('input', update);
