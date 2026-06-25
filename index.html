@@ -41,7 +41,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   --line:rgba(17,17,20,.1);--line-d:rgba(243,243,245,.14);
   --btn:#111114;--btn-h:#000;
   --font:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-  --wrap:1200px;--pad:74px;
+  --wrap:1320px;--pad:74px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -127,21 +127,17 @@ header{position:sticky;top:0;z-index:90;background:rgba(255,255,255,.8);backdrop
 
 /* features */
 .features .sub{margin:14px auto 0;color:var(--muted)}
-.feat-rows{display:grid;gap:58px;margin-top:8px}
-.frow{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
-.frow:nth-child(even){direction:rtl}
-.frow:nth-child(even)>*{direction:ltr}
-.frow-img{border-radius:18px;overflow:hidden;aspect-ratio:4/3}
-.frow-img img{width:100%;height:100%;object-fit:cover}
-.frow-text h3{font-size:1.7rem;letter-spacing:-.03em;margin-bottom:14px}
-.frow-text p{color:var(--muted);font-size:1.04rem;line-height:1.6}
+.spec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:46px 56px;margin-top:22px}
+.sc h3{font-size:1.4rem;letter-spacing:-.02em;margin-bottom:14px;padding-top:20px;border-top:2px solid var(--ink)}
+.sc ul{list-style:none}
+.sc li{font-size:.97rem;color:var(--muted);padding:7px 0 7px 18px;position:relative;line-height:1.5}
+.sc li::before{content:"";position:absolute;left:0;top:13px;width:6px;height:6px;border-radius:50%;background:var(--ink);opacity:.5}
 
 /* qa */
-.qa-list{display:grid;gap:0}
+.qa-list{display:grid;grid-template-columns:1fr 1fr;gap:0 56px}
 .qa{padding:26px 0;border-top:1px solid var(--line)}
-.qa:last-child{border-bottom:1px solid var(--line)}
-.qa h3{font-size:1.1rem;letter-spacing:-.02em;margin-bottom:8px}
-.qa p{color:var(--muted);font-size:.98rem;max-width:760px}
+.qa h3{font-size:1.18rem;letter-spacing:-.02em;margin-bottom:8px}
+.qa p{color:var(--muted);font-size:.98rem}
 
 /* stagger */
 .stagger>*:nth-child(2){transition-delay:.08s}
@@ -149,7 +145,8 @@ header{position:sticky;top:0;z-index:90;background:rgba(255,255,255,.8);backdrop
 .stagger>*:nth-child(4){transition-delay:.24s}
 .stagger>*:nth-child(5){transition-delay:.32s}
 .stagger>*:nth-child(6){transition-delay:.40s}
-@media(max-width:900px){.frow{grid-template-columns:1fr;gap:22px}.frow:nth-child(even){direction:ltr}.frow-img{aspect-ratio:16/10}}
+@media(max-width:900px){.spec-grid{grid-template-columns:1fr;gap:30px}}
+@media(max-width:760px){.qa-list{grid-template-columns:1fr}}
 
 /* why */
 .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
@@ -331,19 +328,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="features" id="features">
   <div class="wrap">
     <div class="sec-head reveal"><span class="eyebrow">Everything it brings to the paddock</span><h2 style="margin-top:14px">Spray, spread and lift, all from one drone.</h2><p class="sub lead">Newly upgraded for spraying, spreading and lifting, with round-the-clock Safety System 3.0 and a maximum payload of 70 kg.</p></div>
-    <div class="feat-rows">
-      <div class="frow reveal">
-        <div class="frow-img"><img src="assets/images/feature-spray.jpg" alt="DJI Agras T70P spraying a field"></div>
-        <div class="frow-text"><h3>Spray and spread</h3><p>70 litre spray tank, 10 m spray width at 13.8 m/s, and 30 L/min standard or 40 L/min optional. Switch to spreading and it carries 100 litres at up to 400 kg/min, with a brand-new screw feeder that lifts spreading efficiency by 50%.</p></div>
-      </div>
-      <div class="frow reveal">
-        <div class="frow-img"><img src="assets/images/feature-field.jpg" alt="DJI Agras T70P working in the field"></div>
-        <div class="frow-text"><h3>Lift it, and fly it safely</h3><p>A 65 kg lifting payload with Auto Swing Control and real-time weighing. Safety System 3.0 adds two sets of millimetre-wave radar, a Tri-Vision system, night-vision full-colour FPV, obstacle type detection and an AR safety-assist display.</p></div>
-      </div>
-      <div class="frow reveal">
-        <div class="frow-img"><img src="assets/images/feature-sunset.jpg" alt="DJI Agras T70P spraying at sunset"></div>
-        <div class="frow-text"><h3>Strong signal, long days</h3><p>O4 transmission resists interference and O4 Relay holds the link through hills, while D-RTK 3 AG gives plug-and-play centimetre-level positioning. It runs on 30 Ah or 41 Ah batteries through a 500 A connector, with a 1 year or 1,500-cycle warranty.</p></div>
-      </div>
+    <div class="spec-grid">
+      <div class="sc reveal"><h3>Spraying</h3><ul>
+        <li>Spray volume 70 litres</li>
+        <li>10 m spray width at 13.8 m/s</li>
+        <li>Maximum flow rate 30 L/min standard, 40 L/min optional</li>
+        <li>Optional water-cooled misting, 4 nozzles, 50 to 500 micron droplets</li></ul></div>
+      <div class="sc reveal"><h3>Spreading</h3><ul>
+        <li>100 litre capacity</li>
+        <li>Up to 400 kg/min maximum flow rate</li>
+        <li>10 m effective spreading width</li>
+        <li>Brand-new screw feeder, double flow-rate precision</li>
+        <li>Spreading efficiency increased by 50%</li></ul></div>
+      <div class="sc reveal"><h3>Lifting</h3><ul>
+        <li>65 kg lifting payload</li>
+        <li>Auto Swing Control</li>
+        <li>Real-time weighing</li>
+        <li>Mark loading and unloading points by mobile</li></ul></div>
+      <div class="sc reveal"><h3>Power and charging</h3><ul>
+        <li>Compatible with 30 Ah or 41 Ah batteries</li>
+        <li>500 A high-power connector</li>
+        <li>1-year or 1,500-cycle warranty</li>
+        <li>Optimised heat dispersion design</li>
+        <li>Ergonomic handle</li></ul></div>
+      <div class="sc reveal"><h3>Safety System 3.0</h3><ul>
+        <li>Two sets of millimetre-wave radar</li>
+        <li>Tri-Vision system</li>
+        <li>Night-vision full-colour FPV</li>
+        <li>Obstacle type detection</li>
+        <li>AR safety-assist display</li></ul></div>
+      <div class="sc reveal"><h3>Signal and positioning</h3><ul>
+        <li>O4 transmission resists interference for stable images</li>
+        <li>O4 Relay, unaffected by mountain obstructions</li>
+        <li>D-RTK 3 AG, plug-and-play centimetre-level positioning</li></ul></div>
     </div>
   </div>
 </section>
