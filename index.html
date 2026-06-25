@@ -387,7 +387,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p class="sub">Lock in your spot, or register your interest first.</p>
           <!-- Netlify Forms — submissions appear in Netlify dashboard and email Amy -->
           <!-- For Odoo: in Netlify dashboard go to Forms → preorder → Outgoing notifications, add a POST webhook pointing to your Make/Zapier step that creates the crm.lead -->
-          <form id="preorder-form" name="preorder" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <form id="preorder-form" name="preorder" method="POST" action="/?preorder-success=1" data-netlify="true" netlify-honeypot="bot-field" novalidate>
             <input type="hidden" name="form-name" value="preorder">
             <p style="display:none"><input name="bot-field"></p>
             <input class="field" type="text" name="name" placeholder="Full name" aria-label="Full name" required>
@@ -525,39 +525,41 @@ document.querySelectorAll('.tvid[data-video]').forEach(function(t){
   t.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();play();}});
 });
 
-/* Pre-order form → Netlify Forms (AJAX submit)
-   Submissions appear in Netlify dashboard → Forms → preorder.
-   Netlify emails Amy on each submission — configure the notification
-   address in Netlify: Forms → preorder → Form notifications.
-   For Odoo: add an outgoing webhook in Netlify Forms notifications
-   pointing to Make/Zapier, which creates the crm.lead in Odoo. */
-document.getElementById('preorder-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  var form = e.target;
-  var btn = form.querySelector('button[type=submit]');
-  var errEl = document.getElementById('form-error');
-  var successEl = document.getElementById('form-success');
-  errEl.style.display = 'none';
-  btn.disabled = true;
-  btn.textContent = 'Sending…';
-
-  fetch('/', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams(new FormData(form)).toString()
-  })
-  .then(function(r) {
-    if (!r.ok) throw new Error('HTTP ' + r.status);
-    form.style.display = 'none';
-    successEl.style.display = 'block';
+/* Pre-order form → Netlify Forms (standard POST, no AJAX)
+   Netlify intercepts the POST server-side, captures to dashboard,
+   then redirects to /?preorder-success=1. On page load we detect
+   that param and show the inline success state.
+   Email notifications: Netlify → Forms → preorder → Form notifications. */
+(function() {
+  if (window.location.search.indexOf('preorder-success=1') !== -1) {
+    var form = document.getElementById('preorder-form');
+    var successEl = document.getElementById('form-success');
+    if (form) form.style.display = 'none';
+    if (successEl) successEl.style.display = 'block';
+    var section = document.getElementById('waitlist');
+    if (section) section.scrollIntoView({ behavior: 'smooth', block: 'center' });
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: 'preorder_submit' });
-  })
-  .catch(function() {
-    btn.disabled = false;
-    btn.textContent = 'Pre-order now →';
+  }
+})();
+
+document.getElementById('preorder-form').addEventListener('submit', function(e) {
+  var form = e.target;
+  var name = form.elements['name'].value.trim();
+  var phone = form.elements['phone'].value.trim();
+  var email = form.elements['email'].value.trim();
+  var errEl = document.getElementById('form-error');
+  if (!name || !phone || !email) {
+    e.preventDefault();
+    errEl.textContent = 'Please fill in all fields.';
     errEl.style.display = 'block';
-  });
+    return;
+  }
+  errEl.style.display = 'none';
+  var btn = form.querySelector('button[type=submit]');
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+  /* form submits naturally — Netlify captures it server-side */
 });
 </script>
 </body>
