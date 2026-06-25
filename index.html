@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DJI Agras T70P, arriving WA August 2026 | Pre-order | Elk Fish Robotics</title>
+<title>DJI Agras T70P, arriving WA 15 August 2026 | Pre-order | Elk Fish Robotics</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -253,9 +253,9 @@ footer{border-top:1px solid var(--line);padding:40px 0;font-size:.86rem;color:va
 <!-- HERO -->
 <section class="hero">
   <div class="wrap">
-    <span class="eyebrow reveal in">DJI Agras T70P &middot; Arriving in WA, August 2026</span>
+    <span class="eyebrow reveal in">DJI Agras T70P &middot; Arriving in WA, 15 August 2026</span>
     <h1 class="reveal in">Spray more country, in fewer days.</h1>
-    <p class="lead reveal in">The flagship Agras lands in WA this August. Pre-order now to be first in line for one.</p>
+    <p class="lead reveal in">The flagship Agras lands in WA on 15 August. Pre-order now to be first in line for one.</p>
     <div class="hero-actions reveal in">
       <a class="btn btn-dark btn-arrow" href="#waitlist">Pre-order now</a>
       <a class="btn btn-light" href="#specs">See the specs</a>
@@ -344,19 +344,21 @@ footer{border-top:1px solid var(--line);padding:40px 0;font-size:.86rem;color:va
 <!-- PRE-ORDER FORM -->
 <section class="waitlist dark" id="waitlist">
   <div class="wrap">
-    <div class="sec-head reveal" style="text-align:left;margin-left:0"><span class="eyebrow" style="color:var(--on-dark-soft)">Limited first release &middot; August 2026</span><h2 style="margin-top:14px">Be first in line this August.</h2></div>
+    <div class="sec-head reveal" style="text-align:left;margin-left:0"><span class="eyebrow" style="color:var(--on-dark-soft)">Limited first release &middot; 15 August 2026</span><h2 style="margin-top:14px">Be first in line on 15 August.</h2></div>
     <div class="wl-grid">
       <div class="reveal">
-        <p class="lead" style="color:var(--on-dark-soft);max-width:440px">The T70P lands in WA this August. Pre-order now and you're first in line the day it arrives. Once the first release is gone, the rest wait for the next shipment.</p>
+        <p class="lead" style="color:var(--on-dark-soft);max-width:440px">The T70P lands in WA on 15 August. Pre-order now and you're first in line the day it arrives. Once the first release is gone, the rest wait for the next shipment.</p>
         <p style="margin-top:22px;color:var(--on-dark-soft);font-size:.96rem;max-width:440px">Hold your spot with a pre-order deposit, or just register your interest. We confirm spec, pricing and timing with you before anything is final.</p>
       </div>
       <div class="reveal">
         <div class="wl-card">
-          <div class="h"><h3>Pre-order the T70P</h3><span class="pill">August 2026</span></div>
+          <div class="h"><h3>Pre-order the T70P</h3><span class="pill">15 August 2026</span></div>
           <p class="sub">Lock in your spot, or register your interest first.</p>
-          <!-- Pre-order form — submits to GoHighLevel webhook -->
-          <!-- TODO: Replace GHL_WEBHOOK_URL in preorder.js (or inline below) with your GoHighLevel webhook endpoint -->
-          <form id="preorder-form" novalidate>
+          <!-- Netlify Forms — submissions appear in Netlify dashboard and email Amy -->
+          <!-- For Odoo: in Netlify dashboard go to Forms → preorder → Outgoing notifications, add a POST webhook pointing to your Make/Zapier step that creates the crm.lead -->
+          <form id="preorder-form" name="preorder" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+            <input type="hidden" name="form-name" value="preorder">
+            <p style="display:none"><input name="bot-field"></p>
             <input class="field" type="text" name="name" placeholder="Full name" aria-label="Full name" required>
             <input class="field" type="tel" name="phone" placeholder="Phone number" aria-label="Phone number" required>
             <input class="field" type="email" name="email" placeholder="Email" aria-label="Email" required>
@@ -395,7 +397,7 @@ footer{border-top:1px solid var(--line);padding:40px 0;font-size:.86rem;color:va
   <div class="wrap" style="max-width:820px">
     <div class="sec-head reveal"><span class="eyebrow">Questions</span><h2 style="margin-top:14px">The things buyers ask first.</h2></div>
     <div class="qa-list stagger">
-      <div class="qa reveal"><h3>When does the T70P arrive in WA?</h3><p>This August. Pre-order now and you'll be first in line the day it lands.</p></div>
+      <div class="qa reveal"><h3>When does the T70P arrive in WA?</h3><p>15 August 2026. Pre-order now and you'll be first in line the day it lands.</p></div>
       <div class="qa reveal"><h3>What does the pre-order deposit do?</h3><p>It holds your spot in the first WA release, ahead of anyone who hasn't pre-ordered. We confirm spec, pricing and timing with you before anything is final.</p></div>
       <div class="qa reveal"><h3>Do I need a licence to fly it?</h3><p>Commercial spraying needs a Remote Pilot Licence and a Part 137 certification for chemical application. We don't run those courses, but we connect you with WA-based CASA-credentialed trainers. Every drone comes with on-day setup, a demo and a walkthrough.</p></div>
       <div class="qa reveal"><h3>Should I buy, or keep hiring a contractor?</h3><p>Below about 800 ha a season, hiring is usually the call. Above that, with a recurring spray window, owning tends to pay for itself in a couple of seasons. We'll work it through against your operation.</p></div>
@@ -408,7 +410,7 @@ footer{border-top:1px solid var(--line);padding:40px 0;font-size:.86rem;color:va
   <div class="wrap">
     <span class="eyebrow reveal">Be first on the T70P</span>
     <h2 class="reveal" style="margin-top:14px">Pre-order the T70P today.</h2>
-    <p class="lead reveal">Pre-order now to lock in first access this August, or register your interest. We'll answer anything you want to know.</p>
+    <p class="lead reveal">Pre-order now to lock in first access on 15 August, or register your interest. We'll answer anything you want to know.</p>
     <div class="hero-actions reveal" style="justify-content:center"><a class="btn btn-dark btn-arrow" href="#waitlist">Pre-order now</a><a class="btn btn-light" href="tel:+61861107423">Call us</a></div>
     <div class="contact reveal">
       <div><b>Phone</b><a href="tel:+61861107423">(08) 6110 7423</a></div>
@@ -492,15 +494,12 @@ document.querySelectorAll('.tvid[data-video]').forEach(function(t){
   t.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();play();}});
 });
 
-/* Pre-order form → GoHighLevel webhook
-   -------------------------------------------------------
-   TODO (Amy): Paste your GoHighLevel webhook URL below.
-   In GHL: Settings > Integrations > Webhooks, or use a
-   Workflow trigger (Webhook / Inbound Webhook).
-   Set the URL as the value of GHL_WEBHOOK_URL.
-   ------------------------------------------------------- */
-var GHL_WEBHOOK_URL = ''; /* ← paste your GHL webhook URL here */
-
+/* Pre-order form → Netlify Forms (AJAX submit)
+   Submissions appear in Netlify dashboard → Forms → preorder.
+   Netlify emails Amy on each submission — configure the notification
+   address in Netlify: Forms → preorder → Form notifications.
+   For Odoo: add an outgoing webhook in Netlify Forms notifications
+   pointing to Make/Zapier, which creates the crm.lead in Odoo. */
 document.getElementById('preorder-form').addEventListener('submit', function(e) {
   e.preventDefault();
   var form = e.target;
@@ -508,31 +507,13 @@ document.getElementById('preorder-form').addEventListener('submit', function(e) 
   var errEl = document.getElementById('form-error');
   var successEl = document.getElementById('form-success');
   errEl.style.display = 'none';
-
-  if (!GHL_WEBHOOK_URL) {
-    /* Webhook not yet configured — log locally and show success so UX isn't broken during testing */
-    console.warn('GHL webhook URL not set. Form data:', {
-      name: form.name.value,
-      phone: form.phone.value,
-      email: form.email.value
-    });
-    form.style.display = 'none';
-    successEl.style.display = 'block';
-    return;
-  }
-
   btn.disabled = true;
   btn.textContent = 'Sending…';
 
-  fetch(GHL_WEBHOOK_URL, {
+  fetch('/', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      source: 'T70P pre-order — agras.elkfishrobotics.com.au',
-      name: form.name.value,
-      phone: form.phone.value,
-      email: form.email.value
-    })
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams(new FormData(form)).toString()
   })
   .then(function(r) {
     if (!r.ok) throw new Error('HTTP ' + r.status);
