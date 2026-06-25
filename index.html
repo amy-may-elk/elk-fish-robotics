@@ -4,6 +4,33 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DJI Agras T70P, arriving WA 15 August 2026 | Pre-order | Elk Fish Robotics</title>
+<meta name="description" content="Pre-order the DJI Agras T70P, arriving in WA on 15 August. Spray, spread and lift from one drone, delivered and set up by Elk Fish Robotics in Fremantle.">
+<link rel="canonical" href="https://agras.elkfishrobotics.com.au/">
+
+<!-- Open Graph: Facebook, LinkedIn, SMS, WhatsApp -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Elk Fish Robotics">
+<meta property="og:title" content="DJI Agras T70P, pre-order now, arriving WA 15 August">
+<meta property="og:description" content="The flagship Agras lands in WA on 15 August. Pre-order now to be first in line. Delivered and set up by Elk Fish Robotics, Fremantle.">
+<meta property="og:url" content="https://agras.elkfishrobotics.com.au/">
+<meta property="og:image" content="https://agras.elkfishrobotics.com.au/assets/images/og-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DJI Agras T70P, pre-order now, arriving WA 15 August">
+<meta name="twitter:description" content="The flagship Agras lands in WA on 15 August. Pre-order now to be first in line.">
+<meta name="twitter:image" content="https://agras.elkfishrobotics.com.au/assets/images/og-share.jpg">
+
+<!-- Google Tag Manager — TODO: replace GTM-XXXXXXX with your real container ID -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+<!-- End Google Tag Manager -->
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -233,6 +260,10 @@ footer{border-top:1px solid var(--line);padding:40px 0;font-size:.86rem;color:va
 </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) — TODO: replace GTM-XXXXXXX with your real container ID -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <div id="splash"><img src="assets/images/efr-glitch.png" alt="Elk Fish Robotics"></div>
 
 <header>
@@ -356,7 +387,7 @@ footer{border-top:1px solid var(--line);padding:40px 0;font-size:.86rem;color:va
           <p class="sub">Lock in your spot, or register your interest first.</p>
           <!-- Netlify Forms — submissions appear in Netlify dashboard and email Amy -->
           <!-- For Odoo: in Netlify dashboard go to Forms → preorder → Outgoing notifications, add a POST webhook pointing to your Make/Zapier step that creates the crm.lead -->
-          <form id="preorder-form" name="preorder" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <form id="preorder-form" name="preorder" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
             <input type="hidden" name="form-name" value="preorder">
             <p style="display:none"><input name="bot-field"></p>
             <input class="field" type="text" name="name" placeholder="Full name" aria-label="Full name" required>
@@ -519,6 +550,8 @@ document.getElementById('preorder-form').addEventListener('submit', function(e) 
     if (!r.ok) throw new Error('HTTP ' + r.status);
     form.style.display = 'none';
     successEl.style.display = 'block';
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'preorder_submit' });
   })
   .catch(function() {
     btn.disabled = false;
