@@ -197,6 +197,11 @@ header{position:sticky;top:0;z-index:90;background:rgba(255,255,255,.8);backdrop
 .field:focus{outline:2px solid var(--ink);border-color:transparent}
 .wl-card .btn{width:100%;justify-content:center;margin-top:3px}
 .wl-card .fine{font-size:.78rem;color:var(--muted);text-align:center;margin-top:12px}
+.wl-price{font-size:1.7rem;font-weight:800;letter-spacing:-.04em;color:var(--ink);margin:8px 0 2px}
+.wl-price-note{font-size:.82rem;font-weight:500;color:var(--muted);letter-spacing:0;vertical-align:middle}
+.wl-includes{list-style:none;margin:10px 0 16px;border-top:1px solid var(--line);padding-top:10px}
+.wl-includes li{font-size:.86rem;color:var(--muted);padding:5px 0 5px 16px;position:relative;border-bottom:1px solid var(--line)}
+.wl-includes li::before{content:"";position:absolute;left:0;top:11px;width:5px;height:5px;border-radius:50%;background:var(--ink);opacity:.4}
 .form-success{display:none;padding:22px;text-align:center;font-weight:600;font-size:1.05rem;color:var(--ink)}
 .form-error{display:none;font-size:.84rem;color:#b91c1c;margin-top:8px;text-align:center}
 
@@ -405,12 +410,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="wl-grid">
       <div class="reveal">
         <p class="lead" style="color:var(--on-dark-soft);max-width:440px">The T70P lands in WA on 15 August. Pre-order now and you're first in line the day it arrives. Once the first release is gone, the rest wait for the next shipment.</p>
-        <p style="margin-top:22px;color:var(--on-dark-soft);font-size:.96rem;max-width:440px">Hold your spot with a pre-order deposit, or just register your interest. We confirm spec, pricing and timing with you before anything is final.</p>
+        <p style="margin-top:22px;color:var(--on-dark-soft);font-size:.96rem;max-width:440px">Hold your spot with a pre-order deposit, or just register your interest. We'll confirm timing and next steps with you after you register.</p>
       </div>
       <div class="reveal">
         <div class="wl-card">
           <div class="h"><h3>Pre-order the T70P</h3><span class="pill">15 August 2026</span></div>
-          <p class="sub">Lock in your spot, or register your interest first.</p>
+          <p class="sub">Complete package, delivered and set up in WA.</p>
+          <p class="wl-price">$35,000 <span class="wl-price-note">AUD inc GST</span></p>
+          <ul class="wl-includes">
+            <li>DJI Agras T70 aircraft</li>
+            <li>Batteries</li>
+            <li>Spray unit</li>
+            <li>Charging cable</li>
+            <li>Spraying system with heat sink</li>
+          </ul>
           <!-- Netlify Forms — submissions appear in Netlify dashboard and email Amy -->
           <!-- For Odoo: in Netlify dashboard go to Forms → preorder → Outgoing notifications, add a POST webhook pointing to your Make/Zapier step that creates the crm.lead -->
           <form id="preorder-form" name="preorder" method="POST" action="/?preorder-success=1" data-netlify="true" netlify-honeypot="bot-field" novalidate>
@@ -455,7 +468,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="sec-head reveal"><span class="eyebrow">Questions</span><h2 style="margin-top:14px">The things buyers ask first.</h2></div>
     <div class="qa-list stagger">
       <div class="qa reveal"><h3>When does the T70P arrive in WA?</h3><p>15 August 2026. Pre-order now and you'll be first in line the day it lands.</p></div>
-      <div class="qa reveal"><h3>What does the pre-order deposit do?</h3><p>It holds your spot in the first WA release, ahead of anyone who hasn't pre-ordered. We confirm spec, pricing and timing with you before anything is final.</p></div>
+      <div class="qa reveal"><h3>What does the pre-order deposit do?</h3><p>It holds your spot in the first WA release, ahead of anyone who hasn't pre-ordered. We'll confirm timing and next steps with you after you register.</p></div>
       <div class="qa reveal"><h3>Do I need a licence to fly it?</h3><p>Commercial spraying needs a Remote Pilot Licence and a Part 137 certification for chemical application. We don't run those courses, but we connect you with WA-based CASA-credentialed trainers. Every drone comes with on-day setup, a demo and a walkthrough.</p></div>
       <div class="qa reveal"><h3>Should I buy, or keep hiring a contractor?</h3><p>Below about 800 ha a season, hiring is usually the call. Above that, with a recurring spray window, owning tends to pay for itself in a couple of seasons. We'll work it through against your operation.</p></div>
     </div>
