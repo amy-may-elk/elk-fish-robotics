@@ -19,6 +19,9 @@
     // bot is running. The bot is always running, so a permanent green dot
     // would be decoration. Times are Perth local, 24 hour.
     hours: {
+      alwaysOnline: true,   // Dot stays green at all hours. The reply-time
+                            // line below still changes, so you never promise
+                            // a callback at midnight.
       open: 8,
       close: 17,
       days: [1, 2, 3, 4, 5],
@@ -47,6 +50,19 @@
       privacyUrl: "/privacy",
       button: "Start chat",
       skip: "Skip and just chat"
+    },
+
+    // Compact details card that sits inside the conversation. Not a gate:
+    // the chat is fully usable with it on screen, and it collapses once sent.
+    inlineForm: {
+      enabled: true,
+      steps: [
+        { key: "name",    q: "What's your name?",                                    ph: "First name" },
+        { key: "contact", q: "Thanks {name}. Best email or mobile to reach you on?",  ph: "Email or mobile" }
+      ],
+      skip: "Skip",
+      consent: "So Amy can follow up. We only use this to answer your enquiry.",
+      done: "Thanks {name}, Amy has your details."
     },
 
     greeting:
@@ -122,6 +138,35 @@
     ".efr-msg.bot{background:#fff;border:1px solid #E8E8E8;color:#1A1A1A;align-self:flex-start;border-bottom-left-radius:4px}",
     ".efr-msg.user{background:" + CONFIG.charcoal + ";color:#fff;align-self:flex-end;border-bottom-right-radius:4px}",
     ".efr-msg.err{background:#FFF3F2;border:1px solid #F3C9C5;color:#8A2A22;align-self:flex-start}",
+    ".efr-quote{align-self:flex-start;width:100%;max-width:340px;background:#fff;border:1px solid #E0E0E0;border-radius:12px;overflow:hidden;margin-left:35px}",
+    ".efr-quote-h{padding:13px 16px;border-bottom:1px solid #EFEFEF}",
+    ".efr-quote-h b{display:block;font-size:14px;color:#1A1A1A}",
+    ".efr-quote-h span{display:block;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#999;margin-top:3px}",
+    ".efr-quote-b{padding:12px 16px}",
+    ".efr-quote-l{display:flex;justify-content:space-between;gap:12px;font-size:13px;color:#444;padding:5px 0}",
+    ".efr-quote-l span:last-child{white-space:nowrap;color:#1A1A1A}",
+    ".efr-quote-t{display:flex;justify-content:space-between;gap:12px;font-size:15px;font-weight:600;color:#1A1A1A;padding:11px 0 3px;margin-top:7px;border-top:2px solid #1A1A1A}",
+    ".efr-quote-inc{font-size:11.5px;color:#777;line-height:1.5;padding:10px 16px 0;border-top:1px solid #EFEFEF;margin-top:10px}",
+    ".efr-quote-note{font-size:11px;color:#8A6D2F;background:#FFF8E6;padding:9px 16px;line-height:1.45}",
+    ".efr-quote-a{display:flex;gap:8px;padding:11px 16px;border-top:1px solid #EFEFEF}",
+    ".efr-quote-a button{flex:1;border:1px solid #DDD;background:#fff;border-radius:8px;padding:9px;font-size:12.5px;color:#1A1A1A;cursor:pointer;min-height:38px}",
+    ".efr-quote-a button:hover{border-color:" + CONFIG.charcoal + "}",
+    ".efr-quote-a button:disabled{opacity:.5;cursor:default}",
+    "@media(max-width:640px){.efr-quote{max-width:100%;margin-left:0}}",
+    ".efr-inline{align-self:stretch;background:#fff;border:1px solid #E4E4E4;border-radius:12px;padding:12px 13px;margin-left:35px}",
+    ".efr-inline p.q{margin:0 0 9px;font-size:13.5px;color:#1A1A1A;line-height:1.4}",
+    ".efr-inline-r{display:flex;gap:7px;align-items:center}",
+    ".efr-inline input{flex:1;min-width:0;border:1px solid #DDD;border-radius:8px;padding:10px 11px;font-size:14px;outline:none}",
+    ".efr-inline input:focus{border-color:" + CONFIG.charcoal + "}",
+    ".efr-inline input.bad{border-color:" + CONFIG.accent + ";background:#FFF8F8}",
+    ".efr-inline button.go{flex:none;background:" + CONFIG.charcoal + ";color:#fff;border:0;border-radius:8px;padding:0 15px;height:40px;font-size:13px;font-weight:500;cursor:pointer}",
+    ".efr-inline button.go:disabled{opacity:.5}",
+    ".efr-inline-b{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px}",
+    ".efr-inline small{font-size:10.5px;color:#A0A0A0;line-height:1.4}",
+    ".efr-inline button.no{flex:none;background:none;border:0;color:#9A9A9A;font-size:12px;text-decoration:underline;cursor:pointer;padding:4px 2px}",
+    ".efr-inline-err{margin:8px 0 0;font-size:12px;color:" + CONFIG.accent + "}",
+    ".efr-inline.done{background:#F4F8F4;border-color:#CFE3CF;color:#2F6B3A;font-size:13px;padding:11px 14px}",
+    "@media(max-width:640px){.efr-inline{margin-left:0}.efr-inline input{font-size:16px}}",
     ".efr-starters{display:flex;flex-wrap:wrap;gap:7px;padding-top:2px}",
     ".efr-starters button{background:#fff;border:1px solid #DDD;border-radius:999px;padding:7px 13px;font-size:12.5px;color:#444;cursor:pointer}",
     ".efr-starters button:hover{border-color:" + CONFIG.accent + ";color:" + CONFIG.accent + "}",
@@ -226,8 +271,12 @@
     }
   }
 
+  function dotGreen() {
+    return CONFIG.hours && CONFIG.hours.alwaysOnline ? true : teamOnline();
+  }
+
   function avatar(withStatus) {
-    var a = el("div", "efr-avatar" + (withStatus && !teamOnline() ? " off" : ""));
+    var a = el("div", "efr-avatar" + (withStatus && !dotGreen() ? " off" : ""));
     a.innerHTML = AVATAR_SVG;
     if (withStatus) {
       var s = el("i", "status");
@@ -331,6 +380,234 @@
     idleTimer = setTimeout(function () { sendTranscript("idle"); }, IDLE_MS);
   }
 
+  var jsPdfLoading = null;
+  function loadJsPdf() {
+    if (window.jspdf) return Promise.resolve(window.jspdf);
+    if (jsPdfLoading) return jsPdfLoading;
+    jsPdfLoading = new Promise(function (resolve, reject) {
+      var t = document.createElement("script");
+      t.src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";
+      t.onload = function () { resolve(window.jspdf); };
+      t.onerror = function () { reject(new Error("pdf library failed to load")); };
+      document.head.appendChild(t);
+    });
+    return jsPdfLoading;
+  }
+
+  function buildPdf(q) {
+    return loadJsPdf().then(function (lib) {
+      var doc = new lib.jsPDF({ unit: "pt", format: "a4" });
+      var L = 56, y = 64, W = 595;
+
+      doc.setFont("helvetica", "bold").setFontSize(16).text("Elk Fish Robotics", L, y);
+      doc.setFont("helvetica", "normal").setFontSize(9).setTextColor(110);
+      y += 15; doc.text("1/72 Marine Terrace, Fremantle WA 6160  |  (08) 6110 7423", L, y);
+      y += 12; doc.text("amy-may@elkfishrobotics.com.au", L, y);
+
+      y += 34; doc.setTextColor(20).setFont("helvetica", "bold").setFontSize(13);
+      doc.text("Indicative pricing | DJI Agras " + q.model, L, y);
+      y += 14; doc.setFont("helvetica", "normal").setFontSize(9).setTextColor(120);
+      doc.text("Prepared " + new Date().toLocaleDateString("en-AU") + "   |   Figures current as at " + q.validUntil, L, y);
+
+      y += 26; doc.setDrawColor(220).line(L, y, W - L, y); y += 20;
+      doc.setFontSize(10).setTextColor(40);
+      q.lines.forEach(function (l) {
+        doc.text(String(l.item), L, y);
+        doc.text(String(l.price), W - L, y, { align: "right" });
+        y += 18;
+      });
+
+      y += 6; doc.setDrawColor(200).line(L, y, W - L, y); y += 18;
+      doc.setTextColor(90);
+      doc.text("Subtotal", L, y); doc.text(q.subtotalExGst, W - L, y, { align: "right" }); y += 16;
+      doc.text("GST", L, y); doc.text(q.gst, W - L, y, { align: "right" }); y += 12;
+      doc.setDrawColor(20).setLineWidth(1.2).line(L, y, W - L, y); y += 20;
+      doc.setFont("helvetica", "bold").setFontSize(12).setTextColor(20);
+      doc.text("Total inc GST", L, y); doc.text(q.totalIncGst, W - L, y, { align: "right" });
+
+      if (q.includes && q.includes.length) {
+        y += 34; doc.setFont("helvetica", "bold").setFontSize(10).text("Included", L, y);
+        doc.setFont("helvetica", "normal").setFontSize(9.5).setTextColor(70);
+        q.includes.forEach(function (i) { y += 15; doc.text("-  " + i, L, y); });
+      }
+
+      y += 40; doc.setFillColor(255, 248, 230).rect(L, y - 14, W - L * 2, 58, "F");
+      doc.setFont("helvetica", "bold").setFontSize(9.5).setTextColor(120, 90, 30);
+      doc.text("This is indicative pricing, not a formal quote.", L + 12, y + 2);
+      doc.setFont("helvetica", "normal").setTextColor(120, 100, 60).setFontSize(8.5);
+      doc.text("Excludes freight, training and site-specific requirements. Final price depends on", L + 12, y + 16);
+      doc.text("configuration. Amy-May Pointer confirms every quote before it is binding.", L + 12, y + 28);
+
+      y += 76; doc.setFont("helvetica", "bold").setFontSize(10).setTextColor(20);
+      doc.text("To proceed, contact Amy-May Pointer", L, y);
+      doc.setFont("helvetica", "normal").setFontSize(9.5).setTextColor(70);
+      y += 15; doc.text("Project Manager - Agras  |  0474 147 854", L, y);
+      y += 13; doc.text("amy-may@elkfishrobotics.com.au", L, y);
+
+      return doc;
+    });
+  }
+
+  function addQuoteCard(q) {
+    var card = el("div", "efr-quote");
+
+    var h = el("div", "efr-quote-h");
+    h.appendChild(el("b", null, "DJI Agras " + q.model));
+    h.appendChild(el("span", null, "Indicative pricing"));
+    card.appendChild(h);
+
+    var b = el("div", "efr-quote-b");
+    q.lines.forEach(function (l) {
+      var row = el("div", "efr-quote-l");
+      row.appendChild(el("span", null, l.item));
+      row.appendChild(el("span", null, l.price));
+      b.appendChild(row);
+    });
+    var sub = el("div", "efr-quote-l");
+    sub.appendChild(el("span", null, "GST"));
+    sub.appendChild(el("span", null, q.gst));
+    b.appendChild(sub);
+    var tot = el("div", "efr-quote-t");
+    tot.appendChild(el("span", null, "Total inc GST"));
+    tot.appendChild(el("span", null, q.totalIncGst));
+    b.appendChild(tot);
+    card.appendChild(b);
+
+    if (q.includes && q.includes.length) {
+      card.appendChild(el("div", "efr-quote-inc", "Includes: " + q.includes.join(", ")));
+    }
+    card.appendChild(el("div", "efr-quote-note", "Indicative only, not a formal quote. Excludes freight and training. Amy-May confirms the final figure."));
+
+    var actions = el("div", "efr-quote-a");
+    var dl = el("button", null, "Download PDF");
+    dl.addEventListener("click", function () {
+      dl.disabled = true;
+      dl.textContent = "Preparing...";
+      buildPdf(q)
+        .then(function (doc) {
+          doc.save("ElkFish-Agras-" + q.model + "-indicative-pricing.pdf");
+          dl.textContent = "Download PDF";
+          dl.disabled = false;
+        })
+        .catch(function (err) {
+          console.warn("PDF failed", err);
+          dl.textContent = "Download unavailable";
+        });
+    });
+    actions.appendChild(dl);
+    card.appendChild(actions);
+
+    log.appendChild(card);
+    scroll();
+  }
+
+  var inlineShown = false;
+  function showInlineForm() {
+    if (!CONFIG.inlineForm.enabled || inlineShown) return;
+    inlineShown = true;
+    var C = CONFIG.inlineForm;
+    var answers = {};
+    var step = 0;
+
+    var card = el("div", "efr-inline");
+    var qLine = el("p", "q");
+    var row = el("div", "efr-inline-r");
+    var input = el("input");
+    input.type = "text";
+    var go = el("button", "go", "\u2192");
+    go.setAttribute("aria-label", "Send");
+    row.appendChild(input);
+    row.appendChild(go);
+    var err = el("p", "efr-inline-err");
+    var bottom = el("div", "efr-inline-b");
+    var note = el("small", null, C.consent);
+    var skip = el("button", "no", C.skip);
+    bottom.appendChild(note);
+    bottom.appendChild(skip);
+
+    card.appendChild(qLine);
+    card.appendChild(row);
+    card.appendChild(err);
+    card.appendChild(bottom);
+
+    function fill(t) {
+      return t.replace("{name}", (answers.name || "").split(" ")[0]);
+    }
+
+    function render() {
+      var st = C.steps[step];
+      qLine.textContent = fill(st.q);
+      input.value = "";
+      input.placeholder = st.ph;
+      input.className = "";
+      input.autocomplete = st.key === "name" ? "name" : "email";
+      err.textContent = "";
+      go.disabled = false;
+      scroll();
+      input.focus();
+    }
+
+    function finish() {
+      lead = {
+        name: answers.name || "",
+        email: answers.email || "",
+        phone: answers.phone || "",
+        enterprise: (lead && lead.enterprise) || ""
+      };
+      leadSent = true;
+      postForm(CONFIG.gate.leadForm, {
+        name: lead.name, email: lead.email, phone: lead.phone,
+        enterprise: lead.enterprise, page: location.pathname, "bot-field": ""
+      }).catch(function (e) { console.warn("Lead submission failed", e); });
+
+      card.className = "efr-inline done";
+      card.textContent = fill(C.done);
+      scroll();
+    }
+
+    function submit() {
+      var v = input.value.trim();
+      var st = C.steps[step];
+      err.textContent = "";
+      input.classList.remove("bad");
+
+      if (st.key === "name") {
+        if (v.length < 2) { input.classList.add("bad"); err.textContent = "Just a first name is fine."; return; }
+        answers.name = v.slice(0, 80);
+      } else {
+        // one field, either kind. An @ means email, otherwise treat as a number.
+        if (v.indexOf("@") !== -1) {
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) {
+            input.classList.add("bad"); err.textContent = "That email does not look right."; return;
+          }
+          answers.email = v.slice(0, 120);
+        } else {
+          if (v.replace(/\D/g, "").length < 8) {
+            input.classList.add("bad"); err.textContent = "An email or a mobile number, either is fine."; return;
+          }
+          answers.phone = v.slice(0, 40);
+        }
+      }
+
+      step++;
+      if (step >= C.steps.length) finish();
+      else render();
+    }
+
+    go.addEventListener("click", submit);
+    input.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") { e.preventDefault(); submit(); }
+    });
+    skip.addEventListener("click", function () {
+      // Keep a name if they gave one before skipping the contact step.
+      if (answers.name) lead = { name: answers.name, email: "", phone: "", enterprise: "" };
+      card.remove();
+    });
+
+    log.appendChild(card);
+    render();
+  }
+
   function showStarters() {
     var wrap = el("div", "efr-starters");
     CONFIG.starters.forEach(function (s) {
@@ -386,6 +663,7 @@
     foot.style.display = "block";
     if (!log.childElementCount) {
       addMessage("bot", CONFIG.greeting);
+      showInlineForm();
       showStarters();
     }
     input.focus();
@@ -567,6 +845,7 @@
         }
         addMessage("bot", res.data.reply);
         history.push({ role: "assistant", content: res.data.reply });
+        if (res.data.quote && res.data.quote.model) addQuoteCard(res.data.quote);
         if (res.data.captured) mergeCaptured(res.data.captured);
         resetIdleTimer();
       })
@@ -599,8 +878,8 @@
     var lb = el("b", null, CONFIG.launcherLabel);
     var le = el("em");
     le.appendChild(el("s"));
-    le.appendChild(document.createTextNode(teamOnline() ? CONFIG.hours.onlineText : CONFIG.hours.offlineText));
-    if (!teamOnline()) le.querySelector("s").style.background = "#B4B2A9";
+    le.appendChild(document.createTextNode(CONFIG.hours.onlineText));
+    if (!dotGreen()) le.querySelector("s").style.background = "#B4B2A9";
     lbl.appendChild(lb);
     lbl.appendChild(le);
     launcher.appendChild(lbl);
@@ -614,10 +893,9 @@
     headId.appendChild(avatar(true));
     var headText = el("div");
     headText.appendChild(el("h3", null, CONFIG.title));
-    var online = teamOnline();
-    var st = el("p", "status" + (online ? "" : " off"));
+    var st = el("p", "status" + (dotGreen() ? "" : " off"));
     st.appendChild(el("s"));
-    st.appendChild(document.createTextNode(online ? CONFIG.hours.onlineSub : CONFIG.hours.offlineSub));
+    st.appendChild(document.createTextNode(teamOnline() ? CONFIG.hours.onlineSub : CONFIG.hours.offlineSub));
     headText.appendChild(st);
     headId.appendChild(headText);
     var close = el("button", "efr-close", "\u00D7");

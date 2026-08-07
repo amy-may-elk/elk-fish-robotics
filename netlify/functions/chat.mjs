@@ -113,16 +113,60 @@ const PRICING = {
   currency: "AUD",
 
   packages: {
-    T25P: null,
-    T50:  null,
-    T70P: null,   // e.g. { name: "T70P Ready-to-Fly Package", exGst: 31818.18, includes: ["Aircraft", "2 x DB2160", "C12000 charger", "D14000iE generator", "RC Plus 2", "D-RTK 3 AG"] }
-    T100: null,
+    T25P: {
+      name: "T25P Ready-to-Fly Package",
+      exGst: 18090.91,          // $19,900 inc GST
+      includes: ["T25P airframe", "C8000 charger", "3 x DB800 batteries", "WB37 battery with charging hub"],
+    },
+    T50: null,   // No T50 package price supplied. The bot refuses to quote a T50.
+    T70P: {
+      name: "T70P Ready-to-Fly Package",
+      exGst: 31818.18,          // $35,000 inc GST
+      includes: ["T70P intelligent airframe", "Spraying system with air-cooled heat sink", "C12000 charger", "3 x DB2160 batteries", "WB37 battery with charging hub"],
+    },
+    T100: {
+      name: "T100 Ready-to-Fly Package",
+      exGst: 40909.09,          // $45,000 inc GST
+      includes: ["T100 intelligent airframe", "Spraying system with air-cooled heat sink", "C12000 charger", "3 x DB2160 batteries", "WB37 battery with charging hub"],
+    },
   },
 
-  // Optional extras a farmer might ask to add. Same rule: null means no quote.
+  // Add-ons, priced per model. Aliases are what a farmer actually types.
   options: {
-    // "extra DB2160 battery": { exGst: null },
-    // "spreading system":     { exGst: null },
+    T25P: {
+      "spreading system": { label: "spreading system", exGst: 1600.0, aliases: ["spreader", "25l spreading system", "spreading"] },   // $1,760 inc
+      "centrifugal sprinkler package": { label: "centrifugal sprinkler package", exGst: 772.73, aliases: ["atomising sprinkler", "sprinkler kit"] },   // $850 inc
+      "extra db800 battery": { label: "extra DB800 battery", exGst: 2636.36, aliases: ["extra battery", "spare battery", "additional battery", "db800"] },   // $2,900 inc
+      "c8000 charger": { label: "C8000 charger", exGst: 1572.73, aliases: ["spare charger", "extra charger"] },   // $1,730 inc
+      "d-rtk 3 base station": { label: "D-RTK 3 base station", exGst: 1127.27, aliases: ["rtk", "rtk base", "d-rtk"] },   // $1,240 inc
+      "o4 relay": { label: "O4 relay", exGst: 1245.45, aliases: ["relay", "signal relay"] },   // $1,370 inc
+      "spotlight": { label: "spotlight", exGst: 327.27, aliases: ["light", "night light"] },   // $360 inc
+    },
+    T70P: {
+      "spreading system": { label: "spreading system", exGst: 2045.45, aliases: ["spreader", "spreading"] },   // $2,250 inc
+      "mist nozzle package": { label: "mist nozzle package", exGst: 1509.09, aliases: ["mist kit", "misting nozzles", "atomising nozzles"] },   // $1,660 inc
+      "lift system": { label: "lift system", exGst: 800.0, aliases: ["lifting system", "lift kit", "sling"] },   // $880 inc
+      "extra db2160 battery": { label: "extra DB2160 battery", exGst: 3709.09, aliases: ["extra battery", "spare battery", "additional battery", "db2160"] },   // $4,080 inc
+      "c12000 charger": { label: "C12000 charger", exGst: 2163.64, aliases: ["spare charger", "extra charger"] },   // $2,380 inc
+      "d14000ie generator": { label: "D14000iE generator", exGst: 4718.18, aliases: ["generator", "genset", "d14000"] },   // $5,190 inc
+      "d-rtk 3 base station": { label: "D-RTK 3 base station", exGst: 1127.27, aliases: ["rtk", "rtk base", "d-rtk"] },   // $1,240 inc
+      "o4 relay": { label: "O4 relay", exGst: 1245.45, aliases: ["relay", "signal relay"] },   // $1,370 inc
+      "wb37 battery charging hub": { label: "WB37 battery charging hub", exGst: 117.27, aliases: ["wb37", "charging hub"] },   // $129 inc
+    },
+    T100: {
+      "150 l spreading system": { label: "150 L spreading system", exGst: 2736.36, aliases: ["spreader", "spreading system", "spreading"] },   // $3,010 inc
+      "mist nozzle package": { label: "mist nozzle package", exGst: 1972.73, aliases: ["mist kit", "misting nozzles", "atomising nozzles"] },   // $2,170 inc
+      "dual-battery lifting system": { label: "dual-battery lifting system", exGst: 2463.64, aliases: ["lifting system", "lift system", "lift kit", "sling"] },   // $2,710 inc
+      "extra db2160 battery": { label: "extra DB2160 battery", exGst: 3709.09, aliases: ["extra battery", "spare battery", "additional battery", "db2160"] },   // $4,080 inc
+      "c12000 charger": { label: "C12000 charger", exGst: 2163.64, aliases: ["spare charger", "extra charger"] },   // $2,380 inc
+      "d14000ie generator": { label: "D14000iE generator", exGst: 4718.18, aliases: ["generator", "genset", "d14000"] },   // $5,190 inc
+      "d-rtk 3 base station": { label: "D-RTK 3 base station", exGst: 1127.27, aliases: ["rtk", "rtk base", "d-rtk"] },   // $1,240 inc
+      "o4 relay": { label: "O4 relay", exGst: 1245.45, aliases: ["relay", "signal relay"] },   // $1,370 inc
+      "small auger screw feeder": { label: "small auger screw feeder", exGst: 116.36, aliases: ["small auger"] },   // $128 inc
+      "large auger screw feeder": { label: "large auger screw feeder", exGst: 126.36, aliases: ["large auger"] },   // $139 inc
+      "db2160 air-cooled heat sink": { label: "DB2160 air-cooled heat sink", exGst: 463.64, aliases: ["heat sink", "heatsink"] },   // $510 inc
+    },
+    T50: {},
   },
 
   // Things the bot must never put a number on, no matter how it is asked.
@@ -152,10 +196,16 @@ function quote(modelName, extras) {
   const lines = [{ label: pkg.name, exGst: pkg.exGst }];
   const unknown = [];
 
+  const catalogue = PRICING.options[modelName] || {};
   (Array.isArray(extras) ? extras : []).forEach((raw) => {
-    const key = String(raw || "").toLowerCase().trim();
-    const opt = PRICING.options[key];
-    if (opt && opt.exGst != null) lines.push({ label: key, exGst: opt.exGst });
+    const key = String(raw || "").toLowerCase().trim().replace(/\s+/g, " ");
+    let opt = catalogue[key];
+    if (!opt) {
+      // fall back to the aliases a farmer is likely to type
+      const hit = Object.keys(catalogue).find((k) => (catalogue[k].aliases || []).indexOf(key) !== -1);
+      if (hit) opt = catalogue[hit];
+    }
+    if (opt && opt.exGst != null) lines.push({ label: opt.label, exGst: opt.exGst });
     else unknown.push(raw);
   });
 
@@ -177,6 +227,89 @@ function quote(modelName, extras) {
   };
 }
 
+
+// ---------------------------------------------------------------------------
+// QUOTE EMAIL
+// Sends indicative pricing to the visitor. Requires RESEND_API_KEY in Netlify
+// and a verified sending domain. Consent is mandatory: the Spam Act 2003 (Cth)
+// requires consent, sender identification and a way to opt out on every
+// commercial electronic message.
+// ---------------------------------------------------------------------------
+
+const SENDER = {
+  from: "Elk Fish Robotics <agras@elkfishrobotics.com.au>",
+  replyTo: "amy-may@elkfishrobotics.com.au",
+  businessName: "Elk Fish Robotics",
+  abn: "SET_YOUR_ABN",
+  address: "1/72 Marine Terrace, Fremantle WA 6160",
+  phone: "(08) 6110 7423",
+};
+
+function quoteEmailHtml(q, name) {
+  const rows = q.lines
+    .map((l) => `<tr><td style="padding:8px 0;border-bottom:1px solid #eee">${l.item}</td><td style="padding:8px 0;border-bottom:1px solid #eee;text-align:right;white-space:nowrap">${l.price}</td></tr>`)
+    .join("");
+  const includes = (q.includes || []).map((i) => `<li style="margin:4px 0">${i}</li>`).join("");
+
+  return `<div style="font-family:Helvetica,Arial,sans-serif;max-width:600px;color:#1a1a1a;line-height:1.55">
+<p>${name ? "Hi " + name + "," : "Hi,"}</p>
+<p>Here is indicative pricing for the DJI Agras ${q.model}, as requested through our website.</p>
+<table style="width:100%;border-collapse:collapse;margin:20px 0">${rows}
+<tr><td style="padding:8px 0">Subtotal</td><td style="padding:8px 0;text-align:right">${q.subtotalExGst}</td></tr>
+<tr><td style="padding:8px 0">GST</td><td style="padding:8px 0;text-align:right">${q.gst}</td></tr>
+<tr><td style="padding:12px 0;font-weight:bold;border-top:2px solid #1a1a1a">Total inc GST</td><td style="padding:12px 0;text-align:right;font-weight:bold;border-top:2px solid #1a1a1a">${q.totalIncGst}</td></tr>
+</table>
+${includes ? `<p style="margin-bottom:6px"><strong>Included:</strong></p><ul style="margin-top:0;padding-left:20px">${includes}</ul>` : ""}
+<div style="background:#FFF8E6;border-left:3px solid #E0A030;padding:12px 16px;margin:22px 0">
+<strong>This is indicative pricing, not a formal quote.</strong><br>
+Figures are current as at ${q.validUntil} and exclude freight, training and any site-specific requirements. Your final price depends on configuration. Amy-May confirms every quote before it is binding.
+</div>
+<p><strong>To proceed, contact Amy-May Pointer</strong><br>
+Project Manager - Agras<br>
+0474 147 854<br>
+<a href="mailto:${SENDER.replyTo}">${SENDER.replyTo}</a></p>
+<hr style="border:0;border-top:1px solid #e5e5e5;margin:26px 0">
+<p style="font-size:12px;color:#777;line-height:1.5">
+${SENDER.businessName}${SENDER.abn && SENDER.abn !== "SET_YOUR_ABN" ? " | ABN " + SENDER.abn : ""}<br>
+${SENDER.address} | ${SENDER.phone}<br><br>
+You received this because you asked for pricing through agras.elkfishrobotics.com.au. To stop receiving messages from us, reply to this email with "unsubscribe" and we will remove you.
+</p></div>`;
+}
+
+async function sendQuoteEmail(to, name, q) {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) {
+    console.error("RESEND_API_KEY is not set");
+    return { error: "Email sending is not configured. Do not claim an email was sent. Give the visitor the pricing in chat and hand them to Amy." };
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(to || ""))) {
+    return { error: "That email address does not look valid. Ask them to check it." };
+  }
+
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { "content-type": "application/json", authorization: `Bearer ${key}` },
+      body: JSON.stringify({
+        from: SENDER.from,
+        to: [to],
+        reply_to: SENDER.replyTo,
+        bcc: [SENDER.replyTo],
+        subject: `Indicative pricing | DJI Agras ${q.model} | Elk Fish Robotics`,
+        html: quoteEmailHtml(q, name),
+      }),
+    });
+    if (!res.ok) {
+      console.error("Resend error", res.status, await res.text());
+      return { error: "The email did not send. Do not claim it was sent. Give the pricing in chat and hand them to Amy." };
+    }
+    return { sent: true, to: to };
+  } catch (err) {
+    console.error("sendQuoteEmail failed", err);
+    return { error: "The email did not send. Do not claim it was sent." };
+  }
+}
+
 const TOOLS = [
   {
     name: "capture_lead",
@@ -194,6 +327,25 @@ const TOOLS = [
             "Anything useful for the callback that they volunteered: crop, hectares, location, timeframe, which model they are looking at. Leave empty if they have not said.",
         },
       },
+    },
+  },
+  {
+    name: "email_quote",
+    description:
+      "Email indicative pricing to the visitor. Only call this after you have shown them pricing in chat, explicitly offered to email it, and they have said yes and given their own email address in the same conversation. Never call it speculatively, never call it with an address you inferred, and never call it more than once per model per conversation.",
+    input_schema: {
+      type: "object",
+      properties: {
+        model: { type: "string", enum: ["T25P", "T50", "T70P", "T100"] },
+        extras: { type: "array", items: { type: "string" } },
+        email: { type: "string", description: "The address they typed, exactly as given." },
+        name: { type: "string", description: "Their first name if you have it." },
+        consentGiven: {
+          type: "boolean",
+          description: "True only if they explicitly agreed to be emailed after you asked. Never set this true on an assumption.",
+        },
+      },
+      required: ["model", "email", "consentGiven"],
     },
   },
   {
@@ -342,6 +494,8 @@ HARD RULES
 1a. Never put a figure on a discount, trade-in, finance, lease, price match, freight or training rate. Not even a range, not even "around", not even if the visitor offers a number and asks you to confirm it. Those are Amy's to discuss and there are no exceptions.
 1b. Every price you give is indicative, not a formal quote. Say so every time, in your own words, and say Amy confirms the final figure for their configuration. Never say a price is locked in, guaranteed, held, or available until a date.
 1c. If someone pushes for a better price, says a competitor is cheaper, or asks what you can do for them, do not engage with the negotiation at all. Say pricing is Amy's call and give them her details.
+1c-i. When build_quote succeeds, a formatted quote card appears in the chat automatically, with a download button. Do not repeat the line items or the totals in your message. Say the pricing is below, note it is indicative, mention they can download it, and offer to email a copy.
+1d. Emailing pricing. Show the figures in chat first using build_quote. Then offer to email them a copy. Only call email_quote once they have clearly said yes and given their own email address in this conversation. Never email an address someone gives you for a third party. Never send without asking. Never say an email has been sent unless the tool confirmed it. After a successful send, tell them to check spam if it does not arrive, and tell them to contact Amy-May on 0474 147 854 to proceed.
 2. Never give chemical, agronomic or application rate advice. Product choice, rates and withholding periods are decisions for the label, the APVMA registration and a licensed agronomist.
 3. Never advise on whether a specific flight is legal. CASA rules on licensing, ReOC coverage, MTOW, BVLOS and controlled airspace are situation dependent. Explain the general framework and refer them to the team or CASA.
 4. If a fact is not in the reference above, say you do not have it to hand and offer to have someone follow up. Never invent specifications, availability, approvals or figures, and never calculate a coverage or payload number yourself. This applies especially to numbers.
@@ -382,12 +536,14 @@ function buildSystem(lead) {
 
   const name = clean(lead.name);
   const email = clean(lead.email);
+  const phone = clean(lead.phone);
   const enterprise = clean(lead.enterprise);
-  if (!name && !email && !enterprise) return SYSTEM_PROMPT;
+  if (!name && !email && !phone && !enterprise) return SYSTEM_PROMPT;
 
   const lines = ["", "THIS VISITOR", "They have already given their details, so do not ask for them again."];
   if (name) lines.push(`Name: ${name}. Use their first name once or twice, not in every message.`);
   if (email) lines.push(`Email: ${email}. The team already has this.`);
+  if (phone) lines.push(`Phone: ${phone}. The team already has this. Do not ask for a number again.`);
   if (enterprise) lines.push(`What they told us about their operation: ${enterprise}. Use this to tailor your answers without repeating it back.`);
 
   return SYSTEM_PROMPT + "\n" + lines.join("\n");
@@ -450,6 +606,34 @@ export default async (req) => {
       .trim();
 
   let captured = null;
+  let lastQuote = null;
+  let emailsSent = 0;
+
+  async function runEmailQuote(input) {
+    if (input.consentGiven !== true) {
+      return { error: "No consent recorded. Ask whether they would like it emailed, and only proceed on a clear yes." };
+    }
+    if (emailsSent >= 2) {
+      return { error: "Already emailed this visitor. Do not send another. Hand them to Amy." };
+    }
+    const q = quote(input.model, input.extras);
+    if (q.error) return q;
+    lastQuote = q;
+
+    const result = await sendQuoteEmail(input.email, input.name, q);
+    if (result.sent) {
+      emailsSent++;
+      captured = Object.assign({}, captured, {
+        email: String(input.email).slice(0, 200),
+        name: String(input.name || (captured && captured.name) || "").slice(0, 200),
+        notes: `Requested ${input.model} pricing by email`,
+      });
+      result.note =
+        "Confirm it has been sent, tell them to check their spam folder if it does not arrive within a few minutes, and tell them to contact Amy-May on 0474 147 854 to proceed.";
+    }
+    return result;
+  }
+
 
   try {
     let convo = messages;
@@ -473,21 +657,27 @@ export default async (req) => {
       if (data.stop_reason !== "tool_use" || round === 2) break;
 
       const toolCalls = (data.content || []).filter((b) => b.type === "tool_use");
-      const results = toolCalls.map((call) => {
+      // Sequential, not Promise.all: emailsSent must not race, and a visitor
+      // never needs two tools running at once.
+      const results = [];
+      for (const call of toolCalls) {
         let output;
         try {
-          if (call.name === "build_quote") {
+          if (call.name === "email_quote") {
+            output = await runEmailQuote(call.input);
+          } else if (call.name === "build_quote") {
             output = quote(call.input.model, call.input.extras);
+            if (!output.error) lastQuote = output;
           } else if (call.name === "coverage_estimate") {
             output = coverage(call.input.model, call.input.applicationRateLPerHa, call.input.hoursPerDay);
           } else if (call.name === "capture_lead") {
-            var f = function (v) { return String(v || "").replace(/[\r\n]+/g, " ").trim().slice(0, 200); };
-            captured = {
-              name: f(call.input.name),
-              email: f(call.input.email),
-              phone: f(call.input.phone),
-              notes: f(call.input.notes),
-            };
+            const f = (v) => String(v || "").replace(/[\r\n]+/g, " ").trim().slice(0, 200);
+            captured = Object.assign({}, captured, {
+              name: f(call.input.name) || (captured && captured.name) || "",
+              email: f(call.input.email) || (captured && captured.email) || "",
+              phone: f(call.input.phone) || (captured && captured.phone) || "",
+              notes: f(call.input.notes) || (captured && captured.notes) || "",
+            });
             output = {
               saved: true,
               note: "Details recorded and the team will see them. Thank them briefly and carry on with their question. Do not ask for these details again.",
@@ -497,14 +687,10 @@ export default async (req) => {
           }
         } catch (err) {
           console.error("Tool execution failed", call.name, err);
-          output = { error: "Calculation failed. Do not estimate. Offer to have the team work it out." };
+          output = { error: "That did not work. Do not estimate or improvise. Offer to have Amy follow up." };
         }
-        return {
-          type: "tool_result",
-          tool_use_id: call.id,
-          content: JSON.stringify(output),
-        };
-      });
+        results.push({ type: "tool_result", tool_use_id: call.id, content: JSON.stringify(output) });
+      }
 
       convo = [
         ...convo,
@@ -517,6 +703,7 @@ export default async (req) => {
     return Response.json({
       reply: reply || "Sorry, I did not catch that. Could you rephrase?",
       captured: captured,
+      quote: lastQuote,
     });
   } catch (err) {
     console.error("Chat function failed", err);
