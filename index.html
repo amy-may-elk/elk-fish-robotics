@@ -269,6 +269,23 @@ footer{border-top:1px solid var(--line);padding:40px 0;font-size:.86rem;color:va
 </style>
 </head>
 <body>
+<form name="agras-chat-leads" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="text" name="name" />
+  <input type="email" name="email" />
+  <input type="text" name="enterprise" />
+  <input type="text" name="page" />
+  <input type="text" name="bot-field" />
+</form>
+<form name="agras-chat-transcripts" data-netlify="true" hidden>
+  <input type="text" name="summary" />
+  <input type="text" name="name" />
+  <input type="email" name="email" />
+  <input type="text" name="enterprise" />
+  <input type="text" name="questions" />
+  <input type="text" name="ended" />
+  <input type="text" name="page" />
+  <textarea name="transcript"></textarea>
+</form>
 <!-- Google Tag Manager (noscript) — TODO: replace GTM-5DFLDMG9 with your real container ID -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DFLDMG9"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -606,5 +623,6 @@ document.getElementById('preorder-form').addEventListener('submit', function(e) 
   /* form submits naturally — Netlify captures it server-side */
 });
 </script>
+<script src="/assets/js/chat-widget.js" defer></script>
 </body>
 </html>
