@@ -66,13 +66,13 @@
     },
 
     greeting:
-      "G'day, I'm the Agras assistant at Elk Fish. I can help with the T25P, T50, T70P and T100, coverage, and how the Australian weight limits change what each one carries.\n\nWhat's your name, and what are you looking at spraying?",
+      "G'day, I'm the Agras assistant at Elk Fish. Ask me about pricing, which model suits your country, or how the Australian weight limits change what each one carries.",
     disclaimer:
       "Automated assistant. This conversation is recorded so the team can follow up. Verify specifications and any regulatory question with the team before you rely on them.",
     starters: [
-      "Which model suits 900 ha of broadacre?",
-      "Why is the T100 tank smaller in Australia?",
-      "What licence do I need to fly one?"
+      "What does a T70P cost?",
+      "Which model suits 900 ha?",
+      "What licence do I need?"
     ]
   };
 
@@ -663,7 +663,6 @@
     foot.style.display = "block";
     if (!log.childElementCount) {
       addMessage("bot", CONFIG.greeting);
-      showInlineForm();
       showStarters();
     }
     input.focus();
@@ -846,6 +845,8 @@
         addMessage("bot", res.data.reply);
         history.push({ role: "assistant", content: res.data.reply });
         if (res.data.quote && res.data.quote.model) addQuoteCard(res.data.quote);
+        // Ask for details only after they have had a real answer.
+        if (!leadSent && history.length >= 2) showInlineForm();
         if (res.data.captured) mergeCaptured(res.data.captured);
         resetIdleTimer();
       })
