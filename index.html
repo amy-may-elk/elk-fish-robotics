@@ -235,6 +235,12 @@ header{position:sticky;top:0;z-index:90;background:rgba(255,255,255,.8);backdrop
 .contact{display:flex;gap:36px;justify-content:center;flex-wrap:wrap;margin-top:46px;font-size:.92rem;color:var(--muted)}
 .contact b{color:var(--ink);font-weight:600;display:block;margin-bottom:2px}
 
+/* testimonial videos — hero placement */
+.testi-hero{background:var(--bg-2)}
+.tvids{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:880px;margin:0 auto}
+.tvids video{width:100%;height:auto;border-radius:14px;display:block;background:#000}
+.tvids-cap{font-size:.86rem;font-weight:600;color:var(--muted);margin-top:10px;text-align:center;letter-spacing:.01em}
+
 /* footer */
 footer{border-top:1px solid var(--line);padding:40px 0;font-size:.86rem;color:var(--muted)}
 .also{text-align:center;padding-bottom:26px;margin-bottom:26px;border-bottom:1px solid var(--line)}
@@ -265,6 +271,7 @@ footer{border-top:1px solid var(--line);padding:40px 0;font-size:.86rem;color:va
   .contact{gap:24px}
   .mcta{display:flex}body{padding-bottom:72px}
 }
+@media(max-width:640px){.tvids{grid-template-columns:1fr}}
 @media(max-width:560px){.why-grid,.whyus-grid,.deliv,.specrow{grid-template-columns:1fr}}
 </style>
 </head>
@@ -331,6 +338,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   <div class="wrap"><p class="tagline">Efficiency Expert. <span>Spray, spread and lift from a single drone.</span></p></div>
   <div style="height:46px"></div>
+</section>
+
+<!-- TESTIMONIAL VIDEOS -->
+<section class="testi-hero">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">From the paddock</span><h2 style="margin-top:14px">What operators say.</h2></div>
+    <div class="tvids">
+      <div class="reveal">
+        <video width="608" height="1080" controls muted playsinline preload="none"
+               poster="assets/img/testimonial-frank.jpg">
+          <source src="assets/video/testimonial-frank.mp4" type="video/mp4">
+        </video>
+        <p class="tvids-cap">SPEAKER_ONE</p>
+      </div>
+      <div class="reveal">
+        <video width="608" height="1080" controls muted playsinline preload="none"
+               poster="assets/img/testimonial-sam.jpg">
+          <source src="assets/video/testimonial-sam.mp4" type="video/mp4">
+        </video>
+        <p class="tvids-cap">SPEAKER_TWO</p>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- SPEC BAND (dark) -->
