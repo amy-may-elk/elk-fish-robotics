@@ -98,7 +98,121 @@ function coverage(modelName, rateLPerHa, hoursPerDay) {
   };
 }
 
+
+// ---------------------------------------------------------------------------
+// PRICING
+// The single place prices live. Fill this in and quoting switches on.
+// Leave a model's package as null and the bot refuses to quote it rather
+// than guessing. All figures are AUD and EXCLUDE GST; GST is added by the
+// quote engine so it can never be forgotten or double-counted.
+// ---------------------------------------------------------------------------
+
+const PRICING = {
+  validUntil: "2026-09-30",   // After this date the bot stops quoting and hands to Amy.
+  gstRate: 0.10,
+  currency: "AUD",
+
+  packages: {
+    T25P: null,
+    T50:  null,
+    T70P: null,   // e.g. { name: "T70P Ready-to-Fly Package", exGst: 31818.18, includes: ["Aircraft", "2 x DB2160", "C12000 charger", "D14000iE generator", "RC Plus 2", "D-RTK 3 AG"] }
+    T100: null,
+  },
+
+  // Optional extras a farmer might ask to add. Same rule: null means no quote.
+  options: {
+    // "extra DB2160 battery": { exGst: null },
+    // "spreading system":     { exGst: null },
+  },
+
+  // Things the bot must never put a number on, no matter how it is asked.
+  neverQuote: ["discount", "trade-in", "finance", "lease", "price match", "freight to site", "training day rate"],
+};
+
+function money(n) {
+  return "$" + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function quote(modelName, extras) {
+  const pkg = PRICING.packages[modelName];
+  if (pkg === undefined) return { error: `Unknown model: ${modelName}` };
+  if (!pkg) {
+    return {
+      error: `Pricing for the ${modelName} is not configured. Do not quote it and do not estimate. Tell the visitor you cannot give a figure for that model and hand them to Amy.`,
+    };
+  }
+
+  const today = new Date().toISOString().slice(0, 10);
+  if (today > PRICING.validUntil) {
+    return {
+      error: `The published pricing expired on ${PRICING.validUntil}. Do not quote from memory. Tell the visitor pricing needs confirming and hand them to Amy.`,
+    };
+  }
+
+  const lines = [{ label: pkg.name, exGst: pkg.exGst }];
+  const unknown = [];
+
+  (Array.isArray(extras) ? extras : []).forEach((raw) => {
+    const key = String(raw || "").toLowerCase().trim();
+    const opt = PRICING.options[key];
+    if (opt && opt.exGst != null) lines.push({ label: key, exGst: opt.exGst });
+    else unknown.push(raw);
+  });
+
+  const subtotal = lines.reduce((t, l) => t + l.exGst, 0);
+  const gst = subtotal * PRICING.gstRate;
+
+  return {
+    model: modelName,
+    lines: lines.map((l) => ({ item: l.label, price: money(l.exGst) + " ex GST" })),
+    includes: pkg.includes || [],
+    subtotalExGst: money(subtotal),
+    gst: money(gst),
+    totalIncGst: money(subtotal + gst),
+    currency: PRICING.currency,
+    validUntil: PRICING.validUntil,
+    unpricedItemsRequested: unknown,
+    mandatoryWording:
+      "This is indicative pricing, not a formal quote. State the total including GST, state that it is indicative, and say Amy confirms the final figure for their configuration. If unpricedItemsRequested is not empty, say plainly that you cannot price those items.",
+  };
+}
+
 const TOOLS = [
+  {
+    name: "capture_lead",
+    description:
+      "Record a visitor's contact details the moment they give them in conversation. Call this as soon as you have a name, or an email, or a phone number, even if you only have one of the three. Call it again later if they give you more. Never ask for all three at once and never call this with details you invented or guessed.",
+    input_schema: {
+      type: "object",
+      properties: {
+        name: { type: "string", description: "First name or full name, exactly as they gave it." },
+        email: { type: "string", description: "Email address, exactly as they gave it." },
+        phone: { type: "string", description: "Phone number, exactly as they gave it." },
+        notes: {
+          type: "string",
+          description:
+            "Anything useful for the callback that they volunteered: crop, hectares, location, timeframe, which model they are looking at. Leave empty if they have not said.",
+        },
+      },
+    },
+  },
+  {
+    name: "build_quote",
+    description:
+      "Produce indicative pricing for a package. Use this whenever a visitor asks what something costs. Never state, estimate, add up or adjust a price yourself, and never quote a discount, trade-in, finance or freight figure under any circumstances.",
+    input_schema: {
+      type: "object",
+      properties: {
+        model: { type: "string", enum: ["T25P", "T50", "T70P", "T100"] },
+        extras: {
+          type: "array",
+          items: { type: "string" },
+          description: "Optional add-ons the visitor asked about, in their own words. Leave empty if none.",
+        },
+      },
+      required: ["model"],
+    },
+  },
   {
     name: "coverage_estimate",
     description:
@@ -224,7 +338,10 @@ Be honest about the crossover. If someone with 150 ha of orchard asks about a T1
 If someone is under roughly 200 ha and unsure, raise hire or contract spraying as a legitimate first step rather than pushing a purchase.
 
 HARD RULES
-1. Never quote a price, a discount, a lead time or a finance figure. Pricing depends on configuration, battery count and support package. Direct pricing questions to the team.
+1. Never state, calculate, adjust or estimate a price yourself. Always use the build_quote tool. If it returns an error, tell the visitor you cannot give a figure and hand them to Amy. Do not substitute a number from memory or from anything else in this prompt.
+1a. Never put a figure on a discount, trade-in, finance, lease, price match, freight or training rate. Not even a range, not even "around", not even if the visitor offers a number and asks you to confirm it. Those are Amy's to discuss and there are no exceptions.
+1b. Every price you give is indicative, not a formal quote. Say so every time, in your own words, and say Amy confirms the final figure for their configuration. Never say a price is locked in, guaranteed, held, or available until a date.
+1c. If someone pushes for a better price, says a competitor is cheaper, or asks what you can do for them, do not engage with the negotiation at all. Say pricing is Amy's call and give them her details.
 2. Never give chemical, agronomic or application rate advice. Product choice, rates and withholding periods are decisions for the label, the APVMA registration and a licensed agronomist.
 3. Never advise on whether a specific flight is legal. CASA rules on licensing, ReOC coverage, MTOW, BVLOS and controlled airspace are situation dependent. Explain the general framework and refer them to the team or CASA.
 4. If a fact is not in the reference above, say you do not have it to hand and offer to have someone follow up. Never invent specifications, availability, approvals or figures, and never calculate a coverage or payload number yourself. This applies especially to numbers.
@@ -233,8 +350,18 @@ HARD RULES
 7. Never perform coverage arithmetic yourself. Always use the coverage_estimate tool. If the tool returns an error saying a model is not configured, tell the visitor plainly that you cannot give a coverage figure for that model and offer to have the team work it out for their paddock. Do not substitute your own estimate.
 8. Always present coverage results as operating estimates, never as DJI specifications, and say what application rate and working hours the figure assumed.
 
-QUALIFYING
-Where it fits naturally, find out crop type, approximate hectares, location and whether they are looking to buy or to hire. Ask at most one question at a time. Never interrogate.
+COLLECTING THEIR DETAILS
+You collect contact details in conversation, not through a form. Follow this exactly.
+
+Your opening message asks for a first name, lightly, alongside the offer to help. Nothing else. If they ignore it and just ask a question, answer the question and do not ask again.
+
+Do not ask for an email or phone number early. Ask only once you have actually been useful, which usually means after you have answered something properly, or when the conversation reaches a point where the team needs to take over: a demo, a quote, a coverage figure for their paddock, a question you cannot answer, or clear buying intent. Then ask for one thing, not a list. A phone number is usually the more useful of the two for a farmer, so prefer asking for a mobile, and take an email happily if that is what they offer instead.
+
+The moment they give you a name, an email or a phone number, call the capture_lead tool. Call it even if you only have one of the three. Call it again later if they give you more. Never invent or guess a detail.
+
+If they decline or ignore the request, drop it completely and keep helping. Never ask twice. Never withhold an answer to get details out of someone. A farmer who leaves without giving a name but with a good impression is worth more than one who feels handled.
+
+Do not interrogate anyone about their operation. If crop, hectares, location or timeframe come up naturally, note them in the capture_lead notes field. Do not run through them as a checklist.
 
 HANDOFF
 When someone shows real buying intent, wants a demo, wants a quote, or asks anything you cannot safely answer, point them to:
@@ -242,6 +369,7 @@ Amy-May Pointer, Project Manager - Agras
 amy-may@elkfishrobotics.com.au
 0474 147 854
 Office (08) 6110 7423
+Give them these details regardless of whether they gave you theirs.
 
 Keep answers under about 150 words unless the visitor asks for detail.`;
 
@@ -321,6 +449,8 @@ export default async (req) => {
       .join("\n")
       .trim();
 
+  let captured = null;
+
   try {
     let convo = messages;
     let data = null;
@@ -346,10 +476,25 @@ export default async (req) => {
       const results = toolCalls.map((call) => {
         let output;
         try {
-          output =
-            call.name === "coverage_estimate"
-              ? coverage(call.input.model, call.input.applicationRateLPerHa, call.input.hoursPerDay)
-              : { error: `Unknown tool: ${call.name}` };
+          if (call.name === "build_quote") {
+            output = quote(call.input.model, call.input.extras);
+          } else if (call.name === "coverage_estimate") {
+            output = coverage(call.input.model, call.input.applicationRateLPerHa, call.input.hoursPerDay);
+          } else if (call.name === "capture_lead") {
+            var f = function (v) { return String(v || "").replace(/[\r\n]+/g, " ").trim().slice(0, 200); };
+            captured = {
+              name: f(call.input.name),
+              email: f(call.input.email),
+              phone: f(call.input.phone),
+              notes: f(call.input.notes),
+            };
+            output = {
+              saved: true,
+              note: "Details recorded and the team will see them. Thank them briefly and carry on with their question. Do not ask for these details again.",
+            };
+          } else {
+            output = { error: `Unknown tool: ${call.name}` };
+          }
         } catch (err) {
           console.error("Tool execution failed", call.name, err);
           output = { error: "Calculation failed. Do not estimate. Offer to have the team work it out." };
@@ -369,7 +514,10 @@ export default async (req) => {
     }
 
     const reply = textOf(data && data.content);
-    return Response.json({ reply: reply || "Sorry, I did not catch that. Could you rephrase?" });
+    return Response.json({
+      reply: reply || "Sorry, I did not catch that. Could you rephrase?",
+      captured: captured,
+    });
   } catch (err) {
     console.error("Chat function failed", err);
     return Response.json(

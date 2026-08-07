@@ -34,14 +34,15 @@
     // mode "afterFirst"  = one free question, then the form
     // mode "off"         = no form at all
     gate: {
-      mode: "optional",
+      mode: "off",
       leadForm: "agras-chat-leads",
       transcriptForm: "agras-chat-transcripts",
       heading: "Before we start",
       blurb: "Leave your name and email and Amy can follow up with specifications and pricing for your operation. Or skip and just ask your questions.",
       nameLabel: "Name",
       emailLabel: "Email",
-      enterpriseLabel: "What do you grow, and roughly how many hectares?",
+      phoneLabel: "Phone",
+      enterpriseLabel: "Anything about your operation? (optional)",
       consent: "I am happy for Elk Fish Robotics to contact me about this enquiry.",
       privacyUrl: "/privacy",
       button: "Start chat",
@@ -49,12 +50,12 @@
     },
 
     greeting:
-      "G'day. I can help with the Agras T25P, T50, T70P and T100, coverage rates, and how the Australian weight limits affect each model. What are you spraying?",
+      "G'day, I'm the Agras assistant at Elk Fish. I can help with the T25P, T50, T70P and T100, coverage, and how the Australian weight limits change what each one carries.\n\nWhat's your name, and what are you looking at spraying?",
     disclaimer:
       "Automated assistant. This conversation is recorded so the team can follow up. Verify specifications and any regulatory question with the team before you rely on them.",
     starters: [
-      "Which model suits 400 ha of broadacre?",
-      "Why is the T100 tank 75 L in Australia?",
+      "Which model suits 900 ha of broadacre?",
+      "Why is the T100 tank smaller in Australia?",
       "What licence do I need to fly one?"
     ]
   };
@@ -89,7 +90,7 @@
     ".efr-msg-row{display:flex;gap:9px;align-items:flex-end;max-width:92%;align-self:flex-start}",
     ".efr-msg-row .efr-avatar{width:26px;height:26px;margin-bottom:2px}",
     ".efr-msg-row .efr-avatar i.status{display:none}",
-    ".efr-panel{position:fixed;right:20px;bottom:20px;z-index:9999;width:390px;max-width:calc(100vw - 32px);height:600px;max-height:calc(100vh - 40px);display:none;flex-direction:column;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.3)}",
+    ".efr-panel{position:fixed;right:20px;bottom:20px;z-index:9999;width:410px;max-width:calc(100vw - 32px);height:min(760px,calc(100vh - 40px));display:none;flex-direction:column;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.3)}",
     ".efr-panel.open{display:flex}",
     ".efr-head{background:" + CONFIG.charcoal + ";color:#fff;padding:18px 20px;display:flex;align-items:flex-start;justify-content:space-between;flex:none}",
     ".efr-head h3{margin:0;font-size:16px;font-weight:600}",
@@ -117,7 +118,7 @@
     ".efr-hp{position:absolute;left:-9999px;opacity:0;height:0}",
 
     ".efr-log{flex:1;overflow-y:auto;padding:20px;background:#FAFAFA;display:flex;flex-direction:column;gap:12px}",
-    ".efr-msg{max-width:86%;padding:11px 14px;border-radius:12px;font-size:14.5px;line-height:1.55;white-space:pre-wrap;word-wrap:break-word}",
+    ".efr-msg{max-width:88%;padding:11px 14px;border-radius:12px;font-size:14.5px;line-height:1.55;white-space:pre-wrap;word-wrap:break-word}",
     ".efr-msg.bot{background:#fff;border:1px solid #E8E8E8;color:#1A1A1A;align-self:flex-start;border-bottom-left-radius:4px}",
     ".efr-msg.user{background:" + CONFIG.charcoal + ";color:#fff;align-self:flex-end;border-bottom-right-radius:4px}",
     ".efr-msg.err{background:#FFF3F2;border:1px solid #F3C9C5;color:#8A2A22;align-self:flex-start}",
@@ -135,7 +136,55 @@
     ".efr-send{background:" + CONFIG.accent + ";border:0;border-radius:10px;color:#fff;padding:0 17px;height:42px;font-size:14px;font-weight:600;cursor:pointer}",
     ".efr-send:disabled{opacity:.45;cursor:not-allowed}",
     ".efr-note{margin:9px 2px 0;font-size:10.5px;color:#9A9A9A;line-height:1.45}",
-    "@media(max-width:480px){.efr-panel{right:0;bottom:0;width:100vw;height:100dvh;max-height:100dvh;border-radius:0}.efr-launcher{right:16px;bottom:16px;padding:13px 18px}}"
+    // Touch targets and tap feel
+    ".efr-chat button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}",
+    ".efr-close{min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;margin:-10px -10px -10px 0}",
+    ".efr-log{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}",
+    ".efr-gate{overscroll-behavior:contain}",
+
+    // Tablet: a little more room than desktop, portrait and landscape
+    "@media(min-width:641px) and (max-width:1024px){",
+    ".efr-panel{width:440px;height:min(820px,calc(100vh - 48px));right:24px;bottom:24px}",
+    ".efr-launcher{right:24px;bottom:24px;padding:15px 22px 15px 13px}",
+    ".efr-msg{font-size:15px}",
+    ".efr-row textarea{font-size:15px}",
+    "}",
+
+    // Phones: full screen, safe areas, and 16px inputs so iOS does not zoom
+    "@media(max-width:640px){",
+    ".efr-panel{right:0;bottom:0;left:0;top:0;width:100%;max-width:100%;height:100vh;height:100dvh;border-radius:0}",
+    ".efr-head{padding-top:calc(16px + env(safe-area-inset-top))}",
+    ".efr-foot{padding-bottom:calc(12px + env(safe-area-inset-bottom))}",
+    ".efr-log{padding:16px}",
+    ".efr-gate{padding-bottom:calc(26px + env(safe-area-inset-bottom))}",
+    ".efr-msg{max-width:90%;font-size:15px}",
+    ".efr-row textarea{font-size:16px;padding:12px 13px}",
+    ".efr-send{height:46px;min-width:64px}",
+    ".efr-field input,.efr-field textarea{font-size:16px}",
+    ".efr-gate-btn{padding:15px}",
+    ".efr-launcher{right:16px;bottom:calc(16px + env(safe-area-inset-bottom));padding:11px 18px 11px 9px}",
+    ".efr-launcher .efr-avatar{width:30px;height:30px;margin-left:0}",
+    ".efr-launcher .lbl b{font-size:14px}",
+    "}",
+
+    // Very narrow phones: shorten the launcher so it does not span the screen
+    "@media(max-width:360px){",
+    ".efr-launcher .lbl em{display:none}",
+    ".efr-launcher .lbl b{font-size:13.5px}",
+    "}",
+
+    // Short landscape phones: the keyboard leaves almost nothing, so trim chrome
+    "@media(max-height:480px) and (orientation:landscape){",
+    ".efr-head{padding-top:10px;padding-bottom:10px}",
+    ".efr-head .efr-avatar{width:32px;height:32px}",
+    ".efr-note{display:none}",
+    ".efr-log{padding:12px 16px;gap:8px}",
+    "}",
+
+    "@media(prefers-reduced-motion:reduce){",
+    ".efr-launcher{transition:none}",
+    ".efr-typing i{animation:none;opacity:.5}",
+    "}"
   ].join("");
 
   var history = [];
@@ -143,6 +192,7 @@
   var busy = false;
   var gatePassed = CONFIG.gate.mode === "off";
   var transcriptSent = false;
+  var leadSent = false;
   var idleTimer = null;
   var IDLE_MS = 180000;
   var panel, gate, chatArea, log, foot, input, sendBtn, launcher;
@@ -223,7 +273,8 @@
       return (m.role === "user" ? "VISITOR: " : "BOT: ") + m.content;
     }).join("\n\n");
 
-    var who = lead && lead.email ? lead.name || "(no name)" : "Anonymous visitor";
+    var who = (lead && lead.name) || "Anonymous visitor";
+    if (lead && (lead.email || lead.phone)) who += " [contactable]";
     var summary = userTurns[0].content.replace(/\s+/g, " ").slice(0, 110);
 
     var body = new URLSearchParams({
@@ -231,6 +282,7 @@
       summary: who + ": " + summary,
       name: (lead && lead.name) || "",
       email: (lead && lead.email) || "",
+      phone: (lead && lead.phone) || "",
       enterprise: (lead && lead.enterprise) || "",
       questions: String(userTurns.length),
       ended: reason || "closed",
@@ -251,6 +303,29 @@
   }
 
   // If they wander off without closing the panel, send anyway after a quiet spell.
+  // The bot captured details mid-conversation. Merge them and send the lead
+  // through, but only once we have something the team can actually act on.
+  function mergeCaptured(c) {
+    lead = lead || { name: "", email: "", phone: "", enterprise: "" };
+    ["name", "email", "phone"].forEach(function (k) {
+      if (c[k] && !lead[k]) lead[k] = c[k];
+    });
+    if (c.notes && !lead.enterprise) lead.enterprise = c.notes;
+
+    if (!lead.email && !lead.phone) return; // a name alone is not a lead
+    if (leadSent) return;
+    leadSent = true;
+
+    postForm(CONFIG.gate.leadForm, {
+      name: lead.name,
+      email: lead.email,
+      phone: lead.phone,
+      enterprise: lead.enterprise,
+      page: location.pathname,
+      "bot-field": ""
+    }).catch(function (e) { console.warn("Lead submission failed", e); });
+  }
+
   function resetIdleTimer() {
     clearTimeout(idleTimer);
     idleTimer = setTimeout(function () { sendTranscript("idle"); }, IDLE_MS);
@@ -282,8 +357,31 @@
     }
   }
 
+  // On phones the panel is full screen, so stop the page scrolling behind it
+  // and restore the scroll position exactly on close.
+  var savedScrollY = 0;
+  function lockPage(on) {
+    if (!window.matchMedia || !window.matchMedia("(max-width:640px)").matches) return;
+    var b = document.body;
+    if (on) {
+      savedScrollY = window.scrollY || 0;
+      b.style.position = "fixed";
+      b.style.top = -savedScrollY + "px";
+      b.style.left = "0";
+      b.style.right = "0";
+      b.style.width = "100%";
+    } else {
+      b.style.position = "";
+      b.style.top = "";
+      b.style.left = "";
+      b.style.right = "";
+      b.style.width = "";
+      window.scrollTo(0, savedScrollY);
+    }
+  }
+
   function openChat() {
-    gate.style.display = "none";
+    if (gate) gate.style.display = "none";
     chatArea.style.display = "flex";
     foot.style.display = "block";
     if (!log.childElementCount) {
@@ -469,6 +567,7 @@
         }
         addMessage("bot", res.data.reply);
         history.push({ role: "assistant", content: res.data.reply });
+        if (res.data.captured) mergeCaptured(res.data.captured);
         resetIdleTimer();
       })
       .catch(function () {
@@ -560,6 +659,7 @@
     launcher.addEventListener("click", function () {
       panel.classList.add("open");
       launcher.style.display = "none";
+      lockPage(true);
       if ((CONFIG.gate.mode === "before" || CONFIG.gate.mode === "optional") && !gatePassed) {
         gate.querySelector("input").focus();
       } else {
@@ -569,6 +669,7 @@
 
     close.addEventListener("click", function () {
       sendTranscript("closed");
+      lockPage(false);
       panel.classList.remove("open");
       launcher.style.display = "flex";
     });
