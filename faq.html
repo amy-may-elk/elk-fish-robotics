@@ -42,6 +42,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   --btn:#111114;--btn-h:#000;
   --font:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
   --wrap:1320px;--pad:74px;
+  --xfade:400ms cubic-bezier(0.4,0,0.2,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -67,7 +68,7 @@ section{padding:var(--pad) 0}
 .btn-light:hover{background:var(--bg-2)}
 .btn-arrow::after{content:"\2192";font-weight:500}
 
-/* Header - identical to index.html */
+/* Header */
 header{position:sticky;top:0;z-index:90;background:rgba(255,255,255,.8);backdrop-filter:saturate(180%) blur(16px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:72px;gap:18px}
 .brand{font-weight:700;font-size:1rem;letter-spacing:-.02em;display:flex;align-items:center;gap:8px;white-space:nowrap}
@@ -81,7 +82,7 @@ header{position:sticky;top:0;z-index:90;background:rgba(255,255,255,.8);backdrop
 .nav .btn{padding:9px 18px;font-size:.86rem}
 @media(max-width:900px){.nav-links,.nav-phone{display:none}}
 
-/* HERO - slim white band; two columns from 1024px */
+/* HERO */
 .faq-hero{background:#fff;padding:36px 0 32px;border-bottom:1px solid var(--line)}
 .faq-hero-grid{display:grid;grid-template-columns:1fr;gap:22px;align-items:end}
 .faq-hero .eyebrow{color:var(--muted);font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:.74rem;margin-bottom:12px}
@@ -99,12 +100,16 @@ header{position:sticky;top:0;z-index:90;background:rgba(255,255,255,.8);backdrop
   .faq-hero-actions{justify-content:flex-end}
 }
 
-/* VIDEO SHELF - dark, fills remaining viewport */
+/* VIDEO SHELF */
 .vid-shelf{background:var(--dark);color:var(--on-dark);padding:28px 0 32px;overflow:hidden}
 @media(min-width:1024px){
   .vid-shelf{padding:14px 0 20px}
 }
-.shelf-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:12px}
+
+.shelf-inner{position:relative}
+
+/* Head row - always visible */
+.shelf-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:12px;min-height:40px}
 .shelf-label{font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--on-dark-soft)}
 .rail-nav{display:flex;gap:10px}
 .rail-btn{width:40px;height:40px;border-radius:50%;background:transparent;border:1px solid rgba(255,255,255,.24);color:#fff;font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s,border-color .15s;flex:none;font-family:inherit}
@@ -113,14 +118,25 @@ header{position:sticky;top:0;z-index:90;background:rgba(255,255,255,.8);backdrop
 .rail-btn:focus-visible{outline:2px solid #fff;outline-offset:3px}
 @media(max-width:767px){.rail-nav{display:none}}
 
-/* Rail bleeds to right edge so the next card peeks in */
+/* Two states inside shelf-inner: rail-state and theatre-state.
+   Both absolute-positioned so the section height is fixed by whichever
+   is taller. Cross-fade between them. No overlay, no modal. */
+.state{opacity:1;transition:opacity var(--xfade)}
+.state.leaving{opacity:0;pointer-events:none}
+.state.hidden{display:none}
+@media(prefers-reduced-motion:reduce){.state{transition:none}}
+
+/* Rail state */
+.rail-state{position:relative}
 .rail-outer{position:relative;margin-right:calc(-1 * ((100vw - min(100vw,var(--wrap))) / 2 + 28px))}
 .rail{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:2px 0 12px;scrollbar-width:none}
 .rail::-webkit-scrollbar{display:none}
 @media(prefers-reduced-motion:reduce){.rail{scroll-behavior:auto}}
 
-.vid-card{flex:none;width:220px;scroll-snap-align:start;cursor:pointer;border-radius:14px;overflow:hidden;background:#000;position:relative;aspect-ratio:9/16;border:2px solid transparent;transition:border-color .15s,transform .15s;display:block}
-@media(min-width:1024px){.vid-card{width:322px}}
+.vid-card-wrap{display:flex;flex-direction:column;flex:none;width:220px;scroll-snap-align:start}
+@media(min-width:1024px){.vid-card-wrap{width:322px}}
+
+.vid-card{flex:none;width:100%;cursor:pointer;border-radius:14px;overflow:hidden;background:#000;position:relative;aspect-ratio:9/16;border:2px solid transparent;transition:border-color .15s,transform .15s;display:block}
 .vid-card:hover{border-color:rgba(255,255,255,.28);transform:translateY(-2px)}
 .vid-card:focus-visible{outline:3px solid #fff;outline-offset:3px;border-radius:14px}
 @media(prefers-reduced-motion:reduce){.vid-card{transition:none}}
@@ -131,40 +147,64 @@ header{position:sticky;top:0;z-index:90;background:rgba(255,255,255,.8);backdrop
 
 .vid-card-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 65%,rgba(0,0,0,.55));display:flex;flex-direction:column;justify-content:flex-end;padding:0;pointer-events:none}
 .vid-card-dur{position:absolute;right:10px;bottom:10px;font-size:.7rem;font-weight:600;color:#fff;background:rgba(0,0,0,.55);padding:4px 8px;border-radius:6px;letter-spacing:.02em}
-/* Play button bottom-left, balances duration bottom-right; keeps tile text clear */
 .vid-play{position:absolute;left:10px;bottom:10px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center}
 .vid-play::after{content:"";border-left:10px solid var(--ink);border-top:6px solid transparent;border-bottom:6px solid transparent;margin-left:2px}
 .vid-card:hover .vid-play,.vid-card:focus-visible .vid-play{background:#fff}
 
-/* Meta below tile */
 .vid-card-meta{margin-top:12px;padding:0 2px}
-.vid-card-tag{font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.48);display:block;margin-bottom:6px}
+.vid-card-tag{font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.46);display:block;margin-bottom:6px}
 .vid-card-q{font-size:.94rem;font-weight:600;color:#fff;line-height:1.3;display:block}
-.vid-card-wrap{display:flex;flex-direction:column;flex:none;width:220px;scroll-snap-align:start}
-@media(min-width:1024px){.vid-card-wrap{width:322px}}
 
-/* LIGHTBOX */
-.lb{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.88);align-items:center;justify-content:center;padding:20px}
-.lb.open{display:flex}
-.lb-inner{background:var(--dark);border-radius:18px;overflow:hidden;display:grid;grid-template-columns:auto 1fr;max-width:960px;width:100%;max-height:90vh}
-.lb-video-col{width:min(340px,40vw);flex-shrink:0;position:relative;background:#000}
-.lb-video-col video{width:100%;height:100%;object-fit:cover;display:block}
-.lb-info{padding:32px 28px;overflow-y:auto;display:flex;flex-direction:column;gap:16px;color:var(--on-dark)}
-.lb-close{position:absolute;top:14px;right:14px;z-index:10;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1}
-.lb-close:focus-visible{outline:2px solid #fff;outline-offset:3px}
-.lb-tag{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--on-dark-soft)}
-.lb-q{font-size:1.2rem;font-weight:700;letter-spacing:-.02em;color:#fff;line-height:1.25}
-.lb-caption{font-size:.95rem;color:var(--on-dark-soft);line-height:1.6}
-.lb-notice{display:none;font-size:.82rem;color:var(--on-dark-soft);line-height:1.55;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:12px 14px;gap:10px}
-.lb-notice.show{display:flex}
-.lb-notice svg{flex:none;margin-top:2px;opacity:.75}
-.lb-transcript{font-size:.9rem;color:var(--on-dark-soft);line-height:1.65;border-top:1px solid rgba(255,255,255,.1);padding-top:14px;margin-top:4px}
-.lb-transcript h4{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px}
-@media(max-width:700px){
-  .lb{padding:0}
-  .lb-inner{grid-template-columns:1fr;grid-template-rows:55vw 1fr;border-radius:0;max-height:100dvh;overflow:hidden}
-  .lb-video-col{width:100%;height:100%}
-  .lb-info{padding:20px 18px;overflow-y:auto}
+/* THEATRE STATE (in-place, no overlay) */
+.theatre-state{position:absolute;inset:0;display:flex;flex-direction:column}
+.theatre-head{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:40px;margin-bottom:12px}
+.theatre-counter{font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--on-dark-soft)}
+.theatre-close{width:40px;height:40px;border-radius:50%;background:transparent;border:1px solid rgba(255,255,255,.24);color:#fff;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s,border-color .15s;font-family:inherit;line-height:1}
+.theatre-close:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.4)}
+.theatre-close:focus-visible{outline:2px solid #fff;outline-offset:3px}
+
+.theatre-body{display:grid;grid-template-columns:56px auto 1fr 56px;gap:24px;align-items:center;flex:1;min-height:0}
+.theatre-arrow{width:56px;height:56px;border-radius:50%;background:transparent;border:1px solid rgba(255,255,255,.24);color:#fff;font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s,border-color .15s;flex:none;font-family:inherit;line-height:1;justify-self:center}
+.theatre-arrow:hover:not(:disabled){background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.45)}
+.theatre-arrow:disabled{opacity:.3;cursor:default}
+.theatre-arrow:focus-visible{outline:2px solid #fff;outline-offset:3px}
+
+.theatre-video-col{width:295px;justify-self:end;position:relative;background:#000;border-radius:14px;overflow:hidden;aspect-ratio:9/16;max-height:100%}
+.theatre-video-col video{width:100%;height:100%;display:block;object-fit:cover;background:#000}
+
+.theatre-text{max-width:460px;color:var(--on-dark);display:flex;flex-direction:column;gap:14px;opacity:1;transition:opacity 260ms ease-out}
+.theatre-text.pre-fade{opacity:0}
+@media(prefers-reduced-motion:reduce){.theatre-text{transition:none}.theatre-text.pre-fade{opacity:1}}
+.theatre-tag{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--on-dark-soft)}
+.theatre-q{font-size:1.5rem;font-weight:700;letter-spacing:-.025em;color:#fff;line-height:1.2}
+.theatre-cap{font-size:1rem;color:var(--on-dark-soft);line-height:1.6}
+.theatre-notice{display:none;font-size:.82rem;color:var(--on-dark-soft);line-height:1.55;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:12px 14px;gap:10px}
+.theatre-notice.show{display:flex}
+.theatre-notice svg{flex:none;margin-top:2px;opacity:.75}
+.theatre-trans-toggle{background:none;border:1px solid rgba(255,255,255,.14);color:var(--on-dark-soft);font-family:var(--font);font-size:.82rem;font-weight:600;padding:8px 14px;border-radius:6px;cursor:pointer;text-align:left;display:inline-flex;align-items:center;gap:8px;width:fit-content}
+.theatre-trans-toggle:hover{background:rgba(255,255,255,.06)}
+.theatre-trans-toggle:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.theatre-trans-toggle .pm{font-size:1rem;font-weight:400;transition:transform .2s}
+.theatre-trans-toggle[aria-expanded="true"] .pm{transform:rotate(45deg)}
+.theatre-trans-body{display:none;font-size:.9rem;color:var(--on-dark-soft);line-height:1.65;border-left:2px solid rgba(255,255,255,.12);padding-left:14px}
+.theatre-trans-body.open{display:block}
+
+/* Mobile theatre: stack, arrows row under video with counter between */
+@media(max-width:767px){
+  .theatre-body{grid-template-columns:1fr;grid-template-rows:auto auto auto;gap:14px}
+  .theatre-video-col{width:100%;max-width:280px;justify-self:center;grid-column:1;grid-row:1}
+  .theatre-text{grid-column:1;grid-row:3;max-width:none}
+  .theatre-nav-row{grid-column:1;grid-row:2;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .theatre-arrow{width:44px;height:44px;font-size:1.2rem}
+  .theatre-nav-row .theatre-counter{font-size:.72rem}
+  /* Hide desktop-only arrow positions */
+  .theatre-arrow.desktop-only{display:none}
+  .theatre-head .theatre-counter{display:none}
+  .theatre-head{justify-content:flex-end}
+  .theatre-q{font-size:1.25rem}
+}
+@media(min-width:768px){
+  .theatre-nav-row{display:none}
 }
 
 /* WRITTEN FAQ */
@@ -183,13 +223,12 @@ header{position:sticky;top:0;z-index:90;background:rgba(255,255,255,.8);backdrop
 .faq-a-inner a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
 .faq-a-inner a:hover{opacity:.7}
 
-/* CONTACT block at end of accordion */
 .faq-contact{max-width:780px;margin:44px auto 0;text-align:center;padding:36px 24px;background:#fff;border:1px solid var(--line);border-radius:16px}
 .faq-contact h3{font-size:1.5rem;margin-bottom:10px;letter-spacing:-.025em}
 .faq-contact p{color:var(--muted);font-size:1rem;max-width:44ch;margin:0 auto 22px;line-height:1.55}
 .faq-contact-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 
-/* Footer - identical to index.html */
+/* Footer */
 footer{border-top:1px solid var(--line);padding:40px 0;font-size:.86rem;color:var(--muted)}
 .also{text-align:center;padding-bottom:26px;margin-bottom:26px;border-bottom:1px solid var(--line)}
 .also a{color:var(--ink);font-weight:600}
@@ -214,7 +253,6 @@ footer{border-top:1px solid var(--line);padding:40px 0;font-size:.86rem;color:va
   .mcta{display:flex}body{padding-bottom:72px}
 }
 
-/* Mobile: tighten hero + shelf */
 @media(max-width:767px){
   .faq-hero{padding:22px 0 20px}
   .faq-hero .eyebrow{margin-bottom:8px}
@@ -250,7 +288,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </header>
 
-<!-- HERO (slim white band) -->
+<!-- HERO -->
 <section class="faq-hero">
   <div class="wrap">
     <div class="faq-hero-grid">
@@ -270,44 +308,62 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- VIDEO SHELF (dark, full-bleed) -->
+<!-- VIDEO SHELF -->
 <section class="vid-shelf" id="videos">
   <div class="wrap">
-    <div class="shelf-head">
-      <span class="shelf-label">From the paddock</span>
-      <div class="rail-nav" aria-label="Scroll gallery">
-        <button class="rail-btn" id="rail-prev" aria-label="Previous" disabled>&#8592;</button>
-        <button class="rail-btn" id="rail-next" aria-label="Next">&#8594;</button>
+    <div class="shelf-inner" id="shelf-inner">
+
+      <!-- RAIL STATE -->
+      <div class="state rail-state" id="rail-state">
+        <div class="shelf-head">
+          <span class="shelf-label">From the paddock</span>
+          <div class="rail-nav" aria-label="Scroll gallery">
+            <button class="rail-btn" id="rail-prev" aria-label="Previous" disabled>&#8592;</button>
+            <button class="rail-btn" id="rail-next" aria-label="Next">&#8594;</button>
+          </div>
+        </div>
+        <div class="rail-outer">
+          <div class="rail" id="vid-rail" role="list" aria-label="Farmer video answers"></div>
+        </div>
       </div>
-    </div>
-    <div class="rail-outer">
-      <div class="rail" id="vid-rail" role="list" aria-label="Farmer video answers"></div>
+
+      <!-- THEATRE STATE -->
+      <div class="state theatre-state hidden" id="theatre-state" role="region" aria-label="Video answer">
+        <div class="theatre-head">
+          <span class="theatre-counter" id="theatre-counter"></span>
+          <button class="theatre-close" id="theatre-close" aria-label="Close video and return to gallery">&#215;</button>
+        </div>
+        <div class="theatre-body">
+          <button class="theatre-arrow desktop-only" id="theatre-prev" aria-label="Previous video">&#8592;</button>
+          <div class="theatre-video-col">
+            <video id="theatre-video" controls playsinline preload="none"></video>
+          </div>
+          <div class="theatre-text" id="theatre-text">
+            <p class="theatre-tag" id="theatre-tag"></p>
+            <h3 class="theatre-q" id="theatre-q"></h3>
+            <p class="theatre-cap" id="theatre-cap"></p>
+            <div class="theatre-notice" id="theatre-notice" role="note">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              <span id="theatre-notice-text"></span>
+            </div>
+            <button class="theatre-trans-toggle" id="theatre-trans-toggle" aria-expanded="false" aria-controls="theatre-trans-body">
+              <span class="pm" aria-hidden="true">+</span> Read the transcript
+            </button>
+            <div class="theatre-trans-body" id="theatre-trans-body" role="region" aria-label="Transcript"></div>
+          </div>
+          <button class="theatre-arrow desktop-only" id="theatre-next" aria-label="Next video">&#8594;</button>
+          <!-- Mobile-only arrow row below video, counter between arrows -->
+          <div class="theatre-nav-row" aria-hidden="false">
+            <button class="theatre-arrow" id="theatre-prev-m" aria-label="Previous video">&#8592;</button>
+            <span class="theatre-counter" id="theatre-counter-m"></span>
+            <button class="theatre-arrow" id="theatre-next-m" aria-label="Next video">&#8594;</button>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
-
-<!-- LIGHTBOX -->
-<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="Video answer">
-  <div class="lb-inner" id="lb-inner">
-    <div class="lb-video-col" id="lb-video-col">
-      <button class="lb-close" id="lb-close" aria-label="Close video">&#215;</button>
-      <video id="lb-video" controls playsinline preload="none"></video>
-    </div>
-    <div class="lb-info" id="lb-info">
-      <p class="lb-tag" id="lb-tag"></p>
-      <p class="lb-q" id="lb-q"></p>
-      <p class="lb-caption" id="lb-caption"></p>
-      <div class="lb-notice" id="lb-notice" role="note">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <span id="lb-notice-text"></span>
-      </div>
-      <div class="lb-transcript" id="lb-transcript" hidden>
-        <h4>Transcript</h4>
-        <p id="lb-transcript-text"></p>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- WRITTEN FAQ -->
 <section class="faq-written">
@@ -356,7 +412,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
    Both the video and its poster derive from the id:
      /videos/agras-fred-{id}.mp4
      /videos/thumbnails/agras-fred-{id}.jpg
-   No hand-typed second path - a typo cannot mismatch a poster to the wrong clip.
 
    Transcripts: auto-generated and manually corrected.
    Two numbers still unconfirmed:
@@ -401,8 +456,6 @@ var VIDEOS = [
 
 /* ─────────────────────────────────────────────
    WRITTEN FAQ DATA
-   Only published items are in the active array.
-   Items awaiting verified copy are commented out below.
 ───────────────────────────────────────────── */
 var FAQS = [
   {
@@ -441,34 +494,20 @@ var FAQS = [
     q: "Should I buy, or keep hiring a contractor?",
     a: "Below about 800 ha a season, hiring is usually the call. Above that, with a recurring spray window, owning tends to pay for itself in a couple of seasons. We'll work through the numbers against your operation. Call us on (08) 6110 7423."
   }
-
-  /* ── TODO: reinstate the four items below once copy is verified ──
-
-  ,{
-    q: "TODO: 149.9 kg weight rule question [VERIFY COPY BEFORE PUBLISHING]",
-    a: "TODO: verified answer needed"
-  }
-  ,{
-    q: "TODO: licensing / CASA question [VERIFY COPY BEFORE PUBLISHING]",
-    a: "TODO: verified answer needed"
-  }
-  ,{
-    q: "TODO: granular spreading specifics [VERIFY COPY BEFORE PUBLISHING]",
-    a: "TODO: verified answer needed"
-  }
-  ,{
-    q: "TODO: parts and service [VERIFY COPY BEFORE PUBLISHING]",
-    a: "TODO: verified answer needed"
-  }
-
-  ── end TODO block ── */
+  /* TODO: reinstate the four items below once copy is verified
+  ,{ q: "TODO: 149.9 kg follow-up [VERIFY]", a: "TODO" }
+  ,{ q: "TODO: licensing / CASA [VERIFY]", a: "TODO" }
+  ,{ q: "TODO: granular spreading [VERIFY]", a: "TODO" }
+  ,{ q: "TODO: parts and service [VERIFY]", a: "TODO" }
+  end TODO */
 ];
 
 function vidSrc(v){ return "/videos/agras-fred-" + v.id + ".mp4"; }
 function posterSrc(v){ return "/videos/thumbnails/agras-fred-" + v.id + ".jpg"; }
+function reduceMotion(){ return matchMedia('(prefers-reduced-motion:reduce)').matches; }
 
 /* ─────────────────────────────────────────────
-   BUILD VIDEO GALLERY
+   BUILD RAIL
 ───────────────────────────────────────────── */
 (function() {
   var rail = document.getElementById('vid-rail');
@@ -494,12 +533,11 @@ function posterSrc(v){ return "/videos/thumbnails/agras-fred-" + v.id + ".jpg"; 
       '</div>' +
       '<div class="vid-play" aria-hidden="true"></div>';
 
-    card.addEventListener('click', function(e) { e.preventDefault(); openLightbox(i); });
+    card.addEventListener('click', function(e) { e.preventDefault(); enterTheatre(i); });
     card.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(i); }
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); enterTheatre(i); }
     });
 
-    // Handle missing video (network / typo)
     var innerVid = card.querySelector('video');
     innerVid.addEventListener('error', function() {
       var errEl = card.querySelector('.vid-card-err');
@@ -521,7 +559,7 @@ function posterSrc(v){ return "/videos/thumbnails/agras-fred-" + v.id + ".jpg"; 
     rail.appendChild(wrap);
   });
 
-  // Prev/Next
+  // Prev/Next for rail
   var prevBtn = document.getElementById('rail-prev');
   var nextBtn = document.getElementById('rail-next');
   if (prevBtn && nextBtn) {
@@ -529,9 +567,11 @@ function posterSrc(v){ return "/videos/thumbnails/agras-fred-" + v.id + ".jpg"; 
       prevBtn.disabled = rail.scrollLeft <= 4;
       nextBtn.disabled = rail.scrollLeft >= rail.scrollWidth - rail.clientWidth - 4;
     }
-    var reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
-    var scrollOpts = reduce ? {} : { behavior: 'smooth' };
-    function step(){ return (rail.querySelector('.vid-card-wrap') || {}).clientWidth ? rail.querySelector('.vid-card-wrap').clientWidth + 16 : 252; }
+    var scrollOpts = reduceMotion() ? {} : { behavior: 'smooth' };
+    function step(){
+      var w = rail.querySelector('.vid-card-wrap');
+      return w ? w.clientWidth + 16 : 252;
+    }
     prevBtn.addEventListener('click', function() { rail.scrollBy(Object.assign({ left: -step() }, scrollOpts)); });
     nextBtn.addEventListener('click', function() { rail.scrollBy(Object.assign({ left: step() }, scrollOpts)); });
     rail.addEventListener('scroll', syncBtns, { passive: true });
@@ -540,9 +580,34 @@ function posterSrc(v){ return "/videos/thumbnails/agras-fred-" + v.id + ".jpg"; 
 })();
 
 /* ─────────────────────────────────────────────
-   GLOBAL VIDEO GUARD
-   One capture-phase 'play' listener - starting any video pauses all others.
-   No per-element handlers.
+   FIX SECTION HEIGHT so entering/exiting theatre causes no layout shift.
+   Set the shelf-inner min-height to the larger of rail state and
+   an estimated theatre body height.
+───────────────────────────────────────────── */
+(function fixShelfHeight(){
+  var inner = document.getElementById('shelf-inner');
+  var rail  = document.getElementById('rail-state');
+  if (!inner || !rail) return;
+  function measure(){
+    // Rail state height (natural)
+    var rh = rail.offsetHeight;
+    // Theatre estimated: 40 head + 12 gap + max(video 525, text) + optional 60 nav-row on mobile.
+    var isMobile = window.innerWidth < 768;
+    var th;
+    if (isMobile){
+      // Mobile stack: video (min 280*16/9=498) + gap 14 + nav-row 44 + gap 14 + text ~260
+      th = 40 + 12 + 498 + 14 + 44 + 14 + 260;
+    } else {
+      th = 40 + 12 + Math.max(525, 320); // 525 for 295*16/9 video
+    }
+    inner.style.minHeight = Math.max(rh, th) + 'px';
+  }
+  measure();
+  window.addEventListener('resize', measure);
+})();
+
+/* ─────────────────────────────────────────────
+   GLOBAL PLAY GUARD - one capture-phase listener.
 ───────────────────────────────────────────── */
 document.addEventListener('play', function(e) {
   var target = e.target;
@@ -552,106 +617,194 @@ document.addEventListener('play', function(e) {
   });
 }, true);
 
-/* Card previews pause when they leave the rail viewport. */
-(function() {
-  var rail = document.getElementById('vid-rail');
-  if (!rail || !('IntersectionObserver' in window)) return;
-  var io = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      var vid = entry.target.querySelector('video');
-      if (!vid || entry.isIntersecting) return;
-      if (!vid.paused) vid.pause();
-    });
-  }, { root: rail, threshold: 0.1 });
-  rail.querySelectorAll('.vid-card').forEach(function(c){ io.observe(c); });
-})();
-
 /* ─────────────────────────────────────────────
-   LIGHTBOX
+   THEATRE STATE MANAGEMENT
 ───────────────────────────────────────────── */
-var lbOpenIdx = -1;
-var lbTrigger = null;
+var currentIdx = -1;
+var trigger = null;      // card that opened the theatre
+var theatreOpen = false;
 
-function openLightbox(idx) {
-  var v = VIDEOS[idx];
+var railState    = document.getElementById('rail-state');
+var theatreState = document.getElementById('theatre-state');
+var vidEl        = document.getElementById('theatre-video');
+var textEl       = document.getElementById('theatre-text');
+var counterEl    = document.getElementById('theatre-counter');
+var counterMEl   = document.getElementById('theatre-counter-m');
+var tagEl        = document.getElementById('theatre-tag');
+var qEl          = document.getElementById('theatre-q');
+var capEl        = document.getElementById('theatre-cap');
+var noticeEl     = document.getElementById('theatre-notice');
+var noticeTx     = document.getElementById('theatre-notice-text');
+var transToggle  = document.getElementById('theatre-trans-toggle');
+var transBody    = document.getElementById('theatre-trans-body');
+var prevBtn      = document.getElementById('theatre-prev');
+var nextBtn      = document.getElementById('theatre-next');
+var prevBtnM     = document.getElementById('theatre-prev-m');
+var nextBtnM     = document.getElementById('theatre-next-m');
+var closeBtn     = document.getElementById('theatre-close');
+
+function renderClip(i){
+  var v = VIDEOS[i];
   if (!v) return;
-  lbOpenIdx = idx;
-  lbTrigger = document.querySelector('[data-idx="' + idx + '"]');
+  currentIdx = i;
 
-  document.getElementById('lb-tag').textContent = v.tag;
-  document.getElementById('lb-q').textContent = v.question;
-  document.getElementById('lb-caption').textContent = v.caption;
+  var label = (i+1) + ' of ' + VIDEOS.length + ' — ' + v.tag;
+  counterEl.textContent = label;
+  counterMEl.textContent = label;
 
-  var noticeEl = document.getElementById('lb-notice');
-  var noticeText = document.getElementById('lb-notice-text');
-  if (v.notice) {
-    noticeText.textContent = v.notice;
+  tagEl.textContent = v.tag;
+  qEl.textContent = v.question;
+  capEl.textContent = v.caption;
+
+  if (v.notice){
+    noticeTx.textContent = v.notice;
     noticeEl.classList.add('show');
   } else {
-    noticeText.textContent = '';
+    noticeTx.textContent = '';
     noticeEl.classList.remove('show');
   }
 
-  var transWrap = document.getElementById('lb-transcript');
-  var transText = document.getElementById('lb-transcript-text');
-  if (v.transcript) {
-    transText.textContent = v.transcript;
-    transWrap.hidden = false;
-  } else {
-    transText.textContent = '';
-    transWrap.hidden = true;
-  }
+  // Transcript collapsed by default on every clip change
+  transBody.textContent = v.transcript || '';
+  transBody.classList.remove('open');
+  transToggle.setAttribute('aria-expanded','false');
 
-  var vid = document.getElementById('lb-video');
-  vid.setAttribute('poster', posterSrc(v));
-  vid.src = vidSrc(v);
-  vid.muted = false;
-  vid.currentTime = 0;
-  vid.load();
-  vid.play().catch(function() {});
+  // Swap video source and play
+  try { vidEl.pause(); } catch(_){}
+  try { vidEl.currentTime = 0; } catch(_){}
+  vidEl.setAttribute('poster', posterSrc(v));
+  vidEl.src = vidSrc(v);
+  vidEl.muted = false;
+  vidEl.load();
+  vidEl.play().catch(function(){});
 
-  var lb = document.getElementById('lightbox');
-  lb.classList.add('open');
-  document.body.style.overflow = 'hidden';
-
-  setTimeout(function() { document.getElementById('lb-close').focus(); }, 50);
+  // Sync arrow disabled state (both desktop and mobile)
+  var atFirst = i === 0;
+  var atLast  = i === VIDEOS.length - 1;
+  prevBtn.disabled = atFirst;
+  nextBtn.disabled = atLast;
+  prevBtnM.disabled = atFirst;
+  nextBtnM.disabled = atLast;
 }
 
-function closeLightbox() {
-  var lb = document.getElementById('lightbox');
-  lb.classList.remove('open');
-  var vid = document.getElementById('lb-video');
-  vid.pause();
-  try { vid.currentTime = 0; } catch(_) {}
-  vid.removeAttribute('src');
-  vid.load();
-  document.body.style.overflow = '';
-  lbOpenIdx = -1;
-  if (lbTrigger) { lbTrigger.focus(); lbTrigger = null; }
+function enterTheatre(i){
+  if (theatreOpen){ // already in theatre, just switch clip
+    switchClip(i);
+    return;
+  }
+  trigger = document.querySelector('.vid-card[data-idx="' + i + '"]');
+
+  theatreOpen = true;
+  theatreState.classList.remove('hidden');
+  textEl.classList.add('pre-fade');
+  // Force paint so opacity transition runs
+  void theatreState.offsetWidth;
+
+  // Cross-fade: rail leaves, theatre appears
+  railState.classList.add('leaving');
+  // Theatre is already visible (removed 'hidden'); set opacity 0 first, then fade in
+  theatreState.style.opacity = '0';
+  void theatreState.offsetWidth;
+  theatreState.style.opacity = '1';
+
+  // Populate content immediately (video starts loading)
+  renderClip(i);
+
+  var mo = reduceMotion();
+  // Text fades in slightly after the video (250ms) — instant under reduced motion
+  setTimeout(function(){
+    textEl.classList.remove('pre-fade');
+  }, mo ? 0 : 250);
+
+  // Once fade completes, hide the rail so it is inert
+  setTimeout(function(){
+    railState.classList.add('hidden');
+    // Focus into the player
+    closeBtn.focus();
+  }, mo ? 0 : 400);
 }
 
-document.getElementById('lb-close').addEventListener('click', closeLightbox);
-document.getElementById('lightbox').addEventListener('click', function(e) {
-  if (e.target === this) closeLightbox();
+function switchClip(i){
+  if (i < 0 || i >= VIDEOS.length || i === currentIdx) return;
+  // Pause + reset previous is handled inside renderClip via pause + currentTime=0
+  // Brief text fade for continuity
+  var mo = reduceMotion();
+  textEl.classList.add('pre-fade');
+  renderClip(i);
+  setTimeout(function(){ textEl.classList.remove('pre-fade'); }, mo ? 0 : 220);
+}
+
+function exitTheatre(){
+  if (!theatreOpen) return;
+  theatreOpen = false;
+
+  // Pause & reset current video, clear src to release the file
+  try { vidEl.pause(); } catch(_){}
+  try { vidEl.currentTime = 0; } catch(_){}
+  vidEl.removeAttribute('src');
+  vidEl.load();
+
+  var mo = reduceMotion();
+
+  // Cross-fade back
+  railState.classList.remove('hidden');
+  railState.style.opacity = '0';
+  void railState.offsetWidth;
+  railState.classList.remove('leaving');
+  railState.style.opacity = '';
+
+  theatreState.style.opacity = '0';
+
+  setTimeout(function(){
+    theatreState.classList.add('hidden');
+    theatreState.style.opacity = '';
+    textEl.classList.remove('pre-fade');
+    if (trigger){ trigger.focus(); trigger = null; }
+  }, mo ? 0 : 400);
+}
+
+/* Navigation buttons */
+prevBtn.addEventListener('click', function(){ switchClip(currentIdx - 1); });
+nextBtn.addEventListener('click', function(){ switchClip(currentIdx + 1); });
+prevBtnM.addEventListener('click', function(){ switchClip(currentIdx - 1); });
+nextBtnM.addEventListener('click', function(){ switchClip(currentIdx + 1); });
+closeBtn.addEventListener('click', exitTheatre);
+
+/* Keyboard: Esc closes; ← → change clip while theatre is open */
+document.addEventListener('keydown', function(e){
+  if (!theatreOpen) return;
+  if (e.key === 'Escape'){ e.preventDefault(); exitTheatre(); return; }
+  if (e.key === 'ArrowLeft'){ e.preventDefault(); switchClip(currentIdx - 1); return; }
+  if (e.key === 'ArrowRight'){ e.preventDefault(); switchClip(currentIdx + 1); return; }
 });
 
-// Keyboard: Esc closes; Tab traps focus inside lightbox
-document.addEventListener('keydown', function(e) {
-  var lb = document.getElementById('lightbox');
-  if (!lb.classList.contains('open')) return;
-  if (e.key === 'Escape') { closeLightbox(); return; }
-  if (e.key === 'Tab') {
-    var focusable = lb.querySelectorAll('button, [href], input, [tabindex]:not([tabindex="-1"])');
-    var arr = Array.prototype.slice.call(focusable);
-    if (!arr.length) return;
-    var first = arr[0], last = arr[arr.length - 1];
-    if (e.shiftKey) {
-      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
-    } else {
-      if (document.activeElement === last) { e.preventDefault(); first.focus(); }
-    }
-  }
+/* Transcript toggle */
+transToggle.addEventListener('click', function(){
+  var open = this.getAttribute('aria-expanded') === 'true';
+  this.setAttribute('aria-expanded', String(!open));
+  transBody.classList.toggle('open', !open);
 });
+
+/* Swipe on mobile */
+(function(){
+  var startX = 0, startY = 0, tracking = false;
+  var el = theatreState;
+  el.addEventListener('touchstart', function(e){
+    if (!theatreOpen || window.innerWidth >= 768) return;
+    var t = e.touches[0];
+    startX = t.clientX; startY = t.clientY; tracking = true;
+  }, { passive: true });
+  el.addEventListener('touchend', function(e){
+    if (!tracking) return;
+    tracking = false;
+    var t = e.changedTouches[0];
+    var dx = t.clientX - startX;
+    var dy = t.clientY - startY;
+    if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.2) return;
+    if (dx < 0) switchClip(currentIdx + 1);
+    else        switchClip(currentIdx - 1);
+  });
+})();
 
 /* ─────────────────────────────────────────────
    BUILD WRITTEN FAQ ACCORDION
@@ -682,15 +835,13 @@ document.addEventListener('keydown', function(e) {
   });
 })();
 
-/* ─────────────────────────────────────────────
-   OPEN CHAT WIDGET from contact block button
-───────────────────────────────────────────── */
+/* Chat launcher trigger from contact block */
 document.getElementById('open-chat-btn').addEventListener('click', function() {
   var launcher = document.querySelector('.efr-launcher');
   if (launcher) launcher.click();
 });
 
-/* SCROLL REVEAL */
+/* Scroll reveal */
 var revObs = new IntersectionObserver(function(es) {
   es.forEach(function(e) {
     if (e.isIntersecting) { e.target.classList.add('in'); revObs.unobserve(e.target); }
@@ -698,7 +849,7 @@ var revObs = new IntersectionObserver(function(es) {
 }, { threshold: .1 });
 document.querySelectorAll('.reveal').forEach(function(el) { revObs.observe(el); });
 
-/* HELPERS */
+/* Helpers */
 function escHtml(s) {
   return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
