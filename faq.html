@@ -3,21 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FAQ — DJI Agras T70P | Elk Fish Robotics</title>
+<title>FAQ - DJI Agras T70P | Elk Fish Robotics</title>
 <meta name="description" content="Common questions about the DJI Agras T70P answered by Elk Fish Robotics. Video answers from a WA farmer, written Q&amp;A, and how to order.">
 <link rel="canonical" href="https://agras.elkfishrobotics.com.au/faq">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Elk Fish Robotics">
-<meta property="og:title" content="FAQ — DJI Agras T70P | Elk Fish Robotics">
+<meta property="og:title" content="FAQ - DJI Agras T70P | Elk Fish Robotics">
 <meta property="og:description" content="Common questions about the DJI Agras T70P answered by Elk Fish Robotics. Video answers from a WA farmer and written Q&amp;A.">
 <meta property="og:url" content="https://agras.elkfishrobotics.com.au/faq">
 <meta property="og:image" content="https://agras.elkfishrobotics.com.au/assets/images/og-share.jpg">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="FAQ — DJI Agras T70P | Elk Fish Robotics">
+<meta name="twitter:title" content="FAQ - DJI Agras T70P | Elk Fish Robotics">
 <meta name="twitter:description" content="Common questions about the DJI Agras T70P answered by Elk Fish Robotics.">
 <meta name="twitter:image" content="https://agras.elkfishrobotics.com.au/assets/images/og-share.jpg">
 
@@ -34,7 +34,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-/* ── Design tokens — exact match to index.html ── */
+/* Design tokens - exact match to index.html */
 :root{
   --bg:#ffffff;--bg-2:#f4f4f6;--ink:#111114;--muted:#6c6c73;
   --dark:#0b0b0d;--dark-2:#15151a;--on-dark:#f3f3f5;--on-dark-soft:rgba(243,243,245,.62);
@@ -67,7 +67,7 @@ section{padding:var(--pad) 0}
 .btn-light:hover{background:var(--bg-2)}
 .btn-arrow::after{content:"\2192";font-weight:500}
 
-/* ── Header — identical to index.html ── */
+/* Header - identical to index.html */
 header{position:sticky;top:0;z-index:90;background:rgba(255,255,255,.8);backdrop-filter:saturate(180%) blur(16px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:72px;gap:18px}
 .brand{font-weight:700;font-size:1rem;letter-spacing:-.02em;display:flex;align-items:center;gap:8px;white-space:nowrap}
@@ -81,61 +81,85 @@ header{position:sticky;top:0;z-index:90;background:rgba(255,255,255,.8);backdrop
 .nav .btn{padding:9px 18px;font-size:.86rem}
 @media(max-width:900px){.nav-links,.nav-phone{display:none}}
 
-/* ── Hero ── */
-.faq-hero{text-align:center;padding:60px 0 56px;background:radial-gradient(120% 90% at 50% 0%,#fff 30%,#eceef1 100%)}
-.faq-hero .eyebrow{color:var(--muted);font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:.74rem}
-.faq-hero h1{font-size:clamp(2.4rem,5vw,4.2rem);max-width:18ch;margin:14px auto 18px;line-height:1.04}
-.faq-hero .lead{max-width:520px;margin:0 auto 28px}
-.faq-hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.faq-hero-note{margin-top:20px;font-size:.84rem;color:var(--muted)}
+/* HERO - slim white band; two columns from 1024px */
+.faq-hero{background:#fff;padding:36px 0 32px;border-bottom:1px solid var(--line)}
+.faq-hero-grid{display:grid;grid-template-columns:1fr;gap:22px;align-items:end}
+.faq-hero .eyebrow{color:var(--muted);font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:.74rem;margin-bottom:12px}
+.faq-hero h1{font-size:clamp(2.1rem,4.4vw,3.1rem);letter-spacing:-.038em;font-weight:800;line-height:1.05;text-wrap:balance;max-width:22ch}
+.faq-hero-right{display:flex;flex-direction:column;gap:16px;align-items:flex-start}
+.faq-hero .lead{max-width:52ch;font-size:1.02rem;line-height:1.55}
+.faq-hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+.faq-hero-note{font-size:.82rem;color:var(--muted)}
+@media(min-width:1024px){
+  .faq-hero{padding:22px 0 20px}
+  .faq-hero-grid{grid-template-columns:1.05fr .95fr;gap:56px;align-items:end}
+  .faq-hero h1{font-size:clamp(2.4rem,3.5vw,3.15rem);max-width:20ch}
+  .faq-hero-right{align-items:flex-end;text-align:right;gap:12px}
+  .faq-hero .lead{text-align:right}
+  .faq-hero-actions{justify-content:flex-end}
+}
 
-/* ── Video gallery ── */
-.vid-section{background:var(--dark);color:var(--on-dark);padding:var(--pad) 0;overflow:hidden}
-.vid-section .sec-head{text-align:left;margin-left:0;max-width:640px}
-.vid-section .sec-head .eyebrow{color:var(--on-dark-soft)}
-.vid-section .sec-head h2{color:#fff;margin-top:14px}
-
-.rail-wrap{position:relative;margin-top:36px}
-.rail-nav{display:flex;gap:10px;margin-bottom:16px}
-.rail-btn{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s;flex:none;font-family:inherit}
-.rail-btn:hover:not(:disabled){background:rgba(255,255,255,.2)}
+/* VIDEO SHELF - dark, fills remaining viewport */
+.vid-shelf{background:var(--dark);color:var(--on-dark);padding:28px 0 32px;overflow:hidden}
+@media(min-width:1024px){
+  .vid-shelf{padding:14px 0 20px}
+}
+.shelf-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:12px}
+.shelf-label{font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--on-dark-soft)}
+.rail-nav{display:flex;gap:10px}
+.rail-btn{width:40px;height:40px;border-radius:50%;background:transparent;border:1px solid rgba(255,255,255,.24);color:#fff;font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s,border-color .15s;flex:none;font-family:inherit}
+.rail-btn:hover:not(:disabled){background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.4)}
 .rail-btn:disabled{opacity:.3;cursor:default}
 .rail-btn:focus-visible{outline:2px solid #fff;outline-offset:3px}
-@media(max-width:900px){.rail-nav{display:none}}
+@media(max-width:767px){.rail-nav{display:none}}
 
-.rail{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:0 28px 20px;margin:0 -28px;scrollbar-width:none}
+/* Rail bleeds to right edge so the next card peeks in */
+.rail-outer{position:relative;margin-right:calc(-1 * ((100vw - min(100vw,var(--wrap))) / 2 + 28px))}
+.rail{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:2px 0 12px;scrollbar-width:none}
 .rail::-webkit-scrollbar{display:none}
 @media(prefers-reduced-motion:reduce){.rail{scroll-behavior:auto}}
 
-.vid-card{flex:none;width:220px;scroll-snap-align:start;cursor:pointer;border-radius:14px;overflow:hidden;background:#000;position:relative;aspect-ratio:9/16;border:2px solid transparent;transition:border-color .15s,transform .15s}
-.vid-card:hover{border-color:rgba(255,255,255,.3);transform:translateY(-2px)}
+.vid-card{flex:none;width:220px;scroll-snap-align:start;cursor:pointer;border-radius:14px;overflow:hidden;background:#000;position:relative;aspect-ratio:9/16;border:2px solid transparent;transition:border-color .15s,transform .15s;display:block}
+@media(min-width:1024px){.vid-card{width:322px}}
+.vid-card:hover{border-color:rgba(255,255,255,.28);transform:translateY(-2px)}
 .vid-card:focus-visible{outline:3px solid #fff;outline-offset:3px;border-radius:14px}
 @media(prefers-reduced-motion:reduce){.vid-card{transition:none}}
 
-.vid-card video{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.vid-card video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;background:#000}
 .vid-card-err{display:none;flex-direction:column;align-items:center;justify-content:center;gap:8px;height:100%;padding:16px;color:rgba(255,255,255,.6);font-size:.82rem;text-align:center}
 .vid-card-err code{font-size:.72rem;word-break:break-all;opacity:.7}
 
-.vid-card-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.75));display:flex;flex-direction:column;justify-content:flex-end;padding:14px 12px;pointer-events:none}
-.vid-card-tag{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:4px}
-.vid-card-q{font-size:.88rem;font-weight:600;color:#fff;line-height:1.3}
-.vid-card-dur{font-size:.72rem;color:rgba(255,255,255,.55);margin-top:4px}
-.vid-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center}
-.vid-play::after{content:"";border-left:14px solid var(--ink);border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:3px}
+.vid-card-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 65%,rgba(0,0,0,.55));display:flex;flex-direction:column;justify-content:flex-end;padding:0;pointer-events:none}
+.vid-card-dur{position:absolute;right:10px;bottom:10px;font-size:.7rem;font-weight:600;color:#fff;background:rgba(0,0,0,.55);padding:4px 8px;border-radius:6px;letter-spacing:.02em}
+/* Play button bottom-left, balances duration bottom-right; keeps tile text clear */
+.vid-play{position:absolute;left:10px;bottom:10px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center}
+.vid-play::after{content:"";border-left:10px solid var(--ink);border-top:6px solid transparent;border-bottom:6px solid transparent;margin-left:2px}
 .vid-card:hover .vid-play,.vid-card:focus-visible .vid-play{background:#fff}
 
-/* ── Lightbox ── */
+/* Meta below tile */
+.vid-card-meta{margin-top:12px;padding:0 2px}
+.vid-card-tag{font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.48);display:block;margin-bottom:6px}
+.vid-card-q{font-size:.94rem;font-weight:600;color:#fff;line-height:1.3;display:block}
+.vid-card-wrap{display:flex;flex-direction:column;flex:none;width:220px;scroll-snap-align:start}
+@media(min-width:1024px){.vid-card-wrap{width:322px}}
+
+/* LIGHTBOX */
 .lb{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.88);align-items:center;justify-content:center;padding:20px}
 .lb.open{display:flex}
 .lb-inner{background:var(--dark);border-radius:18px;overflow:hidden;display:grid;grid-template-columns:auto 1fr;max-width:960px;width:100%;max-height:90vh}
 .lb-video-col{width:min(340px,40vw);flex-shrink:0;position:relative;background:#000}
 .lb-video-col video{width:100%;height:100%;object-fit:cover;display:block}
-.lb-info{padding:32px 28px;overflow-y:auto;display:flex;flex-direction:column;gap:18px;color:var(--on-dark)}
+.lb-info{padding:32px 28px;overflow-y:auto;display:flex;flex-direction:column;gap:16px;color:var(--on-dark)}
 .lb-close{position:absolute;top:14px;right:14px;z-index:10;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1}
 .lb-close:focus-visible{outline:2px solid #fff;outline-offset:3px}
 .lb-tag{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--on-dark-soft)}
 .lb-q{font-size:1.2rem;font-weight:700;letter-spacing:-.02em;color:#fff;line-height:1.25}
 .lb-caption{font-size:.95rem;color:var(--on-dark-soft);line-height:1.6}
+.lb-notice{display:none;font-size:.82rem;color:var(--on-dark-soft);line-height:1.55;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:12px 14px;gap:10px}
+.lb-notice.show{display:flex}
+.lb-notice svg{flex:none;margin-top:2px;opacity:.75}
+.lb-transcript{font-size:.9rem;color:var(--on-dark-soft);line-height:1.65;border-top:1px solid rgba(255,255,255,.1);padding-top:14px;margin-top:4px}
+.lb-transcript h4{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px}
 @media(max-width:700px){
   .lb{padding:0}
   .lb-inner{grid-template-columns:1fr;grid-template-rows:55vw 1fr;border-radius:0;max-height:100dvh;overflow:hidden}
@@ -143,7 +167,7 @@ header{position:sticky;top:0;z-index:90;background:rgba(255,255,255,.8);backdrop
   .lb-info{padding:20px 18px;overflow-y:auto}
 }
 
-/* ── Written FAQ ── */
+/* WRITTEN FAQ */
 .faq-written{background:var(--bg-2)}
 .faq-list{max-width:780px;margin:0 auto}
 .faq-item{border-top:1px solid var(--line)}
@@ -159,15 +183,13 @@ header{position:sticky;top:0;z-index:90;background:rgba(255,255,255,.8);backdrop
 .faq-a-inner a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
 .faq-a-inner a:hover{opacity:.7}
 
-/* ── Final CTA ── */
-.final{text-align:center}
-.final h2{margin-bottom:16px}
-.final .lead{max-width:520px;margin:0 auto 28px}
-.final-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.contact{display:flex;gap:36px;justify-content:center;flex-wrap:wrap;margin-top:46px;font-size:.92rem;color:var(--muted)}
-.contact b{color:var(--ink);font-weight:600;display:block;margin-bottom:2px}
+/* CONTACT block at end of accordion */
+.faq-contact{max-width:780px;margin:44px auto 0;text-align:center;padding:36px 24px;background:#fff;border:1px solid var(--line);border-radius:16px}
+.faq-contact h3{font-size:1.5rem;margin-bottom:10px;letter-spacing:-.025em}
+.faq-contact p{color:var(--muted);font-size:1rem;max-width:44ch;margin:0 auto 22px;line-height:1.55}
+.faq-contact-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 
-/* ── Footer — identical to index.html ── */
+/* Footer - identical to index.html */
 footer{border-top:1px solid var(--line);padding:40px 0;font-size:.86rem;color:var(--muted)}
 .also{text-align:center;padding-bottom:26px;margin-bottom:26px;border-bottom:1px solid var(--line)}
 .also a{color:var(--ink);font-weight:600}
@@ -190,6 +212,19 @@ footer{border-top:1px solid var(--line);padding:40px 0;font-size:.86rem;color:va
   :root{--pad:50px}
   .brand img.logo{height:38px}
   .mcta{display:flex}body{padding-bottom:72px}
+}
+
+/* Mobile: tighten hero + shelf */
+@media(max-width:767px){
+  .faq-hero{padding:22px 0 20px}
+  .faq-hero .eyebrow{margin-bottom:8px}
+  .faq-hero h1{font-size:clamp(1.9rem,7vw,2.3rem);line-height:1.06;max-width:none}
+  .faq-hero-right{gap:12px}
+  .faq-hero .lead{font-size:.98rem;max-width:none}
+  .faq-hero-note{font-size:.78rem}
+  .vid-shelf{padding:22px 0 26px}
+  .shelf-head{margin-bottom:14px}
+  .rail{padding:2px 0 14px}
 }
 </style>
 </head>
@@ -215,32 +250,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </header>
 
-<!-- HERO -->
+<!-- HERO (slim white band) -->
 <section class="faq-hero">
   <div class="wrap">
-    <span class="eyebrow">DJI Agras T70P &middot; Available now in WA</span>
-    <h1>Questions farmers actually ask.</h1>
-    <p class="lead">Straight answers on coverage, cost, charging, licensing and whether buying beats hiring — from us and from operators already running Agras drones.</p>
-    <div class="faq-hero-actions">
-      <a class="btn btn-dark btn-arrow" href="/#waitlist">Order the T70P</a>
-      <a class="btn btn-light" href="tel:+61861107423">Call us</a>
+    <div class="faq-hero-grid">
+      <div>
+        <span class="eyebrow">DJI Agras T70P &middot; Available now in WA</span>
+        <h1>Questions farmers actually ask.</h1>
+      </div>
+      <div class="faq-hero-right">
+        <p class="lead">Straight answers on coverage, cost, charging and licensing, from us and from farmers already flying them.</p>
+        <div class="faq-hero-actions">
+          <a class="btn btn-dark btn-arrow" href="/#waitlist">Order the T70P</a>
+          <a class="btn btn-light" href="tel:+61861107423">Call us</a>
+        </div>
+        <p class="faq-hero-note">Available now, $35,000 AUD inc GST, delivered and set up on your property.</p>
+      </div>
     </div>
-    <p class="faq-hero-note">Available now &middot; $35,000 AUD inc GST &middot; Delivered and set up on your property</p>
   </div>
 </section>
 
-<!-- VIDEO GALLERY -->
-<section class="vid-section" id="videos">
+<!-- VIDEO SHELF (dark, full-bleed) -->
+<section class="vid-shelf" id="videos">
   <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">From the paddock</span>
-      <h2>Watch a WA farmer answer the same questions you have.</h2>
-    </div>
-    <div class="rail-wrap">
+    <div class="shelf-head">
+      <span class="shelf-label">From the paddock</span>
       <div class="rail-nav" aria-label="Scroll gallery">
         <button class="rail-btn" id="rail-prev" aria-label="Previous" disabled>&#8592;</button>
         <button class="rail-btn" id="rail-next" aria-label="Next">&#8594;</button>
       </div>
+    </div>
+    <div class="rail-outer">
       <div class="rail" id="vid-rail" role="list" aria-label="Farmer video answers"></div>
     </div>
   </div>
@@ -251,12 +291,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="lb-inner" id="lb-inner">
     <div class="lb-video-col" id="lb-video-col">
       <button class="lb-close" id="lb-close" aria-label="Close video">&#215;</button>
-      <video id="lb-video" controls playsinline muted style="width:100%;height:100%;object-fit:cover;display:block"></video>
+      <video id="lb-video" controls playsinline preload="none"></video>
     </div>
     <div class="lb-info" id="lb-info">
       <p class="lb-tag" id="lb-tag"></p>
       <p class="lb-q" id="lb-q"></p>
       <p class="lb-caption" id="lb-caption"></p>
+      <div class="lb-notice" id="lb-notice" role="note">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span id="lb-notice-text"></span>
+      </div>
+      <div class="lb-transcript" id="lb-transcript" hidden>
+        <h4>Transcript</h4>
+        <p id="lb-transcript-text"></p>
+      </div>
     </div>
   </div>
 </div>
@@ -266,27 +314,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Common questions</span>
-      <h2 style="margin-top:14px">The T70P — what buyers ask first.</h2>
+      <h2 style="margin-top:14px">The T70P, what buyers ask first.</h2>
     </div>
     <div class="faq-list" id="faq-list"></div>
-  </div>
-</section>
 
-<!-- FINAL CTA -->
-<section class="final">
-  <div class="wrap">
-    <span class="eyebrow reveal">Order the T70P</span>
-    <h2 class="reveal" style="margin-top:14px">Order the T70P today.</h2>
-    <p class="lead reveal">Ready to order, or want to talk it through first? Fill in the form or call us directly. We'll answer anything you want to know.</p>
-    <div class="final-actions reveal">
-      <a class="btn btn-dark btn-arrow" href="/#waitlist">Order the T70P</a>
-      <a class="btn btn-light" href="tel:+61861107423">Call us</a>
-    </div>
-    <div class="contact reveal">
-      <div><b>Phone</b><a href="tel:+61861107423">(08) 6110 7423</a></div>
-      <div><b>Email</b><a href="mailto:agras@elkfishrobotics.com.au">agras@elkfishrobotics.com.au</a></div>
-      <div><b>Shop</b>1/72 Marine Terrace, Fremantle WA</div>
-      <div><b>Open</b>Mon to Fri, 8am to 5pm AWST</div>
+    <div class="faq-contact reveal">
+      <h3>Still have questions?</h3>
+      <p>Ask our chatbot and our team will get back to you within one business day. Or call us anytime on (08) 6110 7423.</p>
+      <div class="faq-contact-actions">
+        <button type="button" class="btn btn-dark" id="open-chat-btn">Ask the chatbot</button>
+        <a class="btn btn-light" href="tel:+61861107423">Call (08) 6110 7423</a>
+      </div>
     </div>
   </div>
 </section>
@@ -314,63 +352,66 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script>
 /* ─────────────────────────────────────────────
-   VIDEO DATA ARRAY
-   To add a clip: add one object here. Nothing else changes.
-   src paths must match the filenames exactly (Netlify is case-sensitive).
-   thumbSec: seconds into the clip to use as the still thumbnail.
+   VIDEO DATA
+   Both the video and its poster derive from the id:
+     /videos/agras-fred-{id}.mp4
+     /videos/thumbnails/agras-fred-{id}.jpg
+   No hand-typed second path - a typo cannot mismatch a poster to the wrong clip.
+
+   Transcripts: auto-generated and manually corrected.
+   Two numbers still unconfirmed:
+     - charging-times: generator size ("30" - amps? kVA?)
+     - economics: "in a session" (per battery? per shift?)
 ───────────────────────────────────────────── */
 var VIDEOS = [
   {
     id: "why-a-drone",
     question: "Why would you choose a drone over a tractor?",
     tag: "The basics",
-    thumbSec: 3,
-    caption: "Fred explains what pushed him to look at a drone — wet country, tight windows, and ground pressure on the crop.",
-    src: "/videos/agras-fred-why-a-drone.mp4",
-    duration: "PT1M30S"
+    caption: "Fred on what pushed him to a drone: wet country, ground pressure and lost production from wheel marks.",
+    transcript: "I was spreading urea at 100 kilos a hectare. So this would be the first, first of three spring fertiliser applications. And why are you using a drone? Because the paddocks are too wet and I lose too much production due to wheel marks.",
+    duration: "PT0M28S"
   },
   {
     id: "faster-than-tractor",
     question: "How much faster is it than a tractor?",
     tag: "Coverage",
-    thumbSec: 4,
-    caption: "Fred walks through the real difference in spray days for his operation, and what that means for his season.",
-    src: "/videos/agras-fred-faster-than-tractor.mp4",
-    duration: "PT1M45S"
+    caption: "Fred walks through the real difference, and why time isn't the main gain.",
+    transcript: "The drone's actually quicker than a tractor. That's with an 18 metre boom. I'm just not making a mess in the paddocks, that's what I'm all about. Time's not really the issue. It's just not losing that production, having wheel ruts all through the paddocks. I measured the width of my tractor tyres, and where that tractor drives, it just bogs up. Makes a hell of a mess. Pushes all the grass into the dirt and leaves a trench about that deep. You never get that grass back again. Never grows back. It's like a bog mark. Gone. Gone.",
+    duration: "PT1M12S"
   },
   {
     id: "charging-times",
     question: "How long does it take to charge the batteries?",
     tag: "Charging",
-    thumbSec: 2,
-    caption: "Eight to nine minutes per charge with the C12000 charger — Fred on keeping the drone in the air all day.",
-    src: "/videos/agras-fred-charging-times.mp4",
-    duration: "PT1M15S"
+    caption: "Fred on his charging setup: three-phase, single-phase and the 32 amp plug that made a difference.",
+    transcript: "Okay, so for the charging, I've got a 30 for the generator, using two 12,000 chargers, what I think they are. So they take six to eight minutes on the three phase to charge a battery, then the single phase one takes twelve to fifteen. I've took the 15 amp plug off that and put a 32 amp single phase on. Just quicker, more power, less restrictive.",
+    notice: "Electrical work, including changing plugs or adding outlets, must be carried out by a licensed electrician. Talk to us about what the chargers draw before you have anything installed.",
+    duration: "PT0M21S"
   },
   {
     id: "economics",
     question: "Does it actually make financial sense to buy one?",
     tag: "The business case",
-    thumbSec: 5,
-    caption: "Fred on where the economics land, what he was spending on contractors, and how quickly it started paying back.",
-    src: "/videos/agras-fred-economics.mp4",
-    duration: "PT2M00S"
+    caption: "Fred on where the numbers land, and why not bogging tractors is where the real saving is.",
+    transcript: "We should be able to put out at least a ton in a session at 100 kilos a hectare. The paddocks are quite close to the landing zone, so we normally do 200 kilos per battery. So we get two flights per battery. It's pretty easy and there's no mess in the paddocks and no bogged tractors. Economical because you're not losing crop due to wheel marks. Yeah, just a different way of covering the ground.",
+    duration: "PT0M45S"
   }
 ];
 
 /* ─────────────────────────────────────────────
    WRITTEN FAQ DATA
-   Add questions here. Only published items are in the active array.
-   Items awaiting verified copy are commented out below the active array.
+   Only published items are in the active array.
+   Items awaiting verified copy are commented out below.
 ───────────────────────────────────────────── */
 var FAQS = [
   {
     q: "Is the T70P available now?",
-    a: "Yes — available to order now. We deliver to your property, set it up and walk you through it on the day. Call us on (08) 6110 7423 or fill in the <a href='/#waitlist'>order form</a>."
+    a: "Yes, available to order now. We deliver to your property, set it up and walk you through it on the day. Call us on (08) 6110 7423 or fill in the <a href='/#waitlist'>order form</a>."
   },
   {
     q: "How much does it cost?",
-    a: "$35,000 AUD inc GST for the Ready-to-Fly package. That includes the T70P intelligent airframe, spraying system with air-cooled heat sink, C12000 charger, three DB2160 batteries and a WB37 battery with charging hub. Freight, training and any site-specific add-ons are additional — call us to go through the full configuration."
+    a: "$35,000 AUD inc GST for the Ready-to-Fly package. That includes the T70P intelligent airframe, spraying system with air-cooled heat sink, C12000 charger, three DB2160 batteries and a WB37 battery with charging hub. Freight, training and any site-specific add-ons are additional. Call us to go through the full configuration."
   },
   {
     q: "What's included in the Ready-to-Fly package?",
@@ -378,27 +419,27 @@ var FAQS = [
   },
   {
     q: "Can the T70P spray and spread and lift from the one drone?",
-    a: "Yes. The T70P carries a 70-litre spray payload, a 100-litre spreading payload and a 65 kg lifting payload. You swap between tasks with different attachments — the airframe is the same. It is the main reason most Western Australian broadacre growers choose it over a dedicated sprayer."
+    a: "Yes. The T70P carries a 70-litre spray payload, a 100-litre spreading payload and a 65 kg lifting payload. You swap between tasks with different attachments; the airframe is the same. It is the main reason most Western Australian broadacre growers choose it over a dedicated sprayer."
   },
   {
     q: "Does the 149.9 kg Australian weight rule affect the T70P?",
-    a: "No. The T70P sits well under 149.9 kg fully loaded, even with the larger DB2160 batteries. It carries its full rated 70-litre payload here without any reduction. The Australian weight cap affects the T100 only — not the T70P, T25P or T50."
+    a: "No. The T70P sits well under 149.9 kg fully loaded, even with the larger DB2160 batteries. It carries its full rated 70-litre payload here without any reduction. The Australian weight cap affects the T100 only, not the T70P, T25P or T50."
   },
   {
-    q: "Which battery should I use — the DB1580 or the DB2160?",
-    a: "The choice changes your payload meaningfully. With the DB1580, the T70P has a spraying MTOW of 102 kg — roughly 46 kg of payload. With the DB2160 it is 126 kg — the full 70 kg of payload. For broadacre spraying, most buyers go with the DB2160 for that reason. The Ready-to-Fly package includes the DB2160."
+    q: "Which battery should I use, the DB1580 or the DB2160?",
+    a: "The choice changes your payload meaningfully. With the DB1580, the T70P has a spraying MTOW of 102 kg, roughly 46 kg of payload. With the DB2160 it is 126 kg, the full 70 kg of payload. For broadacre spraying, most buyers go with the DB2160 for that reason. The Ready-to-Fly package includes the DB2160."
   },
   {
     q: "How long does it take to charge a battery?",
-    a: "Seven to eight minutes for the DB1580, eight to nine minutes for the DB2160, from 30 to 95 percent on the C12000 charger. In practice you keep several batteries rotating and rarely wait on a charge — the ground turnaround including a tank refill is around two minutes per cycle."
+    a: "Seven to eight minutes for the DB1580, eight to nine minutes for the DB2160, from 30 to 95 percent on the C12000 charger. In practice you keep several batteries rotating and rarely wait on a charge. The ground turnaround including a tank refill is around two minutes per cycle."
   },
   {
     q: "How many hectares can it cover in a day?",
-    a: "DJI does not publish coverage figures. The real number depends on your application rate, paddock geometry, obstacles, wind, refill logistics and how far your fill point is from the work. At 30 L/ha on a clean broadacre paddock with short battery and tank cycles, a good operator can push 200 ha a day — but we would rather work it through against your specific paddock than give you a number that may not fit. Call us and we can go through it."
+    a: "DJI does not publish coverage figures. The real number depends on your application rate, paddock geometry, obstacles, wind, refill logistics and how far your fill point is from the work. At 30 L/ha on a clean broadacre paddock with short battery and tank cycles, a good operator can push 200 ha a day, but we would rather work it through against your specific paddock than give you a number that may not fit. Call us and we can go through it."
   },
   {
     q: "Should I buy, or keep hiring a contractor?",
-    a: "Below about 800 ha a season, hiring is usually the call. Above that, with a recurring spray window, owning tends to pay for itself in a couple of seasons. We'll work through the numbers against your operation — call us on (08) 6110 7423."
+    a: "Below about 800 ha a season, hiring is usually the call. Above that, with a recurring spray window, owning tends to pay for itself in a couple of seasons. We'll work through the numbers against your operation. Call us on (08) 6110 7423."
   }
 
   /* ── TODO: reinstate the four items below once copy is verified ──
@@ -423,6 +464,9 @@ var FAQS = [
   ── end TODO block ── */
 ];
 
+function vidSrc(v){ return "/videos/agras-fred-" + v.id + ".mp4"; }
+function posterSrc(v){ return "/videos/thumbnails/agras-fred-" + v.id + ".jpg"; }
+
 /* ─────────────────────────────────────────────
    BUILD VIDEO GALLERY
 ───────────────────────────────────────────── */
@@ -431,61 +475,53 @@ var FAQS = [
   if (!rail) return;
 
   VIDEOS.forEach(function(v, i) {
-    var card = document.createElement('div');
+    var wrap = document.createElement('div');
+    wrap.className = 'vid-card-wrap';
+    wrap.setAttribute('role', 'listitem');
+
+    var card = document.createElement('a');
     card.className = 'vid-card';
-    card.setAttribute('role', 'listitem');
     card.setAttribute('tabindex', '0');
-    card.setAttribute('aria-label', v.question);
+    card.setAttribute('href', '#');
+    card.setAttribute('aria-label', 'Play video: ' + v.question);
     card.setAttribute('data-idx', String(i));
 
-    // Lazy: real src set by IntersectionObserver; placeholder keeps aspect ratio
     card.innerHTML =
-      '<video muted playsinline preload="none" aria-hidden="true"' +
-        ' data-src="' + v.src + '#t=' + v.thumbSec + '"' +
-      '></video>' +
+      '<video muted playsinline preload="none" poster="' + posterSrc(v) + '" aria-hidden="true"></video>' +
       '<div class="vid-card-err" role="alert" aria-live="polite"></div>' +
       '<div class="vid-card-overlay">' +
-        '<span class="vid-card-tag">' + escHtml(v.tag) + '</span>' +
-        '<span class="vid-card-q">' + escHtml(v.question) + '</span>' +
         (v.duration ? '<span class="vid-card-dur">' + fmtDur(v.duration) + '</span>' : '') +
       '</div>' +
       '<div class="vid-play" aria-hidden="true"></div>';
 
-    card.addEventListener('click', function() { openLightbox(i); });
+    card.addEventListener('click', function(e) { e.preventDefault(); openLightbox(i); });
     card.addEventListener('keydown', function(e) {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(i); }
     });
-    rail.appendChild(card);
+
+    // Handle missing video (network / typo)
+    var innerVid = card.querySelector('video');
+    innerVid.addEventListener('error', function() {
+      var errEl = card.querySelector('.vid-card-err');
+      var ov = card.querySelector('.vid-card-overlay');
+      var pl = card.querySelector('.vid-play');
+      if (errEl) { errEl.style.display = 'flex'; errEl.innerHTML = '<span>Video not found</span><code>' + escHtml(vidSrc(v)) + '</code>'; }
+      if (ov) ov.style.display = 'none';
+      if (pl) pl.style.display = 'none';
+    });
+
+    var meta = document.createElement('div');
+    meta.className = 'vid-card-meta';
+    meta.innerHTML =
+      '<span class="vid-card-tag">' + escHtml(v.tag) + '</span>' +
+      '<span class="vid-card-q">' + escHtml(v.question) + '</span>';
+
+    wrap.appendChild(card);
+    wrap.appendChild(meta);
+    rail.appendChild(wrap);
   });
 
-  // Lazy-load: set src only when card is visible
-  var lazyObs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (!entry.isIntersecting) return;
-      var vid = entry.target.querySelector('video[data-src]');
-      if (vid) {
-        var src = vid.getAttribute('data-src');
-        vid.src = src;
-        vid.removeAttribute('data-src');
-        vid.addEventListener('error', function() {
-          var errEl = entry.target.querySelector('.vid-card-err');
-          var ov = entry.target.querySelector('.vid-card-overlay');
-          var pl = entry.target.querySelector('.vid-play');
-          var clean = src.replace(/#.*/, '');
-          if (errEl) { errEl.style.display = 'flex'; errEl.innerHTML = '<span>Video not found</span><code>' + escHtml(clean) + '</code>'; }
-          if (ov) ov.style.display = 'none';
-          if (pl) pl.style.display = 'none';
-          entry.target.style.cursor = 'default';
-          entry.target.removeEventListener('click', openLightbox);
-        });
-      }
-      lazyObs.unobserve(entry.target);
-    });
-  }, { rootMargin: '200px' });
-
-  rail.querySelectorAll('.vid-card').forEach(function(c) { lazyObs.observe(c); });
-
-  // Prev/Next buttons
+  // Prev/Next
   var prevBtn = document.getElementById('rail-prev');
   var nextBtn = document.getElementById('rail-next');
   if (prevBtn && nextBtn) {
@@ -493,12 +529,41 @@ var FAQS = [
       prevBtn.disabled = rail.scrollLeft <= 4;
       nextBtn.disabled = rail.scrollLeft >= rail.scrollWidth - rail.clientWidth - 4;
     }
-    var scrollOpts = matchMedia('(prefers-reduced-motion:reduce)').matches ? {} : { behavior: 'smooth' };
-    prevBtn.addEventListener('click', function() { rail.scrollBy(Object.assign({ left: -252 }, scrollOpts)); });
-    nextBtn.addEventListener('click', function() { rail.scrollBy(Object.assign({ left: 252 }, scrollOpts)); });
+    var reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+    var scrollOpts = reduce ? {} : { behavior: 'smooth' };
+    function step(){ return (rail.querySelector('.vid-card-wrap') || {}).clientWidth ? rail.querySelector('.vid-card-wrap').clientWidth + 16 : 252; }
+    prevBtn.addEventListener('click', function() { rail.scrollBy(Object.assign({ left: -step() }, scrollOpts)); });
+    nextBtn.addEventListener('click', function() { rail.scrollBy(Object.assign({ left: step() }, scrollOpts)); });
     rail.addEventListener('scroll', syncBtns, { passive: true });
     syncBtns();
   }
+})();
+
+/* ─────────────────────────────────────────────
+   GLOBAL VIDEO GUARD
+   One capture-phase 'play' listener - starting any video pauses all others.
+   No per-element handlers.
+───────────────────────────────────────────── */
+document.addEventListener('play', function(e) {
+  var target = e.target;
+  if (!(target && target.tagName === 'VIDEO')) return;
+  document.querySelectorAll('video').forEach(function(v) {
+    if (v !== target && !v.paused) v.pause();
+  });
+}, true);
+
+/* Card previews pause when they leave the rail viewport. */
+(function() {
+  var rail = document.getElementById('vid-rail');
+  if (!rail || !('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      var vid = entry.target.querySelector('video');
+      if (!vid || entry.isIntersecting) return;
+      if (!vid.paused) vid.pause();
+    });
+  }, { root: rail, threshold: 0.1 });
+  rail.querySelectorAll('.vid-card').forEach(function(c){ io.observe(c); });
 })();
 
 /* ─────────────────────────────────────────────
@@ -517,8 +582,31 @@ function openLightbox(idx) {
   document.getElementById('lb-q').textContent = v.question;
   document.getElementById('lb-caption').textContent = v.caption;
 
+  var noticeEl = document.getElementById('lb-notice');
+  var noticeText = document.getElementById('lb-notice-text');
+  if (v.notice) {
+    noticeText.textContent = v.notice;
+    noticeEl.classList.add('show');
+  } else {
+    noticeText.textContent = '';
+    noticeEl.classList.remove('show');
+  }
+
+  var transWrap = document.getElementById('lb-transcript');
+  var transText = document.getElementById('lb-transcript-text');
+  if (v.transcript) {
+    transText.textContent = v.transcript;
+    transWrap.hidden = false;
+  } else {
+    transText.textContent = '';
+    transWrap.hidden = true;
+  }
+
   var vid = document.getElementById('lb-video');
-  vid.src = v.src;
+  vid.setAttribute('poster', posterSrc(v));
+  vid.src = vidSrc(v);
+  vid.muted = false;
+  vid.currentTime = 0;
   vid.load();
   vid.play().catch(function() {});
 
@@ -526,7 +614,6 @@ function openLightbox(idx) {
   lb.classList.add('open');
   document.body.style.overflow = 'hidden';
 
-  // Focus the close button
   setTimeout(function() { document.getElementById('lb-close').focus(); }, 50);
 }
 
@@ -535,7 +622,9 @@ function closeLightbox() {
   lb.classList.remove('open');
   var vid = document.getElementById('lb-video');
   vid.pause();
-  vid.src = '';
+  try { vid.currentTime = 0; } catch(_) {}
+  vid.removeAttribute('src');
+  vid.load();
   document.body.style.overflow = '';
   lbOpenIdx = -1;
   if (lbTrigger) { lbTrigger.focus(); lbTrigger = null; }
@@ -594,8 +683,14 @@ document.addEventListener('keydown', function(e) {
 })();
 
 /* ─────────────────────────────────────────────
-   SCROLL REVEAL
+   OPEN CHAT WIDGET from contact block button
 ───────────────────────────────────────────── */
+document.getElementById('open-chat-btn').addEventListener('click', function() {
+  var launcher = document.querySelector('.efr-launcher');
+  if (launcher) launcher.click();
+});
+
+/* SCROLL REVEAL */
 var revObs = new IntersectionObserver(function(es) {
   es.forEach(function(e) {
     if (e.isIntersecting) { e.target.classList.add('in'); revObs.unobserve(e.target); }
@@ -603,14 +698,11 @@ var revObs = new IntersectionObserver(function(es) {
 }, { threshold: .1 });
 document.querySelectorAll('.reveal').forEach(function(el) { revObs.observe(el); });
 
-/* ─────────────────────────────────────────────
-   HELPERS
-───────────────────────────────────────────── */
+/* HELPERS */
 function escHtml(s) {
   return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 function fmtDur(iso) {
-  // ISO 8601 PT1M30S → "1:30"
   var m = iso.match(/PT(?:(\d+)M)?(?:(\d+)S)?/);
   if (!m) return '';
   var mins = parseInt(m[1] || '0', 10);
@@ -619,13 +711,11 @@ function fmtDur(iso) {
 }
 </script>
 
-<!-- JSON-LD: FAQPage (published answers only) -->
+<!-- JSON-LD -->
 <script type="application/ld+json" id="ld-faq"></script>
-<!-- JSON-LD: VideoObject per clip -->
 <script type="application/ld+json" id="ld-videos"></script>
 <script>
 (function() {
-  // FAQPage — built from the same FAQS array so it cannot drift
   var faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -642,17 +732,16 @@ function fmtDur(iso) {
   };
   document.getElementById('ld-faq').textContent = JSON.stringify(faqSchema);
 
-  // VideoObject — built from the same VIDEOS array
   var vidSchemas = VIDEOS.map(function(v) {
     return {
       "@context": "https://schema.org",
       "@type": "VideoObject",
       "name": v.question,
       "description": v.caption,
-      "thumbnailUrl": "https://agras.elkfishrobotics.com.au/assets/images/og-share.jpg",
+      "thumbnailUrl": "https://agras.elkfishrobotics.com.au" + posterSrc(v),
       "uploadDate": "2026-08-20",
       "duration": v.duration,
-      "contentUrl": "https://agras.elkfishrobotics.com.au" + v.src,
+      "contentUrl": "https://agras.elkfishrobotics.com.au" + vidSrc(v),
       "publisher": {
         "@type": "Organization",
         "name": "Elk Fish Robotics",

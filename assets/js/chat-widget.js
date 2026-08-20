@@ -72,7 +72,7 @@
     starters: [
       "What does a T70P cost?",
       "Which model suits 900 ha?",
-      "What licence do I need?"
+      "How long do the batteries take to charge?"
     ]
   };
 
