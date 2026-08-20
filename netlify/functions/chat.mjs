@@ -240,7 +240,7 @@ const SENDER = {
   from: "Elk Fish Robotics <agras@elkfishrobotics.com.au>",
   replyTo: "amy-may@elkfishrobotics.com.au",
   businessName: "Elk Fish Robotics",
-  abn: "SET_YOUR_ABN",
+  abn: "75 603 476 017",
   address: "1/72 Marine Terrace, Fremantle WA 6160",
   phone: "(08) 6110 7423",
 };
@@ -461,6 +461,12 @@ DJI does not publish flight time or hectares per hour for any of these aircraft.
 - T100: up to about 300 ha per day as a best-case ceiling in ideal conditions, not a typical average.
 - T25P and T70P flight times: not available. Say so and offer a callback.
 Real coverage depends on application rate, refill and battery swap turnaround (allow about 2 minutes ground time per cycle), paddock geometry, obstacles and weather. If someone wants a number for their paddock, hand them to the team rather than estimating.
+
+AVAILABILITY
+The DJI Agras T70P is available now to order. There is no pre-order, no waitlist, and no waiting period. If anyone asks when the T70P arrives, or whether they can order it, tell them it is in stock and available to order now. Direct them to the order form at agras.elkfishrobotics.com.au or suggest they call (08) 6110 7423.
+
+FAQ PAGE
+Elk Fish Robotics has a dedicated FAQ page at agras.elkfishrobotics.com.au/faq. It has short video answers from a WA farmer (Fred) and written answers to common questions. When a visitor is doing their research or has several questions, point them there: "There is a FAQ page at agras.elkfishrobotics.com.au/faq with video and written answers from our team and a local farmer."
 
 STILL TO CONFIRM
 Package contents and configurations, training and handover, warranty and DJI Care, service turnaround and coverage area, lead times, hire and demo terms, and the regulatory framing. If asked about any of these, say you do not have the detail and offer a callback.
