@@ -242,6 +242,27 @@
   var IDLE_MS = 180000;
   var panel, gate, chatArea, log, foot, input, sendBtn, launcher;
 
+  // GA4 tracking, pushed to the same dataLayer as the order_submit event.
+  // Never include message text, phone, email or any conversation content.
+  var gaSentPushed = false;      // chat_message_sent fires once per session
+  var gaEmailPushed = false;     // chat_lead_captured fires once per capture_type
+  var gaPhonePushed = false;
+  function pushDL(payload) {
+    if (!window.dataLayer) return;
+    window.dataLayer.push(payload);
+  }
+  function noteLeadCapture(l) {
+    if (!l) return;
+    if (l.email && !gaEmailPushed) {
+      gaEmailPushed = true;
+      pushDL({ event: "chat_lead_captured", capture_type: "email" });
+    }
+    if (l.phone && !gaPhonePushed) {
+      gaPhonePushed = true;
+      pushDL({ event: "chat_lead_captured", capture_type: "phone" });
+    }
+  }
+
   function el(tag, cls, text) {
     var n = document.createElement(tag);
     if (cls) n.className = cls;
@@ -362,6 +383,7 @@
     if (c.notes && !lead.enterprise) lead.enterprise = c.notes;
 
     if (!lead.email && !lead.phone) return; // a name alone is not a lead
+    noteLeadCapture(lead);
     if (leadSent) return;
     leadSent = true;
 
@@ -554,6 +576,7 @@
         phone: answers.phone || "",
         enterprise: (lead && lead.enterprise) || ""
       };
+      noteLeadCapture(lead);
       leadSent = true;
       postForm(CONFIG.gate.leadForm, {
         name: lead.name, email: lead.email, phone: lead.phone,
@@ -785,6 +808,7 @@
 
       btn.disabled = true;
       btn.textContent = "One moment";
+      noteLeadCapture(lead);
 
       postForm(CONFIG.gate.leadForm, {
         name: lead.name,
@@ -827,6 +851,10 @@
 
     addMessage("user", text);
     history.push({ role: "user", content: text });
+    if (!gaSentPushed) {
+      gaSentPushed = true;
+      pushDL({ event: "chat_message_sent" });
+    }
     typing(true);
 
     fetch(CONFIG.endpoint, {
@@ -936,6 +964,7 @@
     document.body.appendChild(panel);
 
     launcher.addEventListener("click", function () {
+      pushDL({ event: "chat_open" });
       panel.classList.add("open");
       launcher.style.display = "none";
       lockPage(true);
